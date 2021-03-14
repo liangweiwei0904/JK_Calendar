@@ -3,7 +3,7 @@
     align-items: center;
     display: flex;
     text-align: center;
-    background: #13227af5;
+    background: #172780;
     color: #fff; }
     .calendar_select .arrow {
       width: 220rpx;
@@ -29,7 +29,7 @@
     background: #baccd9; }
   
   .calendar_rows {
-    height: 110rpx;
+    height: 100rpx;
     display: flex;
     overflow: hidden;
     padding: 0 4rpx 8rpx;

@@ -7,9 +7,39 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#13227a",
+    "navigationBarTitleText": "上新日历",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh":true,
+    "backgroundTextStyle":"dark"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/Home/Home",
+        "text": "首页",
+        "iconPath": "icons/Home-0.png",
+        "selectedIconPath": "icons/Home-1.png"
+      },
+      {
+        "pagePath": "pages/Hot/Hot",
+        "text": "热榜",
+        "iconPath": "icons/Hot-0.png",
+        "selectedIconPath": "icons/Hot-1.png"
+      },
+      {
+        "pagePath": "pages/Mall/Mall",
+        "text": "商城",
+        "iconPath": "icons/Mall-0.png",
+        "selectedIconPath": "icons/Mall-1.png"
+      },
+      {
+        "pagePath": "pages/User/User",
+        "text": "用户",
+        "iconPath": "icons/User-0.png",
+        "selectedIconPath": "icons/User-1.png"
+      }
+    ]
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

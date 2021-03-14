@@ -32,7 +32,9 @@
          monthStart: (new Date(year, month, 1)).getDay(),
          day: get_day(year, month),
          //month从0开始，因此要+1
-         date: year + '年'+(month+1)+'月'
+         date: year + '年'+(month+1)+'月',
+         tipsText:"新裙子正在设计中~~~",
+         tipsImageSrc:"../../image/AboutTips.jpeg"
      },
  
      switchMonth (e) {

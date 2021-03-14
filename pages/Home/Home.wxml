@@ -24,4 +24,8 @@
         </view>
     </view>
     <!-- tips：提示是否有要上架的裙子，默认没有 -->
+    <view class="calendar_tips">
+        {{tipsText}}
+        <image src="{{tipsImageSrc}}" />
+    </view>
 </view>
