@@ -7,14 +7,14 @@
     </view>
     <!-- 周日、一、二、三、四、五、六 -->
     <view class="calendar_head">
-        <view wx:for="{{week}}">
+        <view wx:for="{{week}}" wx:key="index">
         {{item}}
         </view>
     </view>
     <!-- 日历主体 -->
     <view class="calendar_body">
-        <view wx:for="123456" class="calendar_rows" wx:for-index="row">
-            <view class="calendar_cols" wx:for="1234567" wx:for-index="col">
+        <view wx:for="123456" class="calendar_rows" wx:for-index="row" wx:key="index">
+            <view class="calendar_cols" wx:for="1234567" wx:for-index="col" wx:key="index">
                 <view class="calendar_item" bindtap="clickItem" data-day="{{row * 7 - monthStart + col >-1 && row * 7 - monthStart + col < day ? row * 7 + col - monthStart + 1 : ''}}">
                 {{
                     row * 7 - monthStart + col >-1 && row * 7 - monthStart + col < day ? row * 7 + col - monthStart + 1 : ''

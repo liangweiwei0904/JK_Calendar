@@ -12,6 +12,9 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
+    wx.cloud.init({
+      env:"lwwldx-5g8powrn59ec579e"
+    })
   },
   globalData: {
     userInfo: null

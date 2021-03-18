@@ -1,22 +1,11 @@
-// pages/User/User.js
+// pages/PostByUser/PostByUser.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    Message: []
-  },
-  GetMessage(){
-    wx.cloud.callFunction({
-      name: "getMessage"
-    })
-    .then(res=>{
-      console.log(res);
-      this.setData({
-        Message:res.result.data
-      })
-    })
+
   },
 
   /**
@@ -37,8 +26,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.GetMessage();
-    
+
   },
 
   /**
@@ -74,11 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  //跳转到搜索页
-  search: function () {
-    wx.navigateTo({
-      url: '/pages/search/search',
-    })
-  },
+  }
 })

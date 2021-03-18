@@ -3,17 +3,22 @@
     "pages/Home/Home",
     "pages/Hot/Hot",
     "pages/Mall/Mall",
-    "pages/User/User"
+    "pages/User/User",
+    "pages/search/search",
+    "pages/PostBySeller/PostBySeller",
+    "pages/PostByUser/PostByUser"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#13227a",
     "navigationBarTitleText": "上新日历",
     "navigationBarTextStyle": "white",
-    "enablePullDownRefresh":true,
-    "backgroundTextStyle":"dark"
+    "enablePullDownRefresh": true
+    
   },
   "tabBar": {
+    "color":"#515151",
+    "selectedColor":"#13227a",
     "list": [
       {
         "pagePath": "pages/Home/Home",
@@ -23,9 +28,15 @@
       },
       {
         "pagePath": "pages/Hot/Hot",
-        "text": "热榜",
+        "text": "讨论",
         "iconPath": "icons/Hot-0.png",
         "selectedIconPath": "icons/Hot-1.png"
+      },
+      {
+        "pagePath": "pages/PostBySeller/PostBySeller",
+        "text": "发布",
+        "iconPath": "icons/Post-0.png",
+        "selectedIconPath": "icons/Post-1.png"
       },
       {
         "pagePath": "pages/Mall/Mall",

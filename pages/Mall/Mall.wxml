@@ -1,153 +1,63 @@
-<view class="htmleaf-container" style="background:white;display:{{isLoading?'none':'block'}};height:100%;">
-
-  <view class="spinner-box" style="margin:0 auto;">
-    <view class="pulse-container" style="margin-top:500rpx;">
-      <view class="pulse-bubble pulse-bubble-1"></view>
-      <view class="pulse-bubble pulse-bubble-2"></view>
-      <view class="pulse-bubble pulse-bubble-3"></view>
+<view class="pyg_index">
+    <!-- 搜索框 开始 -->
+    <SearchBar></SearchBar>
+    <!-- 搜索框 结束 -->
+    <!-- 轮播图 开始 -->
+    <view class="index_swiper">
+        <!-- 1swiper标签存在默认的宽度和高度 100%*150px
+      2image标签也存在默认的高度和宽度 320px*240pxA
+      3设计图片和轮播图A
+        1先看一下原图的宽高750*340
+        2让图片的高度自适应宽度等于100% 
+        3让swiper标签变得和图片地高一样即可
+      4图片标签
+      mode属性 渲染模式
+        widthFix 让图片的标签宽高和图片标签的内容的宽高都等比例地发生变化 -->
+        <swiper autoplay="{{true}}" indicator-dots="{{true}}" circular="{{true}}">
+            <swiper-item wx:for="{{swiperList}}" wx:key="goos_id">
+                <!-- <navigator url="/pages/goods_detail/goods_detail?goods_id={{item.goods_id}}">
+          <image mode="widthFix" src="{{item.image_src}}"></image>
+        </navigator> -->
+                <image mode="widthFix" src="{{item.swiperImgUrl}}" />
+            </swiper-item>
+        </swiper>
+    </view>
+    <!-- 轮播图 结束 -->
+    <!-- 导航 开始 -->
+    <view class="index_cate">
+        <navigator url="/pages/Home/Home" open-type="switchTab" wx:for="{{catesList}}" wx:key="name">
+            <image mode="widthFix" src="{{item.image_src}}" />
+        </navigator>
+    </view>
+    <!-- 导航 结束 -->
+    <!-- 楼层 开始 
+  <view class="index_floor">
+    <view class="floor_group"
+    wx:for="{{floorList}}" 
+    wx:for-item="item1"
+    wx:for-index="index1"
+    wx:key="floor_title"
+    >
+      <!-- 标题 
+      <view class="floor_title">
+        <image src="{{item1.floor_title.image_src}}" mode="widthFix" />
+      </view>
+      <!-- 内容 
+      <view class="floor_list">
+        <navigator 
+        wx:for="{{item1.product_list}}"
+        wx:for-item="item2"
+        wx:for-index="index2"
+        url="/pages/goods_list/goods_list?query=饰品"
+        >
+        <image  src="{{item2.image_src}}" mode="{{index2===0?'widthFix':'scaleToFill'}}" />
+        </navigator>
+      </view>
     </view>
   </view>
+   楼层 结束 -->
 
-</view>
-
-
-
-<view style="display:{{isLoading?'block':'none'}}">
-
-
-  <SearchBar bindtap="search"></SearchBar>
-  <view class='container' style="margin-top: {{height}}px">
-    <view class="top">
-      <swiper class="imageContainer" indicator-color="#fff" indicator-active-color="#f00" bindchange="handleImgChange" previous-margin="40rpx" next-margin="40rpx" indicator-dots circular autoplay>
-        <block wx:for="{{swiper_images}}" wx:key="{{index}}">
-          <swiper-item class="item">
-            <image bindtap="look_image" id="{{item.swiperImageUrl}}" class="itemImg {{currentIndex == index ? 'active': ''}}" src="{{item.swiperImageUrl}}"></image>
-          </swiper-item>
-        </block>
-      </swiper>
-    </view>
-    <view class="top_category">
-      <swiper class="category_swiper" indicator-active-color="#f00" indicator-color="#fff" indicator-dots>
-        <swiper-item>
-          <view class="category">
-            <block wx:for="{{category_first}}" wx:key="{{index}}">
-              <view class="category_item">
-                <view class="category_image">
-                  <navigator url="/pages/category/category?categoryId={{item.categoryId}}&categoryName={{item.categoryName}}">
-                    <image src="{{item.categoryImage}}" mode="widthFix" />
-                  </navigator>
-                </view>
-                <view class="category_title">{{item.categoryName}}</view>
-              </view>
-            </block>
-          </view>
-        </swiper-item>
-        <swiper-item>
-          <view class="category">
-            <block wx:for="{{category_second}}" wx:key="{{index}}">
-              <view class="category_item">
-                <view class="category_image" style="display:{{item.categoryImage==null?'none':'block'}}">
-                  <navigator url="/pages/category/category?categoryId={{item.categoryId}}&categoryName={{item.categoryName}}">
-                    <image src="{{item.categoryImage}}" mode="widthFix" />
-                  </navigator>
-                </view>
-                <view class="category_title">{{item.categoryName}}</view>
-              </view>
-            </block>
-          </view>
-        </swiper-item>
-      </swiper>
-    </view>
-    <view class="top_notice">
-      <view class="notice_title">
-        <label>公告:</label>
-      </view>
-      <swiper class="swiper_notice" circular vertical autoplay>
-        <block wx:for="{{notice}}" wx:key="{{index}}">
-          <swiper-item id="{{item.noticeDetail}}" bindtap="checkNotice">{{item.noticeDetail}}</swiper-item>
-        </block>
-      </swiper>
-    </view>
-
-    <view class="bottom_ad">
-      <swiper class="ad">
-        <block wx:for="{{ad_bottom}}" wx:key="{{index}}">
-          <swiper-item>
-            <image src="{{item}}" id="{{item}}" bindtap="look_image" mode="widthFix" />
-          </swiper-item>
-        </block>
-      </swiper>
-    </view>
-    <view class="title_category">
-      <view style="color:black;font-weight:800">最新发布</view>
-      <view style="font-weight:200">
-        <navigator url="/pages/category/category?categoryId=5&categoryName=闲置交易">闲置交易</navigator>
-      </view>
-      <view style="font-weight:200">
-        <navigator url="/pages/category/category?categoryId=13&categoryName=问题询问">问题解答</navigator>
-      </view>
-      <view style="font-weight:200">
-        <navigator url="/pages/category/category?categoryId=11&categoryName=最新消息">最新消息</navigator>
-      </view>
-    </view>
-
-    <view class="main">
-
-      <block wx:for="{{user_message}}" wx:key="{{index}}">
-        <view class="back" bindtap="to_message_detail" id="{{item.messageId}}">
-          <view class="main_item">
-            <view class="user_message">
-              <view class="user_image">
-                <image src="{{item.userIdAnonymity==0?item.mangoUser.userAvatar:'../../images/other/hidden.jpg'}}" mode="widthFix" />
-              </view>
-              <view class="user_detail">
-                <view class="user_name">
-                  <text>{{item.userIdAnonymity==0?item.mangoUser.userNickname:"匿名用户"}}</text>
-                </view>
-                <view class="user_flag">
-                  <view class="flag_category">{{allCategoryMessage[item.categoryId-1].categoryName}}</view>
-                  <view class="flag_sex">{{item.mangoUser.userGender==1?"小哥哥":"小姐姐"}}</view>
-                  <view class="flag_major">{{item.userMajor}}</view>
-                  <view class="flag_age">{{item.userLevel}}级</view>
-                </view>
-              </view>
-            </view>
-          </view>
-          <view class="main_middle">
-            <view class="main_middle_intro">
-              <text>{{item.messageDetail}}</text>
-            </view>
-            <view class="main_middle_image {{item.messageImages.length==1?'change_one':item.messageImages.length==2?'change_second':''}}">
-              <block wx:for="{{item.messageImages}}" wx:key="{{index}}">
-                <image src="{{imageUrl}}{{item.imageUrl}}" mode="aspectFill" />
-              </block>
-            </view>
-          </view>
-          <view class="main_bottom">
-            <view class="main_bottom_operation">
-              <view class="main_bottom_operation_left">
-                <view>
-                  <text class="iconfont icon-zhuanfa" style="margin-left:20rpx;color:#999;font-size:25rpx;">{{item.messageShare}}</text>
-                  <text class="iconfont icon-iconfontpinglun" style="margin-left:50rpx;color:#999;font-size:25rpx;">{{item.messageComment}}</text>
-                </view>
-              </view>
-              <view class="main_bottom_operation_right">
-                <text class="iconfont icon-dianzan" style="margin-right:20rpx;color:#999;font-size:25rpx;">{{item.messageWatch}}</text>
-              </view>
-            </view>
-          </view>
-        </view>
-      </block>
-    </view>
-
-    <view class="end" style="text-align:center;color:#999;font-size:25rpx;margin:10rpx;margin-top:20rpx;display:{{isLastPage?'':'none'}}">
-      ————————— End —————————
-    </view>
-  </view>
-  <view class="other" style="display:{{floorstatus}}">
-    <view class="return_top" bindtap='goTop'>
-      <image src="../../images/other/top.png" class="goTop" style="font-size:100rpx;color:#3cc;" />
-    </view>
-  </view>
-
+   <!-- 猜你喜欢 -->
+   <view>猜你喜欢</view>
+   
 </view>
