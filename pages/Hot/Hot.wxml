@@ -1,9 +1,10 @@
 <!-- 搜索框 -->
 <SearchBar bindtap="search"></SearchBar>
 <view style="color:black;font-weight:800">最新发布</view>
-<view style="color:black;font-weight:800">发帖
-    <navigator  url="/pages/PostByUser/PostByUser"></navigator>
+<view style="color:black;font-weight:800">
+    <navigator  url="/pages/PostByUser/PostByUser">发帖</navigator>
 </view>
+<view >分割线</view>
 <view class="main" wx:for="{{Message}}" wx:key="{{index}}">
     <view class="main_item" bindtap="to_message_detail" id="{{item.mess_id}}">
         <view class="user_message">
@@ -37,6 +38,9 @@
             <text>发表：{{item.mess_content}}</text>
         </view>
         <!-- 显示帖子里面的图片 -->
+        <view class="main_middle_content">
+            <image src="{{item.mess_img}}" ></image>
+        </view>
         <!-- <view class="main_middle_image {{item.messageImages.length==1?'change_one':item.messageImages.length==2?'change_second':''}}">
                     <block wx:for="{{item.messageImages}}" wx:key="{{index}}">
                         <image src="{{imageUrl}}{{item.imageUrl}}" mode="aspectFill" />

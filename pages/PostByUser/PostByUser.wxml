@@ -1,2 +1,19 @@
-<!--pages/PostByUser/PostByUser.wxml-->
-<text>pages/PostByUser/PostByUser.wxml</text>
+<textarea style="width:100%;margin-top:20rpx;" maxlength="1000" bindinput='handleTextInput' placeholder="请输入内容描述（最多1000字）"></textarea>
+<view class="image_content">
+    <view class="fb_tool">
+        <button bindtap="handleChooseImg">+</button>
+        <!-- 当数组试一些简单数组的时候，它所绑定的key要加* -->
+        <view class="up_img_item" wx:for="{{chooseImgs}}" wx:key="*this" bindtap="handleRemoveImg" data-index="{{index}}">
+            <Upimg src="{{item}}"></Upimg>
+        </view>
+    </view>
+</view>
+
+
+
+<view class="form_btn_wrap">
+    <button bindtap="handleFormSubmit" >
+        <icon type="success_no_circle" color="white" size="16"></icon>
+        发布
+    </button>
+</view>

@@ -129,7 +129,7 @@ Page({
                 chooseImgs:[]
               })
               wx.switchTab({
-                url: '/pages/Hot/Hot',
+                url: '/pages/Home/Home',
                 success: (result)=>{
                   console.log("跳转到讨论页");
                 },
@@ -145,7 +145,7 @@ Page({
       wx.hideLoading();
       console.log("仅提交文本");
       wx.switchTab({
-        url: '/pages/Hot/Hot',
+        url: '/pages/Home/Home',
         success: (result)=>{
           console.log("跳转到讨论页");
         },

@@ -1,4 +1,4 @@
-<textarea style="width:100%;margin-top:20rpx;" maxlength="1000" bindinput='input_intro' placeholder="请输入内容描述（最多1000字）"></textarea>
+<textarea style="width:100%;margin-top:20rpx;" maxlength="1000" bindinput='handleTextInput' placeholder="请输入内容描述（最多1000字）"></textarea>
 <view class="image_content">
     <view class="fb_tool">
         <button bindtap="handleChooseImg">+</button>

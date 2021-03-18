@@ -82,6 +82,12 @@
         {
           "name": "pages/Mall/Mall",
           "pathName": "pages/Mall/Mall",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "用户发帖",
+          "pathName": "pages/PostByUser/PostByUser",
           "scene": null
         }
       ]
