@@ -68,12 +68,6 @@
           "scene": null
         },
         {
-          "name": "发布",
-          "pathName": "pages/Post/Post",
-          "query": "",
-          "scene": null
-        },
-        {
           "name": "个人中心",
           "pathName": "pages/User/User",
           "query": "",
@@ -88,6 +82,19 @@
         {
           "name": "用户发帖",
           "pathName": "pages/PostByUser/PostByUser",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "公告页",
+          "pathName": "pages/Notice/Notice",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "商家发布公告",
+          "pathName": "pages/PostBySeller/PostBySeller",
+          "query": "",
           "scene": null
         }
       ]

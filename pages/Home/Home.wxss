@@ -41,6 +41,10 @@
     height: 100%;
     padding: 0 4rpx;
     display: flex; }
+
+  .special-color{
+    color:red;
+  }
   
   .calendar_item {
     background: #eaf3fa;

@@ -1,0 +1,30 @@
+var FixED = {
+    //此处设置数据类型保留小数浮点型
+    toFix: function(value) {
+      return value.toFixed(2)
+    },
+    
+    //此处设置数据类型为int整数
+    toParseInt: function(value) {
+      return parseInt(value)
+    },
+    //此处设置数据类型为number类型
+    toNumber: function(value) {
+      return Number(value)
+    },
+    //此处设置截取
+    toSubstrings: function(value) {
+      return value.substring(0, 5)
+    },
+ 
+  }
+  module.exports = {
+    toFix: FixED.toFix,
+    toParseInt: FixED.toParseInt,
+    toNumber: FixED.toNumber,
+    toSubstrings: FixED.toSubstrings,
+    toDates: FixED.toDates,
+    getDay: FixED.getDay,
+    toMatTimeYear: FixED.toMatTimeYear,
+    toReplace: FixED.toReplace,
+  }

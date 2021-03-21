@@ -6,7 +6,8 @@
     "pages/User/User",
     "pages/search/search",
     "pages/PostBySeller/PostBySeller",
-    "pages/PostByUser/PostByUser"
+    "pages/PostByUser/PostByUser",
+    "pages/Notice/Notice"  
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -32,12 +33,7 @@
         "iconPath": "icons/Hot-0.png",
         "selectedIconPath": "icons/Hot-1.png"
       },
-      {
-        "pagePath": "pages/PostBySeller/PostBySeller",
-        "text": "发布",
-        "iconPath": "icons/Post-0.png",
-        "selectedIconPath": "icons/Post-1.png"
-      },
+      
       {
         "pagePath": "pages/Mall/Mall",
         "text": "商城",

@@ -1,4 +1,4 @@
-<textarea style="width:100%;margin-top:20rpx;" maxlength="1000" bindinput='handleTextInput' placeholder="请输入内容描述（最多1000字）"></textarea>
+<textarea style="width:100%;margin-top:20rpx;" maxlength="1000" bindinput='handleTextInput' placeholder="请输入商品详情"></textarea>
 <view class="image_content">
     <view class="fb_tool">
         <button bindtap="handleChooseImg">+</button>
@@ -8,32 +8,33 @@
         </view>
     </view>
 </view>
-<view class="bottom">
-    <view class="message_user">
-        <view class="phone_title">联系方式：</view>
-        <input class="phone" type="number" bindinput='input_phone' placeholder="请输入您的手机号" maxlength="11"></input>
-    </view>
-</view>
 <view class="bottom_item">
     <view class="message_user">
         <view class="phone_title">店铺名称：</view>
-        <input class="phone" type="number" bindinput='input_level' placeholder="请输入店铺名称" maxlength="2"></input>
+        <input class="phone" type="number" bindinput='handleStoreName' placeholder="请输入店铺名称" maxlength="2"></input>
     </view>
 </view>
 <view class="bottom_item">
     <view class="message_user">
         <view class="phone_title">商品名称：</view>
-        <input class="phone" placeholder="请输入商品名称" bindinput='input_major' maxlength="13"></input>
+        <input class="phone" placeholder="请输入商品名称" bindinput='handleGoodsName' maxlength="13"></input>
     </view>
 </view>
 <view class="bottom_item">
     <view class="message_user">
-        <view class="phone_title">上架时间：</view>
-        <input class="phone" placeholder="请输入您的专业" bindinput='input_major' maxlength="13"></input>
+        <view class="section">
+            <view class="section__title">日期选择器</view>
+            <picker mode="date" value="{{date}}" start="2021-01-01" end="2021-12-31" bindchange="bindDateChange">
+                <view class="picker">当前选择: {{date}}</view>
+            </picker>
+        </view>
+
+
+
     </view>
 </view>
 <view class="form_btn_wrap">
-    <button bindtap="handleFormSubmit" >
+    <button bindtap="handleFormSubmit">
         <icon type="success_no_circle" color="white" size="16"></icon>
         发布
     </button>

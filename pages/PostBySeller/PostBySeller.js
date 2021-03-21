@@ -1,159 +1,136 @@
-/* 
-1点击"+" 触发tap点击事件
-  1调用小程序内置的选择图片的api
-  2获取到图片的路径 数组格式
-  3把图片路径 存到data的变量中
-  4页面就可以根据图片数组进行循环显示自定义组件
-2点击自定义图片组件
-  1获取被点击元素的索引
-  2获取data中的图片数组
-  3根据索引 从数组中删除对应的元素
-  4把数组重新设置到data中
-3当用户点击提交按钮之后
-  1获取文本域的内容 类似输入框的获取
-    1data中定义变量表示输入框内容
-    2文本域绑定输入事件 事件触发的时候，把输入框的值 存入到变量中
-  2对这些内容做合法性验证
-  3验证通过 把用户选择的图片上上传到专门的服务器中 返回图片外网的链接
-    1遍历图片数组
-    2挨个上传
-    3自己再维护图片数组 存放图片上传后的外网链接
-  4文本域 和外网的图片路径一起提交到服务器（前端的模拟，并不会发送请求到后台）
-  5清空当前页面
-  6返回上一页
-*/
 Page({
   data: {
-    //被选中的图片路径数组
-    chooseImgs:[],
-    //文本域的内容
-    textVal:"",
-
+    chooseImgs: [],
+    textVal: "",
+    storeName:"",
+    goodsName:"",
+    sellTime:'2021-03-21',
+    year:"",
+    month:"",
+    day:"",
+    date: '2021-03-21'
   },
-  //不需要在页面中显示的数据
-  //外网的图片路径数组
-  UpLoadImgs:[],
-
-  //点击“+”选择图片
-  handleChooseImg(){
-    //2调用小程序内置的选择图片的API
+  UpLoadImgs: [],
+  handleChooseImg() {
     wx.chooseImage({
-      //同时选中的图片数量
       count: 9,
-      //图片格式
-      sizeType: ['original','compressed'],
-      //图片来源
-      sourceType: ['album','camera'],
-      success: (result)=>{
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success: (result) => {
         console.log(result);
         this.setData({
-          //图片数组进行拼接
-          chooseImgs:[...this.data.chooseImgs,...result.tempFilePaths]
+          chooseImgs: [...this.data.chooseImgs, ...result.tempFilePaths]
         })
+        console.log(this.data.chooseImgs);
       },
     });
   },
   //点击自定义图片组件
-  handleRemoveImg(e){
+  handleRemoveImg(e) {
     //获取被点击的图片索引
-    const {index} =e.currentTarget.dataset;
+    const { index } = e.currentTarget.dataset;
     //console.log(index);
     //获取data中的图片数组
-    let {chooseImgs}=this.data;
+    let { chooseImgs } = this.data;
     //删除元素
-    chooseImgs.splice(index,1);
+    chooseImgs.splice(index, 1);
     this.setData({
       chooseImgs
     })
   },
   //文本域的输入事件
-  handleTextInput(e){
+  handleTextInput(e) {
     this.setData({
       //获取文本域的值
-      textVal:e.detail.value
+      textVal: e.detail.value
     })
   },
+  handleStoreName(e){
+    this.setData({
+      storeName:e.detail.value
+    })
+  },
+  handleGoodsName(e){
+    this.setData({
+      goodsName:e.detail.value
+    })
+  },
+ 
+
+
+
+
+  bindDateChange: function(e) {
+    console.log(e);
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      sellTime: e.detail.value,
+      month:e.detail.value.substring(5,7),
+      day:e.detail.value.substring(8,10)
+    });
+    console.log("分割之后的字符串：",this.data.month,"月",this.data.day,"日");
+  },
+
 
   //提交按钮的点击事件
-  handleFormSubmit(e){
-    // //获取文本域的内容
-    // const {textVal,chooseImgs}=this.data;
-    // //合法性的验证
-    // if(!textVal.trim()){
-    //   //不合法
-    //   wx.showToast({
-    //     title: '输入不合法',
-    //     mask: false,
-    //     icon:'none',
-    //   });
-    //   return;
-    // }
-    //3准备上传图片到专门的图片服务器
-    //上传文件的api不支持多个文件同时上传  遍历数组挨个上传
-    //图片上传中显示正在等待图标
-    const {chooseImgs}=this.data;
-    wx.showLoading({
-      title: "正在上传",
-      mask: true,
-    });
-
-    //判断有没有需要上传的图片数组
-    if(chooseImgs.length!=0){
-      chooseImgs.forEach((v,i)=>{
-        wx.uploadFile({
-          //图片要上传到哪里
-          url: 'https://img.coolcr.cn/api/upload',
-          //被上传的文件路径
+  handleFormSubmit(e) {
+    let that=this;
+    //判断用户是否上传了图片
+    if (this.data.chooseImgs.length != 0) {
+      this.data.chooseImgs.forEach((v, i) => {
+        // 将图片上传至云存储空间
+        wx.cloud.uploadFile({
+          // 指定上传到的云路径
+          cloudPath: 'MessageImg/'+new Date().getTime()+'.png',//小程序官方问题，路径写死了之后上传新图片不会更换
+          // 指定要上传的文件的小程序临时文件路径
           filePath: v,
-          //上传的文件名称  用于后台获取文件 file
-          name: "image",
-          //顺带的文本信息
-          formData: {},
-          success: (result)=>{
-            console.log(result);
-            //json 解析
-            let url=JSON.parse(result.data).url;
-            this.UpLoadImgs.push(url);
-            //console.log(this.UpLoadImgs);
-  
-            //所有图片都上传完毕才触发的代码
-            if(i===chooseImgs.length-1){
-              //弹窗关闭
-              wx.hideLoading();
-              //模拟异步提交
-              console.log("把文本内容和外网图片数据提交到后台");
-              //提交都成功了
-              //重置页面
-              this.setData({
-                textVal:"",
-                chooseImgs:[]
-              })
+          // 成功回调
+          success: res => {
+            //将云存储中的图片路径传给数据库
+            wx.cloud.database().collection("Goods").add({
+              data: {
+                goods_content: this.data.textVal,
+                goods_img: res.fileID,
+                store_name:this.data.storeName,
+                goods_name:this.data.goodsName,
+                sell_time:this.data.sellTime,
+                sell_year:this.data.year,
+                sell_month:this.data.month,
+                sell_day:this.data.day
+              }
+            })
+            .then(res1=>{
+              console.log("调用云函数成功",res1);
+
+              //商家可以传递数据给首页了
+              //可是他们两个不是同一个页面怎么办
+              //发公告之后存储到数据库
+              // 首页从数据库显示？日期如何确定？
+              //让首页进行判断
+
+
+
+
+
+
               wx.switchTab({
-                url: '/pages/Home/Home',
+                url: '/pages/Hot/Hot',
                 success: (result)=>{
-                  console.log("跳转到讨论页");
+                  console.log(result,"跳转回热榜页成功");
                 },
-                fail: ()=>{},
+                fail: (result)=>{console.log(result,"跳转回热榜页失败");},
                 complete: ()=>{}
               });
-            }
+            })
+            .catch(res1=>{
+              console.log("调用云函数失败",res1);
+            })
           },
-        });
+        })
       })
     }
     else{
-      wx.hideLoading();
-      console.log("仅提交文本");
-      wx.switchTab({
-        url: '/pages/Home/Home',
-        success: (result)=>{
-          console.log("跳转到讨论页");
-        },
-        fail: ()=>{},
-        complete: ()=>{}
-      });
+
     }
-    
-    
-  }
+  }  
 })

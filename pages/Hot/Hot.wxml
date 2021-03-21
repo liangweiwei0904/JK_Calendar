@@ -2,9 +2,15 @@
 <SearchBar bindtap="search"></SearchBar>
 <view style="color:black;font-weight:800">最新发布</view>
 <view style="color:black;font-weight:800">
-    <navigator  url="/pages/PostByUser/PostByUser">发帖</navigator>
+    <navigator  url="/pages/PostByUser/PostByUser">用户发帖</navigator>
+</view>
+<view style="color:black;font-weight:800">
+    <navigator  url="/pages/PostBySeller/PostBySeller">商家发帖</navigator>
 </view>
 <view >分割线</view>
+<view style="color:black;font-weight:800">
+    <navigator  url="/pages/Notice/Notice">商家的公告</navigator>
+</view>
 <view class="main" wx:for="{{Message}}" wx:key="{{index}}">
     <view class="main_item" bindtap="to_message_detail" id="{{item.mess_id}}">
         <view class="user_message">

@@ -1,0 +1,11 @@
+<view style="color:black;font-weight:800">最新发布</view>
+<view >分割线</view>
+<view class="notice_wrap" >
+    <view class="notice_item"  wx:for="{{Notice}}" wx:key="{{index}}" >
+        <!-- <image src="{{item.store_name}}" /> -->
+        <view>店铺名称：{{item.store_name}}</view>
+        <view>上新商品为：{{item.goods_name}}</view>
+        <view>上新日期为：{{item.sell_time}}</view>
+        <image src="{{item.goods_img}}" />
+    </view>
+</view>

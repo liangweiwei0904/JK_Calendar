@@ -69,6 +69,14 @@ Page({
             })
             .then(res1=>{
               console.log("调用云函数成功",res1);
+              wx.navigateTo({
+                url: '/pages/Hot/Hot',
+                success: (result)=>{
+                  console.log(result,"跳转回热榜页成功");
+                },
+                fail: (result)=>{console.log(result,"跳转回热榜页失败");},
+                complete: ()=>{}
+              });
             })
             .catch(res1=>{
               console.log("调用云函数失败",res1);
