@@ -59,10 +59,12 @@
 
    <!-- 猜你喜欢 -->
    <view>猜你喜欢</view>
+
    <!-- <view class="goods_recommend_wrap">
       <view class="goods_recommend_item">
         <image src="../../icons/Mall-0.png" />
         <view class="item_content">{{item.goods_name}}</view>
       </view>
    </view> -->
+    <view>订阅店铺</view>
 </view>

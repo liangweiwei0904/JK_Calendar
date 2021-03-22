@@ -40,7 +40,8 @@ Page({
         tipsImageSrc: "../../image/AboutTips.jpeg",
         //从数据库请求的数据应该是什么类型的，string型（2021年03月17日）如何判断3月17日有新品
         isSellDay: false, //默认为false，当从数据库请求回来的有数据时设置为ture
-        tempdata:[]
+        tempdata:[],
+        NewGoods:[]
     },
 
     switchMonth(e) {
@@ -78,10 +79,33 @@ Page({
         });
         console.log(this.data.monthStart);
     },
+    //点击这一天的时候，在下边的显示模块提示当天即将上架的裙子
     clickItem(e) {
         var day = e.target.dataset.day;
         console.log(year + '年' + (month + 1) + '月' + day + "日");
+        //如果用户点击16，获取到数字16之后呢
+        //从tempdata里面找到sell_day为16的数据并将其赋值给NewGoods
+        //渲染的时候，直接显示NewGoods数组里的内容
+        //问题：当点击某一个售卖日之后，NewGoods里面会附上值，再次点击非售卖日，这个值应该清空
+        for(var i=0;i<this.data.tempdata.length;i++){
+            if(day==this.data.tempdata[i].sell_day){
+                this.setData({
+                    NewGoods:this.data.tempdata[i],
+                    isSellDay:true
+                });
+                console.log("this.data.NewGoods",this.data.NewGoods);
+                break;
+            }
+            else{
+                this.setData({
+                    NewGoods:[],
+                    isSellDay:false
+                });
+            }
+        }
+        
     },
+
     //获取某月的新品销售
     getGoodsByMonth(month) {
 
@@ -105,7 +129,7 @@ Page({
                 console.log("获取3月份的数据失败", res);
             })
     },
-    onLoad() {
+    onShow() {
         this.getGoodsByMonth();
     },
     onReady() {

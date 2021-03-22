@@ -17,22 +17,29 @@
         <!-- 先按行循环，最多6行42天 -->
         <view wx:for="123456" class="calendar_rows" wx:for-index="row" wx:key="index">
             <!-- 按列循环，每周7天 -->
-            <view class="calendar_cols  {{isSellDay?'special-color':''}} " wx:for="1234567" wx:for-index="col" wx:key="index">
-                <view  class="calendar_item" bindtap="clickItem" >
+            <view class="calendar_cols   " wx:for="1234567" wx:for-index="col" wx:key="index">
+                <view  class="calendar_item" bindtap="clickItem" data-day="{{row * 7 - monthStart + col >-1 && row * 7 - monthStart + col < day ? row * 7 + col - monthStart + 1 : ''}}"  >
                 {{row * 7 - monthStart + col >-1 && row * 7 - monthStart + col < day ? row * 7 + col - monthStart + 1 : ''}}
                 <!-- <block wx:if="{{(row * 7 + col - monthStart + 1)===22}}">*</block> -->
                 <!-- <block wx:if="{{(row * 7 + col - monthStart + 1)==tempdata[0].sell_day||(row * 7 + col - monthStart + 1)==tempdata[1].sell_day}}">*</block> -->
                     <!-- {{FixED.toFix(value)}} -->
                 <block wx:for="{{tempdata}}">
-                    <block wx:if="{{item.sell_day==(row * 7 + col - monthStart + 1)}}">*</block>
+                    <block wx:if="{{item.sell_day==(row * 7 + col - monthStart + 1)}}"   >*</block>
                 </block>
                 </view>
             </view>
         </view>
     </view>
     <!-- tips：提示是否有要上架的裙子，默认没有 -->
-    <view class="calendar_tips">
+    <!-- <view class="calendar_tips {{isSellDay?'special-color':''}}">
         {{tipsText}}
         <image src="{{tipsImageSrc}}" />
-    </view>
+    </view> -->
+    <block class="calendar_tips" wx:if="{{NewGoods.goods_name}}" >
+        <view >商品名称{{NewGoods.goods_name}} </view>
+    </block>
+    <block wx:else>
+        {{tipsText}}
+        <image src="{{tipsImageSrc}}" />
+    </block>
 </view>
