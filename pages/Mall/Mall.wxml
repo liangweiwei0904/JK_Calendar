@@ -62,9 +62,9 @@
 
    <view class="goods_recommend_wrap">
       <view class="goods_recommend_item">
-        <image src="../../icons/Mall-0.png" />
+        <!-- <image src="../../icons/Mall-0.png" /> -->
         <view class="item_content">喜欢吗</view>
       </view>
    </view>
-    <view>订阅店铺</view>
+    <view>订阅更新</view>
 </view>

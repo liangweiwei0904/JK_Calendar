@@ -1,0 +1,7 @@
+<view >正在关注的店铺</view>
+<view class="store_info_wrap">
+    <view class="store_info_item" wx:for="{{store}}">
+        <view class="store_img">头像</view>
+        <view class="store_info">店铺名：{{item.store_name}}</view>
+    </view>
+</view>
