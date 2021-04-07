@@ -1,59 +1,47 @@
-// pages/user/user.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    userinfo:{},
-    //被收藏的商品数量
-    collectNums:0,
-    tabs:[
-      {
-        id:0,
-        value:"关注商品",
-        isActive:true
-      },
-      {
-        id:1,
-        value:"关注店铺",
-        isActive:false
-      },
-      {
-        id:2,
-        value:"我的动态",
-        isActive:false
-      }
-    ],
+    userInfo: {},
+    hasUserInfo: false,
+    canIUseGetUserProfile: false,
   },
-
-   //标题的点击事件  从子组件传递过来
-   handleTabsItemChange(e){
-    //1获取被点击的标题索引
-    const {index}=e.detail;
-    //2修改源数组
-    let {tabs}=this.data;
-    tabs.forEach((v,i) =>i===index?v.isActive=true:v.isActive=false );
-    //3赋值到data中
+  onLoad() {
+    if (wx.getUserProfile) {
+      this.setData({
+        canIUseGetUserProfile: true
+      })
+    }
+  },
+  getUserProfile(e) {
+    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
+    // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+    wx.getUserProfile({
+      desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+      }
+    })
+  },
+  getUserInfo(e) {
+    // 不推荐使用getUserInfo获取用户信息，预计自2021年4月13日起，getUserInfo将不再弹出弹窗，并直接返回匿名的用户个人信息
     this.setData({
-      tabs
-    });
-    //向后台请求数据(关注商品、店铺动态、我的动态)
-    
-
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
   },
 
 
   onShow(){
     const userinfo=wx.getStorageSync("userinfo");
-    const collect=wx.getStorageSync("collect")||[];
     this.setData({
       userinfo,
-      collectNums:collect.length
     })
   },
   
   handleGetUserInfo(e){
+    console.log(e);
     const {userInfo}=e.detail;
     wx.setStorageSync("userinfo", userInfo);
     this.onShow();

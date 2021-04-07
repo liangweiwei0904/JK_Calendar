@@ -9,7 +9,8 @@
     "pages/PostByUser/PostByUser",
     "pages/Notice/Notice",
     "pages/goods_following/goods_following",
-    "pages/stores_following/stores_following"
+    "pages/stores_following/stores_following",
+    "pages/aboutMe/aboutMe"
   ],
   "window": {
     "backgroundTextStyle": "dark",
