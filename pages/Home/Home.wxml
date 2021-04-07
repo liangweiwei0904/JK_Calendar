@@ -11,7 +11,9 @@
         <view wx:for="{{week}}" wx:key="index">
         {{item}}
         </view>
+        
     </view>
+    <view bindtap="handleToday">今</view>
     <!-- 日历主体 -->
     <view class="calendar_body">
         <!-- 先按行循环，最多6行42天 -->

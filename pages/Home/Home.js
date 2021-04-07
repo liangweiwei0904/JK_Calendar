@@ -135,5 +135,9 @@ Page({
     onReady() {
         //切换年份
         // this.switchDate(2017,4);
+    },
+    //回到今天
+    handleToday(e){
+        this.switchDate(DATE.getFullYear(), DATE.getMonth()+1);
     }
 });

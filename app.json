@@ -10,7 +10,8 @@
     "pages/Notice/Notice",
     "pages/goods_following/goods_following",
     "pages/stores_following/stores_following",
-    "pages/aboutMe/aboutMe"
+    "pages/aboutMe/aboutMe",
+    "pages/changeRole/changeRole"
   ],
   "window": {
     "backgroundTextStyle": "dark",

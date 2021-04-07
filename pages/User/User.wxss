@@ -107,3 +107,7 @@ page {
   background-color: #fff;
   padding: 20rpx;
 }
+.img_small{
+  width: 40rpx;
+  height: 40rpx;
+}

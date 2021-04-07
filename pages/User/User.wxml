@@ -13,30 +13,32 @@
     </view>
 </view> -->
 <!-- 官方文档新接口：获取用户头像和名称 -->
+<!-- 如果用户的openid是系统预设的，即可进入changeRole页面，选择登录商家还是用户 -->
 <view class="container">
-  <view class="userinfo">
-    <block wx:if="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-      <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    </block>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
+    <view class="userinfo">
+        <block wx:if="{{!hasUserInfo}}">
+            <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile">登录授权</button>
+            <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo">登录授权</button>
+        </block>
+        <block wx:else>
+            <image class="img_small" bindtap="bindViewTap"  src="{{userInfo.avatarUrl}}" ></image>
+            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        </block>
+    </view>
 </view>
-
 <view class="user_content">
-    
-      
-        <!-- 应用信息相关 -->
-        <view class="app_info_wrap">
-            <view class="app_info_item app_info_contact">
-                <button open-type="contact">联系管理员</button>
-            </view>
-            <navigator url="/pages/aboutMe/aboutMe">关于我们</navigator> 
+    <!-- 收藏数据相关 -->
+    <view>收藏店铺</view>
+    <view>收藏商品</view>
+    <view>我的动态</view>
+    <!-- 应用信息相关 -->
+    <view class="app_info_wrap">
+        <view class="app_info_item app_info_contact">
+            <button open-type="contact">联系管理员</button>
         </view>
-        <!-- 推荐 -->
-        <button open-type="share" class="recommend_wrap" > 把应用推荐给其他人</button>
-    
+        <navigator url="/pages/aboutMe/aboutMe">关于我们</navigator>
+    </view>
+    <!-- 推荐 -->
+    <button open-type="share" class="recommend_wrap">把应用推荐给其他人</button>
 </view>
+<button bindtap="getOpenid" >getOpenid</button>
