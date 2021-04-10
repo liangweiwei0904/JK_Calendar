@@ -1,0 +1,23 @@
+<!-- 官方文档新接口：获取用户头像和名称 -->
+<!-- 如果用户的openid是系统预设的，即可进入changeRole页面，选择登录商家还是用户 -->
+<view class="container">
+    <view class="userinfo">
+        <block wx:if="{{!hasUserInfo}}">
+            <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile">登录授权</button>
+            <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo">登录授权</button>
+        </block>
+        <block wx:else>
+            <image class="img_small" bindtap="bindViewTap"  src="{{userInfo.avatarUrl}}" ></image>
+            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        </block>
+    </view>
+</view>
+<view class="user_content">
+    <!-- 收藏数据相关 -->
+    <view>我关注的</view>
+    <view>订阅店铺</view>
+    <view>关注我的</view>
+    <view>动态</view>
+
+</view>
+<button bindtap="getOpenid" >getOpenid</button>

@@ -11,13 +11,13 @@
 <view class="bottom_item">
     <view class="message_user">
         <view class="phone_title">店铺名称：</view>
-        <input class="phone" type="number" bindinput='handleStoreName' placeholder="请输入店铺名称" maxlength="2"></input>
+        <input class="phone"  bindinput='handleStoreName' placeholder="请输入店铺名称" maxlength="10"></input>
     </view>
 </view>
 <view class="bottom_item">
     <view class="message_user">
         <view class="phone_title">商品名称：</view>
-        <input class="phone" placeholder="请输入商品名称" bindinput='handleGoodsName' maxlength="13"></input>
+        <input class="phone" placeholder="请输入商品名称" bindinput='handleGoodsName' maxlength="10"></input>
     </view>
 </view>
 <view class="bottom_item">

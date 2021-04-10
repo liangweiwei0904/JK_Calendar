@@ -4,7 +4,6 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUseGetUserProfile: false,
-    isAdmin:false
 
   },
 
@@ -20,20 +19,16 @@ Page({
         });
         //区分不同用户的openid：微信小号的openid:odyot46hf2jJy-CoPKwzJ1Cx3kuc
         //odyot48iBCgRCdeo0K3p5XBVWeYo刘东旭
-        //odyot48Wq49z_s4zObtpQ7rpoft8梁维维
-        if (openid == "odyot48Wq49z_s4zObtpQ7rpoft8") {
-          this.setData({
-            isAdmin:true
-          })
+        if (openid == "odyot48iBCgRCdeo0K3p5XBVWeYo") {
           console.log("openid是特权用户刘东旭的，即将进行跳转");
-          // wx.navigateTo({
-          //   url: '/pages/changeRole/changeRole',
-          //   success: (result) => {
+          wx.navigateTo({
+            url: '/pages/changeRole/changeRole',
+            success: (result) => {
 
-          //   },
-          //   fail: () => { },
-          //   complete: () => { }
-          // });
+            },
+            fail: () => { },
+            complete: () => { }
+          });
         }
         else {
           console.log("openid是普通用户");

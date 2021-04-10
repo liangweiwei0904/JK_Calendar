@@ -1,17 +1,3 @@
-<!-- <view class="user_info_wrap">
-    <view class="user_img_wrap" wx:if="{{userinfo.avatarUrl}}">
-        <image class="user_bg" src="{{userinfo.avatarUrl}}" />
-        <view class="user_info">
-            <image class="user_icon" src="{{userinfo.avatarUrl}}" />
-            <view class="user_name">{{userinfo.nickName}}</view>
-        </view>
-    </view>
-    <view class="user_btn" wx:else>
-        <button type="primary" plain="{{true}}" bindgetuserinfo="handleGetUserInfo" open-type="getUserInfo">
-            登录
-        </button>
-    </view>
-</view> -->
 <!-- 官方文档新接口：获取用户头像和名称 -->
 <!-- 如果用户的openid是系统预设的，即可进入changeRole页面，选择登录商家还是用户 -->
 <view class="container">
@@ -26,6 +12,7 @@
         </block>
     </view>
 </view>
+
 <view class="user_content">
     <!-- 收藏数据相关 -->
     <view>收藏店铺</view>
@@ -42,3 +29,16 @@
     <button open-type="share" class="recommend_wrap">把应用推荐给其他人</button>
 </view>
 <button bindtap="getOpenid" >getOpenid</button>
+<view class="{{isAdmin?'adminFunction':'notAdmin'}}">
+    <view class="admin_wrap">
+        <view class="admin_head">特权用户功能专区</view>
+        <view class="admin_content">
+            <view>公告管理</view>
+            <view>发布公告</view>
+            <view>查看公告</view>
+            <view>编辑公告</view>
+            <view>关注者</view>
+
+        </view>
+    </view>
+</view>

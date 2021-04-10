@@ -11,7 +11,8 @@
     "pages/goods_following/goods_following",
     "pages/stores_following/stores_following",
     "pages/aboutMe/aboutMe",
-    "pages/changeRole/changeRole"
+    "pages/changeRole/changeRole",
+    "pages/admin/admin"
   ],
   "window": {
     "backgroundTextStyle": "dark",

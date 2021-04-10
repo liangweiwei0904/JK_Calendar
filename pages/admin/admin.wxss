@@ -107,10 +107,3 @@ page {
   background-color: #fff;
   padding: 20rpx;
 }
-.adminFunction {
-  font-size: 32rpx;
-  color: cornflowerblue;
-}
-.notAdmin {
-  display: none;
-}

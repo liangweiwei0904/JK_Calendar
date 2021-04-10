@@ -111,7 +111,7 @@ Page({
 
         console.log(this.data.monthStart);
         wx.cloud.database().collection("Goods").where({
-            sell_month: "03",
+            sell_month: "04",
             
         })
             .get({})

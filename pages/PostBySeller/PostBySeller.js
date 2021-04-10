@@ -4,11 +4,11 @@ Page({
     textVal: "",
     storeName:"",
     goodsName:"",
-    sellTime:'2021-03-21',
+    sellTime:'2021-04-21',
     year:"",
     month:"",
     day:"",
-    date: '2021-03-21'
+    date: '2021-04-09'
   },
   UpLoadImgs: [],
   handleChooseImg() {
@@ -64,6 +64,7 @@ Page({
     console.log(e);
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
+      date:e.detail.value,
       sellTime: e.detail.value,
       month:e.detail.value.substring(5,7),
       day:e.detail.value.substring(8,10)
@@ -107,11 +108,6 @@ Page({
               //发公告之后存储到数据库
               // 首页从数据库显示？日期如何确定？
               //让首页进行判断
-
-
-
-
-
 
               wx.switchTab({
                 url: '/pages/Hot/Hot',
