@@ -31,27 +31,17 @@ Page({
         },
 
     ],
-    //楼层数据
-    floorList:[]
+    //推荐商品的属性
+    goods_img:"",
+    goods_title:""
+
+
   },
   //页面加载的时候就会触发
   onLoad: function(options){
-    this.getSwiperList();
-    this.getCateList();
-    this.getFloorList();
-
-
   },
-  //获取轮播图数据
-  getSwiperList(){
-    
-  },
-  //获取分类导航数据
-  getCateList(){
-    
-  },
-  //获取楼层数据
-  getFloorList(){
-    
-  }
+  //商品推荐：1.根据用户浏览数据   2.根据特权用户推荐   进行展示
+  //1.用户浏览过的信息主要记录其：经常访问的店铺名称，商品关键词（非商品名称），
+  //详细信息里介绍商品的颜色，风格等
+  
 });

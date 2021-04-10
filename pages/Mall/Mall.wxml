@@ -1,70 +1,25 @@
 <view class="pyg_index">
-    <!-- 搜索框 开始 -->
     <SearchBar></SearchBar>
-    <!-- 搜索框 结束 -->
-    <!-- 轮播图 开始 -->
     <view class="index_swiper">
-        <!-- 1swiper标签存在默认的宽度和高度 100%*150px
-      2image标签也存在默认的高度和宽度 320px*240pxA
-      3设计图片和轮播图A
-        1先看一下原图的宽高750*340
-        2让图片的高度自适应宽度等于100% 
-        3让swiper标签变得和图片地高一样即可
-      4图片标签
-      mode属性 渲染模式
-        widthFix 让图片的标签宽高和图片标签的内容的宽高都等比例地发生变化 -->
         <swiper autoplay="{{true}}" indicator-dots="{{true}}" circular="{{true}}">
             <swiper-item wx:for="{{swiperList}}" wx:key="goos_id">
-                <!-- <navigator url="/pages/goods_detail/goods_detail?goods_id={{item.goods_id}}">
-          <image mode="widthFix" src="{{item.image_src}}"></image>
-        </navigator> -->
                 <image mode="widthFix" src="{{item.swiperImgUrl}}" />
             </swiper-item>
         </swiper>
     </view>
-    <!-- 轮播图 结束 -->
-    <!-- 导航 开始 -->
     <view class="index_cate">
         <navigator url="/pages/Home/Home" open-type="switchTab" wx:for="{{catesList}}" wx:key="name">
             <image mode="widthFix" src="{{item.image_src}}" />
         </navigator>
     </view>
-    <!-- 导航 结束 -->
-    <!-- 楼层 开始 
-  <view class="index_floor">
-    <view class="floor_group"
-    wx:for="{{floorList}}" 
-    wx:for-item="item1"
-    wx:for-index="index1"
-    wx:key="floor_title"
-    >
-      <!-- 标题 
-      <view class="floor_title">
-        <image src="{{item1.floor_title.image_src}}" mode="widthFix" />
-      </view>
-      <!-- 内容 
-      <view class="floor_list">
-        <navigator 
-        wx:for="{{item1.product_list}}"
-        wx:for-item="item2"
-        wx:for-index="index2"
-        url="/pages/goods_list/goods_list?query=饰品"
-        >
-        <image  src="{{item2.image_src}}" mode="{{index2===0?'widthFix':'scaleToFill'}}" />
-        </navigator>
-      </view>
-    </view>
-  </view>
-   楼层 结束 -->
 
    <!-- 猜你喜欢 -->
    <view>猜你喜欢</view>
 
    <view class="goods_recommend_wrap">
       <view class="goods_recommend_item">
-        <!-- <image src="../../icons/Mall-0.png" /> -->
-        <view class="item_content">喜欢吗</view>
+        <image src="{{}}" />
+        <view class="item_content"></view>
       </view>
    </view>
-    <view>订阅更新</view>
 </view>

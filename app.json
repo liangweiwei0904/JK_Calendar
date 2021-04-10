@@ -12,7 +12,12 @@
     "pages/stores_following/stores_following",
     "pages/aboutMe/aboutMe",
     "pages/changeRole/changeRole",
-    "pages/admin/admin"
+    "pages/admin/admin",
+    "pages/notice_manage/notice_manage",
+    "pages/my_notice/my_notice",
+    "pages/edit_my_notice/edit_my_notice",
+    "pages/message_detail/message_detail"
+
   ],
   "window": {
     "backgroundTextStyle": "dark",

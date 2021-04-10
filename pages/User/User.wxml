@@ -15,8 +15,8 @@
 
 <view class="user_content">
     <!-- 收藏数据相关 -->
-    <view>收藏店铺</view>
-    <view>收藏商品</view>
+    <view>我的关注</view>
+    <view>我的收藏</view>
     <view>我的动态</view>
     <!-- 应用信息相关 -->
     <view class="app_info_wrap">
@@ -33,10 +33,8 @@
     <view class="admin_wrap">
         <view class="admin_head">特权用户功能专区</view>
         <view class="admin_content">
-            <view>公告管理</view>
-            <view>发布公告</view>
-            <view>查看公告</view>
-            <view>编辑公告</view>
+            <navigator url="/pages/notice_manage/notice_manage">公告管理</navigator>
+            
             <view>关注者</view>
 
         </view>

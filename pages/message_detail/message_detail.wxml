@@ -1,0 +1,13 @@
+<view>帖子的详细内容如下：</view>
+<view class="mess_wrap">
+    <view class="mess_top">
+        <view class="mess_user_profile">头像</view>
+        <view class="mess_user_name">用户名：{{Message[0].name}}</view>
+    </view>
+    <view class="mess_content">{{Message[0].mess_content}}</view>
+    <image src="{{Message[0].mess_img}}" /> 
+    <view class="mess_bottom">评论区
+        <textarea placeholder="发表我的意见" bindinput="handleCommentText" ></textarea> 
+        <button bindtap="handleBtn">发表</button>
+    </view>
+</view>
