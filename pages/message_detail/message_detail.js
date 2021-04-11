@@ -30,6 +30,7 @@ Page({
       this.setData({
         Message:res.data
       })
+      //console.log(this.data.Message[0].comments[0].username);
     })
     
 
@@ -64,6 +65,11 @@ Page({
   因此我是无法在小程序端更新数据的
   因为写权限会与_openid字段进行比较
   */
+ /*
+  发布评论不会覆盖前一个人的评论，在调用云函数更新时应用到update
+
+
+ */
   handleBtn(){
     wx.cloud.callFunction({
       name:"sendComment",

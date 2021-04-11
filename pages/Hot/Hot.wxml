@@ -41,6 +41,12 @@
                         <image src="{{imageUrl}}{{item.imageUrl}}" mode="aspectFill" />
                     </block>
                 </view> -->
+        <!-- 评论区 -->
+    
+    
+    
+    
+    
     </view>
     <!-- 显示已读数 -->
     <view class="main_bottom">
