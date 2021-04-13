@@ -1,66 +1,54 @@
-// pages/my_notice/my_notice.js
+// pages/Notice/Notice.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    Notice:[],
+    notice_id:"",
+    myNotice:[]
 
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  onLoad(){
+    wx.cloud.database().collection("Goods").where({
+      creater:"梁维维"
+    }).get()
+    .then(res=>{
+      console.log("成功",res);
+      this.setData({
+        Notice:res.data
+      })
+      console.log(this.data.Notice);
+    })
+    .catch(res=>{
+      console.log("失败",res);
+    })
   },
+  editNotice(e){
+    console.log(e);
+    console.log(e.currentTarget.dataset.id);
+    this.setData({
+      notice_id:e.currentTarget.dataset.id,
+      
+    });
+    this.setData({
+      myNotice:this.data.Notice[e.currentTarget.dataset.index]
+    });
+    console.log("this.data.myNotice:"+this.data.myNotice);
+    console.log("myNotice的数据类型：",typeof this.data.myNotice);
+    let list = JSON.stringify(this.data.myNotice);
+    //从Notice数组获取这条数据并编辑
+    wx.navigateTo({
+      url: '/pages/edit_my_notice/edit_my_notice?list='+list,
+      success: (result)=>{
+        
+      },
+      fail: ()=>{},
+      complete: ()=>{}
+    });
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
 
-  },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+  }  
 })

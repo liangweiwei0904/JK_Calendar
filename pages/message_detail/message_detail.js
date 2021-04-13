@@ -7,7 +7,8 @@ Page({
   data: {
     mess_id:"",
     message:[],
-    textVal:""
+    textVal:"",
+    com_len:0
   },
 
   /**
@@ -28,9 +29,14 @@ Page({
     .then(res=>{
       console.log(res);
       this.setData({
-        Message:res.data
+        Message:res.data,
+        //com_len:res.data.comments.length
+       // com_len:this.data.Message[0].comments.length
       })
-      //console.log(this.data.Message[0].comments[0].username);
+      console.log("com_len"+this.data.Message[0].comments.length);
+      this.setData({
+        com_len:this.data.Message[0].comments.length
+      })
     })
     
 
@@ -76,7 +82,8 @@ Page({
       data:{
         mess_id:this.data.mess_id,
         username:"匿名用户",
-        content:this.data.textVal
+        content:this.data.textVal,
+        com_len:this.data.com_len
       }
     })
   }

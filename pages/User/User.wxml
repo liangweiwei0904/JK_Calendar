@@ -7,7 +7,7 @@
             <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo">登录授权</button>
         </block>
         <block wx:else>
-            <image class="img_small" bindtap="bindViewTap"  src="{{userInfo.avatarUrl}}" ></image>
+            <image class="img_small" style="width:30rpx;height:30rpx" bindtap="bindViewTap"  src="{{userInfo.avatarUrl}}" ></image>
             <text class="userinfo-nickname">{{userInfo.nickName}}</text>
         </block>
     </view>
@@ -26,9 +26,9 @@
         <navigator url="/pages/aboutMe/aboutMe">关于我们</navigator>
     </view>
     <!-- 推荐 -->
-    <button open-type="share" class="recommend_wrap">把应用推荐给其他人</button>
+    <button open-type="share" class="recommend_wrap">推荐应用</button>
 </view>
-<button bindtap="getOpenid" >getOpenid</button>
+<!-- <button bindtap="getOpenid" >getOpenid</button> -->
 <view class="{{isAdmin?'adminFunction':'notAdmin'}}">
     <view class="admin_wrap">
         <view class="admin_head">特权用户功能专区</view>

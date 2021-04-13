@@ -97,7 +97,8 @@ Page({
                 sell_time:this.data.sellTime,
                 sell_year:this.data.year,
                 sell_month:this.data.month,
-                sell_day:this.data.day
+                sell_day:this.data.day,
+                creater:"梁维维"
               }
             })
             .then(res1=>{

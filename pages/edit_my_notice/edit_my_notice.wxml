@@ -1,1 +1,9 @@
-编辑内容
+编辑帖子的具体内容
+<view class="notice_wrap">
+    <textarea>{{list.goods_content}}</textarea>
+    <image src="{{list.goods_img}}" />
+    <input>{{list.goods_name}}</input>
+    <picker mode="date" value="{{list.sell_time}}" start="2021-01-01" end="2021-12-31" bindchange="bindDateChange">
+        <view class="picker">当前选择: {{date}}</view>
+    </picker>
+</view>

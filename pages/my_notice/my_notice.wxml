@@ -1,1 +1,11 @@
-我发布的
+<view class="notice_wrap" >
+    <view class="notice_item"  wx:for="{{Notice}}" wx:key="{{index}}" >
+        <!-- <image src="{{item.store_name}}" /> -->
+        <button bindtap="editNotice" data-id="{{item._id}}" data-index="{{index}}" > 编辑</button>
+        <view>商品id：{{item._id}}</view>
+        <view>店铺名称：{{item.store_name}}</view>
+        <view>上新商品为：{{item.goods_name}}</view>
+        <view>上新日期为：{{item.sell_time}}</view>
+        <image src="{{item.goods_img}}" />
+    </view>
+</view>
