@@ -1,9 +1,37 @@
-编辑帖子的具体内容
-<view class="notice_wrap">
-    <textarea>{{list.goods_content}}</textarea>
-    <image src="{{list.goods_img}}" />
-    <input>{{list.goods_name}}</input>
-    <picker mode="date" value="{{list.sell_time}}" start="2021-01-01" end="2021-12-31" bindchange="bindDateChange">
-        <view class="picker">当前选择: {{date}}</view>
-    </picker>
+<textarea style="width:100%;margin-top:20rpx;" maxlength="1000" bindinput='handleTextInput' >{{list.goods_content}}</textarea>
+<view class="image_content">
+    <view class="fb_tool">
+        <image src="{{list.goods_img}}" />
+    </view>
+</view>
+<view class="bottom_item">
+    <view class="message_user">
+        <view class="phone_title">店铺名称：</view>
+        <input class="phone"  bindinput='handleStoreName' placeholder="{{list.store_name}}" maxlength="10"></input>
+    </view>
+</view>
+<view class="bottom_item">
+    <view class="message_user">
+        <view class="phone_title">商品名称：</view>
+        <input class="phone" placeholder="{{list.goods_name}}" bindinput='handleGoodsName' maxlength="10"></input>
+    </view>
+</view>
+<view class="bottom_item">
+    <view class="message_user">
+        <view class="section">
+            <view class="section__title">日期选择器</view>
+            <picker mode="date" value="{{list.sell_time}}" start="2021-01-01" end="2021-12-31" bindchange="bindDateChange">
+                <view class="picker">当前选择: {{list.sell_time}}</view>
+            </picker>
+        </view>
+
+
+
+    </view>
+</view>
+<view class="form_btn_wrap">
+    <button bindtap="handleFormSubmit">
+        <icon type="success_no_circle" color="white" size="16"></icon>
+        发布
+    </button>
 </view>

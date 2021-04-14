@@ -97,6 +97,11 @@
           "pathName": "pages/PostBySeller/PostBySeller",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/Notice/Notice",
+          "pathName": "pages/Notice/Notice",
+          "scene": null
         }
       ]
     }
