@@ -11,7 +11,10 @@ exports.main = async (event, context) => {
       mess_content:event.content,
       mess_img:event.messageSrc,
       name:"梁维维",
-      mess_id:3
+     // mess_id:3,
+      date:event.date,
+      time:event.time
+
     },
     
   })

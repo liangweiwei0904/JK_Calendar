@@ -10,6 +10,7 @@
         <view wx:for="{{item1.goods_img}}" wx:for-item="item2" wx:key="{{index}}">
             <image src="{{item2}}" />
         </view>
+        <view>浏览量{{item1.visit}}</view>
         <!-- <view  >{{item1.goods_img}}</view> -->
     </view>
 </view>

@@ -1,19 +1,20 @@
 <textarea style="width:100%;margin-top:20rpx;" maxlength="1000" bindinput='handleTextInput' >{{list.goods_content}}</textarea>
 <view class="image_content">
-    <view class="fb_tool">
-        <image src="{{list.goods_img}}" />
+图片暂不支持修改
+    <view class="fb_tool" wx:for="{{list.goods_img}}">
+        <image src="{{item}}" />
     </view>
 </view>
 <view class="bottom_item">
     <view class="message_user">
         <view class="phone_title">店铺名称：</view>
-        <input class="phone"  bindinput='handleStoreName' placeholder="{{list.store_name}}" maxlength="10"></input>
+        <input class="phone"  bindinput='handleStoreName' maxlength="10">{{list.store_name}}</input>
     </view>
 </view>
 <view class="bottom_item">
     <view class="message_user">
         <view class="phone_title">商品名称：</view>
-        <input class="phone" placeholder="{{list.goods_name}}" bindinput='handleGoodsName' maxlength="10"></input>
+        <input class="phone"  bindinput='handleGoodsName' maxlength="10">{{list.goods_name}}</input>
     </view>
 </view>
 <view class="bottom_item">
@@ -24,9 +25,6 @@
                 <view class="picker">当前选择: {{list.sell_time}}</view>
             </picker>
         </view>
-
-
-
     </view>
 </view>
 <view class="form_btn_wrap">
