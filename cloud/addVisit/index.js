@@ -9,7 +9,8 @@ cloud.init({
 exports.main = async (event, context) => {
  cloud.database().collection("Message").doc(event.mess_id).update({
    data:{
-     visit:event.visit
+     visit:event.visit,
+     hotNum:event.hotNum
    }
  })
  .then(res=>{

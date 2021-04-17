@@ -22,6 +22,7 @@ exports.main = async (event, context) => {
 
   cloud.database().collection("Message").doc(mess_id).update({
     data:{
+      hotNum:event.hotNum,
       // 'comments.[com_len].content':event.content,
       // 'comments.[com_len].username':event.username,
       ["comments." + [event.com_len] + '.username' ]: event.username,

@@ -8,24 +8,14 @@ Page({
     Message: [],
     
   },
-  GetMessage(){
-    wx.cloud.callFunction({
-      name: "getMessage"
-    })
-    .then(res=>{
-      console.log(res);
-      this.setData({
-        Message:res.result.data
-      })
-    })
-  },
+ 
 
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    this.GetMessage();
+  onLoad: function () {
+    this.sortByHot();
     
   },
 
@@ -55,6 +45,36 @@ Page({
       fail: ()=>{},
       complete: ()=>{}
     });
+  },
+  //按热度进行排序，重新访问数据库，按热度进行排序
+  sortByHot(){
+    wx.cloud.callFunction({
+      name: "getMessage",
+      data:{
+        flag:1
+      }
+    })
+    .then(res=>{
+      console.log(res);
+      this.setData({
+        Message:res.result.data
+      })
+    })
+  },
+  //按时间排序，默认选项
+  sortByTime(){
+    wx.cloud.callFunction({
+      name: "getMessage",
+      data:{
+        flag:0
+      }
+    })
+    .then(res=>{
+      console.log(res);
+      this.setData({
+        Message:res.result.data
+      })
+    })
 
   }
 })

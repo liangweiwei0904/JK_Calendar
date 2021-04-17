@@ -9,7 +9,8 @@ Page({
     Message: [],
     textVal: "",
     com_len: 0,
-    visit: 0
+    visit: 0,
+    hotNum:0
   },
 
   /**
@@ -35,10 +36,11 @@ Page({
           //com_len:res.data.comments.length
           // com_len:this.data.Message[0].comments.length
         })
-        console.log("com_len" + this.data.Message[0].comments.length);
+        //console.log("com_len" + this.data.Message[0].comments.length);
         this.setData({
           com_len: this.data.Message[0].comments.length,
-          visit: this.data.Message[0].visit + 1
+          visit: this.data.Message[0].visit + 1,
+          hotNum: this.data.Message[0].hotNum + 1
         })
         console.log("this.data.visit" + this.data.visit);
         //浏览量+1(云函数调用)
@@ -47,6 +49,7 @@ Page({
           data: {
             mess_id: this.data.mess_id,
             visit: this.data.visit,
+            hotNum:this.data.hotNum
           }
         })
       })
@@ -92,13 +95,17 @@ Page({
  
   */
   handleBtn() {
+    this.setData({
+      hotNum: this.data.Message[0].hotNum + 10
+    })
     wx.cloud.callFunction({
       name: "sendComment",
       data: {
         mess_id: this.data.mess_id,
         username: "匿名用户",
         content: this.data.textVal,
-        com_len: this.data.com_len
+        com_len: this.data.com_len,
+        hotNum:this.data.hotNum
       }
     })
   }

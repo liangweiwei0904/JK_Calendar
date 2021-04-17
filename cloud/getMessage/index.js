@@ -7,5 +7,17 @@ cloud.init({
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  return cloud.database().collection("Message").get()
+  //deac从高到低排序
+  if(event.flag==1){
+    return cloud.database().collection("Message").orderBy('hotNum', 'desc').get()
+  }
+  //按发布时间排序，最新发布在前
+  if(event.flag==0){
+    return cloud.database().collection("Message").orderBy('post_detail_time', 'desc').get()
+  }
+  // return cloud.database().collection("Message").orderBy('hotNum', 'asc')
+  // .get()
+  // .then(console.log)
+  // .catch(console.error)
+
 }

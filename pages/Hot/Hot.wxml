@@ -11,6 +11,8 @@
 <view style="color:black;font-weight:800">
     <navigator  url="/pages/Notice/Notice">商家的公告</navigator>
 </view>
+<button bindtap="sortByHot" >按热度</button>
+<button bindtap="sortByTime">按时间</button>
 <view class="main" wx:for="{{Message}}" wx:key="{{index}}">
     <view class="main_item" bindtap="to_message_detail" id="{{item._id}}">
         <view class="user_message" >
@@ -24,6 +26,8 @@
                         <!-- {{item.userIdAnonymity==0?item.mangoUser.userNickname:"匿名用户"}} -->
                         用户：{{item.name}}
                     </text>
+                    <view >时间：{{item.post_detail_time}}</view>
+                    <view >热度：{{item.hotNum}}</view>
                 </view>
             </view>
         </view>
@@ -36,36 +40,6 @@
         <view class="main_middle_content">
             <image src="{{item.mess_img}}" ></image>
         </view>
-        <!-- <view class="main_middle_image {{item.messageImages.length==1?'change_one':item.messageImages.length==2?'change_second':''}}">
-                    <block wx:for="{{item.messageImages}}" wx:key="{{index}}">
-                        <image src="{{imageUrl}}{{item.imageUrl}}" mode="aspectFill" />
-                    </block>
-                </view> -->
-        <!-- 评论区 -->
-    
-    
-    
-    
-    
     </view>
-    <!-- 显示已读数 -->
-    <view class="main_bottom">
-        <view class="main_bottom_operation">
-            <view class="main_bottom_operation_left">
-                <view>
-                    <text class="iconfont icon-zhuanfa" style="margin-left:20rpx;color:#999;font-size:25rpx;">
-                        {{item.messageShare}}
-                    </text>
-                    <text class="iconfont icon-iconfontpinglun" style="margin-left:50rpx;color:#999;font-size:25rpx;">
-                        {{item.messageComment}}
-                    </text>
-                </view>
-            </view>
-            <view class="main_bottom_operation_right">
-                <text class="iconfont icon-dianzan" style="margin-right:20rpx;color:#999;font-size:25rpx;">
-                    {{item.messageWatch}}
-                </text>
-            </view>
-        </view>
-    </view>
+    
 </view>
