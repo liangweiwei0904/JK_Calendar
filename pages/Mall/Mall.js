@@ -44,4 +44,20 @@ Page({
   //1.用户浏览过的信息主要记录其：经常访问的店铺名称，商品关键词（非商品名称），
   //详细信息里介绍商品的颜色，风格等
   
+
+  onShow(){
+    var currenttime=new Date();
+    var posttime="2021/04/18 16:50:10";
+    var mms_posttime = (new Date(posttime)).getTime(); //得到毫秒数  
+    var mms_currenttime=(new Date(currenttime)).getTime();
+    //计算相减之后的毫秒数，从而得出小时差
+    var sub=mms_currenttime-mms_posttime;
+    console.log("发布时间",mms_posttime,"当前时间",mms_currenttime,"毫秒差",sub);
+    //转化为小时差
+    var sub_hour=sub/3600000;
+    console.log("小时差",sub_hour);
+    // console.log("endDate",endDate);
+    // var newDate = new Date(endDate ); //得到普通的时间了 
+    // console.log("newDate",newDate);
+  }
 });
