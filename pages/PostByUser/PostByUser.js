@@ -80,7 +80,11 @@ Page({
                 content: this.data.textVal,
                 messageSrc: res.fileID,
                 date:this.data.date,
-                time:this.data.time
+                time:this.data.time,
+                subhour:0,
+                
+                
+            
               }
             })
               .then(res1 => {

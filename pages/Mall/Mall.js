@@ -46,18 +46,20 @@ Page({
   
 
   onShow(){
-    var currenttime=new Date();
-    var posttime="2021/04/18 16:50:10";
-    var mms_posttime = (new Date(posttime)).getTime(); //得到毫秒数  
-    var mms_currenttime=(new Date(currenttime)).getTime();
+    //console.log("触发器获取时间",res);
+    // postdatetime=res.data.post_detail_time;
+    // console.log("postdatetime",postdatetime);
+    //var currenttime=new Date();
+    var posttime="2021/04/19 12:30:30";
+    var mms_posttime = (new Date(posttime)).getTime(); //获取时间戳  
+    var mms_currenttime=new Date().getTime();
     //计算相减之后的毫秒数，从而得出小时差
     var sub=mms_currenttime-mms_posttime;
     console.log("发布时间",mms_posttime,"当前时间",mms_currenttime,"毫秒差",sub);
     //转化为小时差
     var sub_hour=sub/3600000;
     console.log("小时差",sub_hour);
-    // console.log("endDate",endDate);
-    // var newDate = new Date(endDate ); //得到普通的时间了 
-    // console.log("newDate",newDate);
+    sub_hour=parseInt(sub_hour);
+    console.log("小时差",sub_hour);
   }
 });

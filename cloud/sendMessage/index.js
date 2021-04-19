@@ -13,8 +13,9 @@ exports.main = async (event, context) => {
       name:"梁维维",
      // mess_id:3,
       date:event.date,
-      time:event.time
-
+      time:event.time,
+      subhour:event.subhour,
+      temp:1
     },
     
   })
