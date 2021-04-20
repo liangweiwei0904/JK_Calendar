@@ -15,7 +15,10 @@ exports.main = async (event, context) => {
       date:event.date,
       time:event.time,
       subhour:event.subhour,
-      temp:1
+      temp:1,
+      comments:[],
+      visit:0,
+      hotNum:0,
     },
     
   })

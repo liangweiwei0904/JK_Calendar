@@ -101,6 +101,12 @@
         {
           "name": "pages/Notice/Notice",
           "pathName": "pages/Notice/Notice",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/my_notice/my_notice",
+          "pathName": "pages/my_notice/my_notice",
           "scene": null
         }
       ]

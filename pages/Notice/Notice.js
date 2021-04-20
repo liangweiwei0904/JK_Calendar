@@ -22,5 +22,18 @@ Page({
       console.log("失败",res);
     })
   },
+  //复制到剪切板
+  copyGoodKey(e){
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.key,
+      success (res) {
+        wx.getClipboardData({
+          success (res) {
+            console.log(res.data) // data
+          }
+        })
+      }
+    })
+  }
   
 })

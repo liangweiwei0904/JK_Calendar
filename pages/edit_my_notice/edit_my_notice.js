@@ -14,6 +14,7 @@ Page({
     month: "",
     day: "",
     date: '2021-04-09',
+    goodkey:""
   },
 
   /**
@@ -43,6 +44,12 @@ Page({
       goodsName: e.detail.value
     })
   },
+  //处理淘口令
+  handleGoodKey(e){
+    this.setData({
+      goodkey: e.detail.value
+    })
+  },
   bindDateChange: function (e) {
     console.log(e);
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -54,6 +61,7 @@ Page({
     });
     console.log("分割之后的字符串：", this.data.month, "月", this.data.day, "日");
   },
+  
   //提交按钮的点击事件
   handleFormSubmit(e) {
     wx.cloud.database().collection("Goods").doc(this.data.list._id).update({
@@ -66,7 +74,8 @@ Page({
         sell_year: this.data.year,
         sell_month: this.data.month,
         sell_day: this.data.day,
-        creater: "梁维维"
+        creater: "梁维维",
+        goodkey:this.data.goodkey
       }
     })
       .then(res1 => {

@@ -8,13 +8,15 @@
 <view class="bottom_item">
     <view class="message_user">
         <view class="phone_title">店铺名称：</view>
-        <input class="phone"  bindinput='handleStoreName' maxlength="10">{{list.store_name}}</input>
+        <input class="phone"  bindinput='handleStoreName' maxlength="10" placeholder="{{list.store_name}}"></input>
     </view>
 </view>
 <view class="bottom_item">
     <view class="message_user">
         <view class="phone_title">商品名称：</view>
-        <input class="phone"  bindinput='handleGoodsName' maxlength="10">{{list.goods_name}}</input>
+        <input class="phone"  bindinput='handleGoodsName' maxlength="10"placeholder="{{list.goods_name}}"></input>
+        <view>淘口令</view>
+        <input  bindinput='handleGoodKey' maxlength="20">{{list.goodkey}}</input>
     </view>
 </view>
 <view class="bottom_item">
