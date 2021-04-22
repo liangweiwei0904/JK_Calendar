@@ -1,47 +1,39 @@
-<wxs module="FixED" src="fix.wxs"/>
+<!-- 日历部分：头部和主体 -->
 <view class="calendar_wrap">
-    <!-- 选择器 -->
+    <!-- 日历头部：选择器（左箭头、年份+月份、右箭头） -->
     <view class="calendar_select">
         <view class="arrow" data-type="0" bindtap="switchMonth">{{"<"}}</view>
-        <view class="calendar_date">{{date}}</view>
+        <view class="calendar_y_m">{{date}}</view>
         <view class="arrow" data-type="1" bindtap="switchMonth">{{">"}}</view>
+        <view class="back_to_today" bindtap="handleToday">今</view>
     </view>
     <!-- 周日、一、二、三、四、五、六 -->
     <view class="calendar_head">
-        <view wx:for="{{week}}" wx:key="index">
-        {{item}}
-        </view>
-        
+        <view class="calendar_head_item" wx:for="{{week}}" wx:key="index">{{item}}</view>
     </view>
-    <view bindtap="handleToday">今</view>
     <!-- 日历主体 -->
     <view class="calendar_body">
         <!-- 先按行循环，最多6行42天 -->
         <view wx:for="123456" class="calendar_rows" wx:for-index="row" wx:key="index">
             <!-- 按列循环，每周7天 -->
-            <view class="calendar_cols   " wx:for="1234567" wx:for-index="col" wx:key="index">
-                <view  class="calendar_item" bindtap="clickItem" data-day="{{row * 7 - monthStart + col >-1 && row * 7 - monthStart + col < day ? row * 7 + col - monthStart + 1 : ''}}"  >
-                {{row * 7 - monthStart + col >-1 && row * 7 - monthStart + col < day ? row * 7 + col - monthStart + 1 : ''}}
-                <!-- <block wx:if="{{(row * 7 + col - monthStart + 1)===22}}">*</block> -->
-                <!-- <block wx:if="{{(row * 7 + col - monthStart + 1)==tempdata[0].sell_day||(row * 7 + col - monthStart + 1)==tempdata[1].sell_day}}">*</block> -->
-                    <!-- {{FixED.toFix(value)}} -->
-                <block wx:for="{{tempdata}}">
-                    <block wx:if="{{item.sell_day==(row * 7 + col - monthStart + 1)}}"   >*</block>
-                </block>
+            <view class="calendar_cols" wx:for="1234567" wx:for-index="col" wx:key="index">
+                <view class="calendar_item {{today===(row * 7 - monthStart + col >-1 && row * 7 - monthStart + col < day ? row * 7 + col - monthStart + 1 : '')?'today':''}}" bindtap="clickItem"  data-day="{{row * 7 - monthStart + col >-1 && row * 7 - monthStart + col < day ? row * 7 + col - monthStart + 1 : ''}}">
+                    {{row * 7 - monthStart + col >-1 && row * 7 - monthStart + col < day ? row * 7 + col - monthStart + 1 : ''}}
+                    <block wx:for="{{tempdata}}">
+                        <block wx:if="{{item.sell_day==(row * 7 + col - monthStart + 1)}}">*</block>
+                    </block>
                 </view>
             </view>
         </view>
     </view>
-    <!-- tips：提示是否有要上架的裙子，默认没有 -->
-    <!-- <view class="calendar_tips {{isSellDay?'special-color':''}}">
-        {{tipsText}}
-        <image src="{{tipsImageSrc}}" />
-    </view> -->
-    <block class="calendar_tips" wx:if="{{NewGoods.goods_name}}" >
-        <view >商品名称{{NewGoods.goods_name}} </view>
-    </block>
-    <block wx:else>
-        {{tipsText}}
-        <image src="{{tipsImageSrc}}" />
-    </block>
+</view>
+<!-- 页面底部提示 -->
+<!-- tips：提示是否有要上架的裙子，默认没有 -->
+<view class="calendar_bottom">
+    <view wx:if="{{NewGoods.goods_name}}">
+        <view class="calendar_tips">商品名称{{NewGoods.goods_name}}</view>
+    </view>
+    <view wx:else>
+        <image mode="widthFix" class="tips_image" src="{{tipsImageSrc}}" />
+    </view>
 </view>

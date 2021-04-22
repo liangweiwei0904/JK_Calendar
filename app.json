@@ -21,7 +21,7 @@
   ],
   "window": {
     "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#13227a",
+    "navigationBarBackgroundColor": "#239ab9",
     "navigationBarTitleText": "上新日历",
     "navigationBarTextStyle": "white",
     "enablePullDownRefresh": true

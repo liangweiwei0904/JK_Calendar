@@ -13,6 +13,7 @@ Page({
     date: '2021-04-09',
     goods_img: [],
     arr: [],
+    flag: ""
     //temp: ["0", "cloud://lwwldx-5g8powrn59ec579e.6c77-lwwldx-5g8powrn59ec579e-1305123697/MessageImg/1616311330493.png"]
   },
   UpLoadImgs: [],
@@ -104,44 +105,68 @@ Page({
             console.log("counter" + counter);
             if (counter == this.data.chooseImgs.length) {
               console.log("异步执行完了");
-              //上传至数据库
-              wx.cloud.database().collection("Goods").add({
-                data: {
-                  goods_content: this.data.textVal,
-                  goods_img: this.data.arr,
-                  store_name: this.data.storeName,
-                  goods_name: this.data.goodsName,
-                  sell_time: this.data.sellTime,
-                  sell_year: this.data.year,
-                  sell_month: this.data.month,
-                  sell_day: this.data.day,
-                  creater: "梁维维"
+              //上传至数据库，先判断这个公告里的商品是不是已经有人爆料
+              wx.cloud.database().collection("Goods").where({
+                store_name: this.data.storeName,
+                goods_name: this.data.goodsName,
+              }).get().then(res => {
+                if (res.data.length > 0) {
+                  console.log("查询相同商品的res", res);
+
+                  this.setData({
+                    flag: "似乎此商品已经被爆料了呢"
+                  });
+                  console.log("flag", this.data.flag);
+
                 }
-              })
-                .then(res1 => {
-                  console.log("test");
-                  console.log(JSON.stringify(this.data.arr));
-                  // console.log(...this.data.arr);
-                  // console.log("调用云函数成功", res1);
+                else if (res.data.length <= 0) {
+                  this.setData({
+                    flag: "这是新品哦"
+                  });
+                  console.log("flag", this.data.flag);
+                  //可以上传至数据库了
+                  wx.cloud.database().collection("Goods").add({
+                    data: {
+                      goods_content: this.data.textVal,
+                      goods_img: this.data.arr,
+                      store_name: this.data.storeName,
+                      goods_name: this.data.goodsName,
+                      sell_time: this.data.sellTime,
+                      sell_year: this.data.year,
+                      sell_month: this.data.month,
+                      sell_day: this.data.day,
+                      creater: "梁维维"
+                    }
+                  })
+                    .then(res1 => {
+                      console.log("test");
+                      console.log(JSON.stringify(this.data.arr));
+                      // console.log(...this.data.arr);
+                      // console.log("调用云函数成功", res1);
 
-                  //商家可以传递数据给首页了
-                  //可是他们两个不是同一个页面怎么办
-                  //发公告之后存储到数据库
-                  // 首页从数据库显示？日期如何确定？
-                  //让首页进行判断
+                      //商家可以传递数据给首页了
+                      //可是他们两个不是同一个页面怎么办
+                      //发公告之后存储到数据库
+                      // 首页从数据库显示？日期如何确定？
+                      //让首页进行判断
 
-                  // wx.switchTab({
-                  //   url: '/pages/Hot/Hot',
-                  //   success: (result) => {
-                  //     console.log(result, "跳转回热榜页成功");
-                  //   },
-                  //   fail: (result) => { console.log(result, "跳转回热榜页失败"); },
-                  //   complete: () => { }
-                  // });
-                })
-                .catch(res1 => {
-                  console.log("调用云函数失败", res1);
-                })
+                      // wx.switchTab({
+                      //   url: '/pages/Hot/Hot',
+                      //   success: (result) => {
+                      //     console.log(result, "跳转回热榜页成功");
+                      //   },
+                      //   fail: (result) => { console.log(result, "跳转回热榜页失败"); },
+                      //   complete: () => { }
+                      // });
+                    })
+                    .catch(res1 => {
+                      console.log("调用云函数失败", res1);
+                    })
+
+
+                }
+              });
+
 
             }
           },

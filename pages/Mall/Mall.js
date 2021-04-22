@@ -61,5 +61,13 @@ Page({
     console.log("小时差",sub_hour);
     sub_hour=parseInt(sub_hour);
     console.log("小时差",sub_hour);
+
+    //请求解析淘口令
+    // wx.request({
+    //   url: 'https://api.taokouling.com/tkl/viptkljm?apikey=gwPgxAhHwa&tkl=￥Fsf5X2aY3MM￥',
+    //   success (res) {
+    //     console.log(res.data)
+    //   }
+    // })
   }
 });
