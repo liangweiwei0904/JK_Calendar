@@ -1,5 +1,4 @@
 <!-- 官方文档新接口：获取用户头像和名称 -->
-<!-- 如果用户的openid是系统预设的，即可进入changeRole页面，选择登录商家还是用户 -->
 <view class="container">
     <view class="userinfo">
         <block wx:if="{{!hasUserInfo}}">

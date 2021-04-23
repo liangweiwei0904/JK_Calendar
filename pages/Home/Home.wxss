@@ -1,10 +1,13 @@
+page {
+  background: #90d3e4;
+}
 .calendar_wrap {
   font-size: 32rpx;
   margin: 0;
   padding: 0;
 }
 .calendar_wrap .calendar_select {
-  height: 80rpx;
+  height: 60rpx;
   align-items: center;
   display: flex;
   text-align: center;
@@ -29,7 +32,7 @@
   overflow: hidden;
   align-items: center;
   text-align: center;
-  height: 80rpx;
+  height: 50rpx;
   background: linear-gradient(#52bad5, #6dc5dc);
   font-size: 28rpx;
 }
@@ -68,10 +71,32 @@
 }
 .calendar_bottom {
   width: 100%;
+  background: #90d3e4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .calendar_bottom .calendar_tips {
-  color: #373737;
+  width: 85%;
+  margin: 40rpx;
+  padding: 10rpx;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 10rpx;
+  color: #5d5c5d;
+  font-size: 40rpx;
 }
-.calendar_bottom .tips_image {
-  width: 100%;
+.calendar_bottom .calendar_tips .goods_item {
+  display: flex;
+}
+.calendar_bottom .calendar_tips .goods_item .store_name {
+  flex: 4;
+  padding: 10rpx;
+}
+.calendar_bottom .calendar_tips .goods_item .goods_name {
+  font-size: 35rpx;
+  flex: 6;
+}
+.calendar_bottom .calendar_tips .goods_item .goods_name .detail_time {
+  font-size: 30rpx;
+  color: #b7b7b7;
 }

@@ -1,33 +1,24 @@
 <!-- 搜索框 -->
-<SearchBar bindtap="search"></SearchBar>
-<view style="color:black;font-weight:800">最新发布</view>
-<view style="color:black;font-weight:800">
-    <navigator  url="/pages/PostByUser/PostByUser">用户发帖</navigator>
+<!-- <SearchBar bindtap="search"></SearchBar> -->
+<view class="post_top">
+    <button bindtap="sortByHot">按热度</button>
+    <button bindtap="sortByTime">按时间</button>
 </view>
-<view style="color:black;font-weight:800">
-    <navigator  url="/pages/PostBySeller/PostBySeller">商家发帖</navigator>
-</view>
-<view >分割线</view>
-<view style="color:black;font-weight:800">
-    <navigator  url="/pages/Notice/Notice">商家的公告</navigator>
-</view>
-<button bindtap="sortByHot" >按热度</button>
-<button bindtap="sortByTime">按时间</button>
 <view class="main" wx:for="{{Message}}" wx:key="{{index}}">
     <view class="main_item" bindtap="to_message_detail" id="{{item._id}}">
-        <view class="user_message" >
+        <view class="user_message">
             <view class="user_image">
                 <!-- <image src="{{item.userIdAnonymity==0?item.mangoUser.userAvatar:'../../images/other/hidden.jpg'}}" mode="widthFix" /> -->
                 <image src="../../icons/Hot-1.png" />
             </view>
-            <view class="user_detail" >
+            <view class="user_detail">
                 <view class="user_name">
                     <text>
                         <!-- {{item.userIdAnonymity==0?item.mangoUser.userNickname:"匿名用户"}} -->
                         用户：{{item.name}}
                     </text>
-                    <view >时间：{{item.post_detail_time}}</view>
-                    <view >热度：{{item.hotNum}}</view>
+                    <view>时间：{{item.post_detail_time}}</view>
+                    <view>热度：{{item.hotNum}}</view>
                 </view>
             </view>
         </view>
@@ -38,8 +29,7 @@
         </view>
         <!-- 显示帖子里面的图片 -->
         <view class="main_middle_content">
-            <image src="{{item.mess_img}}" ></image>
+            <image src="{{item.mess_img}}"></image>
         </view>
     </view>
-    
 </view>

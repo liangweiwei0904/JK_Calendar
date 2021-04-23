@@ -2,7 +2,6 @@
   "pages": [
     "pages/Home/Home",
     "pages/Hot/Hot",
-    "pages/Mall/Mall",
     "pages/User/User",
     "pages/search/search",
     "pages/PostBySeller/PostBySeller",
@@ -45,10 +44,10 @@
       },
       
       {
-        "pagePath": "pages/Mall/Mall",
-        "text": "商城",
-        "iconPath": "icons/Mall-0.png",
-        "selectedIconPath": "icons/Mall-1.png"
+        "pagePath": "pages/PostByUser/PostByUser",
+        "text": "发布",
+        "iconPath": "icons/post-0.png",
+        "selectedIconPath": "icons/post-1.png"
       },
       {
         "pagePath": "pages/User/User",

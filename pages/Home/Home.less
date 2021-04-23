@@ -1,10 +1,14 @@
+page{
+
+  background: #90d3e4;
+}
 .calendar_wrap{
   font-size: 32rpx;
   margin: 0;
   padding: 0;
   //选择器
   .calendar_select{
-    height: 80rpx;
+    height: 60rpx;
     align-items: center;
     display: flex;
     text-align: center;
@@ -30,7 +34,7 @@
     overflow: hidden;
     align-items: center;
     text-align: center;
-    height: 80rpx;
+    height: 50rpx;
     background: linear-gradient(#52bad5,#6dc5dc);
     font-size: 28rpx;
     .calendar_head_item{
@@ -49,7 +53,6 @@
       align-items: center;
       .calendar_cols{
         flex:1;
-        
         height: 100%;
         padding: 0 4rpx;
         display: flex;
@@ -62,6 +65,9 @@
           height: 100%;
           border-radius: 10rpx;
           color: #373737;
+          .sellday{
+            // color: crimson;
+          }
         }
         .today{
           color: #fbb03b;
@@ -73,10 +79,41 @@
 //底部提示
 .calendar_bottom{
   width: 100%;
+  background: #90d3e4;
+  // background: #bceaf5;
+  // position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   .calendar_tips{
-    color: #373737;
+    // position: absolute;
+    
+    width: 85%;
+    margin: 40rpx;
+    padding: 10rpx;
+    background: rgba(255,255,255,0.5);
+    border-radius: 10rpx;
+    color: #5d5c5d;
+    font-size: 40rpx;
+    .goods_item{
+      display: flex;
+      .store_name{
+        flex:4;
+        padding: 10rpx;
+      }
+      .goods_name{
+        font-size: 35rpx;
+        flex:6;
+        .detail_time{
+          font-size: 30rpx;
+          color: #b7b7b7;
+        }
+      }
+    }
+    
+
   }
   .tips_image{
-    width: 100%;
+
   }
 }
