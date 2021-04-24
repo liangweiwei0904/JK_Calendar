@@ -1,12 +1,30 @@
-.post_top {
+.topnavFixed {
+  position: fixed;
+  display: flex;
+  width: 100%;
+  height: 100rpx;
+  top: 0;
+}
+.topnavFixed button {
+  justify-content: center;
+  align-items: center;
+  background: #8a8acb;
+  color: white;
+  width: 100% !important;
+}
+.topnavAbsolute {
+  position: absolute;
   display: flex;
   width: 100%;
   height: 100rpx;
 }
-.post_top button {
-  margin: 20rpx 20rpx;
-  padding: 0;
-  flex: 1;
-  color: #90d3e4;
-  width: 25% !important;
+.topnavAbsolute button {
+  justify-content: center;
+  align-items: center;
+  background: #8a8acb;
+  color: white;
+  width: 100% !important;
+}
+.zhanwei {
+  height: 100rpx;
 }

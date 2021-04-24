@@ -1,9 +1,11 @@
 <!-- 搜索框 -->
-<!-- <SearchBar bindtap="search"></SearchBar> -->
-<view class="post_top">
-    <button bindtap="sortByHot">按热度</button>
-    <button bindtap="sortByTime">按时间</button>
+<SearchBar bindtap="search"></SearchBar>
+
+<view class="{{scrollTop>40 ? 'topnavFixed' : 'topnavAbsolute'}}">
+    <button wx:if="{{flag_post==1}}" bindtap="sortByHot" >最新发布</button>
+    <button wx:else bindtap="sortByTime" >热度</button>
 </view>
+<view class="zhanwei" >height:40</view>
 <view class="main" wx:for="{{Message}}" wx:key="{{index}}">
     <view class="main_item" bindtap="to_message_detail" id="{{item._id}}">
         <view class="user_message">

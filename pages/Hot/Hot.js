@@ -6,6 +6,8 @@ Page({
    */
   data: {
     Message: [],
+    flag_post:1,  //该页面内数据默认按热度排序
+    scrollTop:0   //监听页面滚动
     
   },
  
@@ -47,7 +49,11 @@ Page({
     });
   },
   //按热度进行排序，重新访问数据库，按热度进行排序
-  sortByHot(){
+  sortByHot(e){
+    console.log(e);
+    this.setData({
+      flag_post:0
+    })
     wx.cloud.callFunction({
       name: "getMessage",
       data:{
@@ -62,7 +68,11 @@ Page({
     })
   },
   //按时间排序，默认选项
-  sortByTime(){
+  sortByTime(e){
+    console.log(e);
+    this.setData({
+      flag_post:1
+    })
     wx.cloud.callFunction({
       name: "getMessage",
       data:{
@@ -76,5 +86,11 @@ Page({
       })
     })
 
-  }
+  },
+  //滚动固定事件
+  onPageScroll: function (e) {//监听页面滚动
+    this.setData({
+      scrollTop: e.scrollTop
+    })
+  },
 })

@@ -4,7 +4,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUseGetUserProfile: false,
-    isAdmin:false
+    isAdmin: false
 
   },
 
@@ -18,12 +18,27 @@ Page({
           userInfo: res.userInfo,
           hasUserInfo: true
         });
+        wx.cloud.database().collection("User").where({
+          openid: openid
+        }).update({
+          data: {
+            nickName: this.data.userInfo.nickName,
+            avatarUrl: this.data.userInfo.avatarUrl
+          }
+
+        })
+          .then(res => {
+            console.log("更新用户基本信息成功", res);
+          })
+          .catch(res => {
+            console.log("更新失败", res);
+          })
         //区分不同用户的openid：微信小号的openid:odyot46hf2jJy-CoPKwzJ1Cx3kuc
         //odyot48iBCgRCdeo0K3p5XBVWeYo刘东旭
         //odyot48Wq49z_s4zObtpQ7rpoft8梁维维
         if (openid == "odyot48Wq49z_s4zObtpQ7rpoft8") {
           this.setData({
-            isAdmin:true
+            isAdmin: true
           })
           console.log("openid是特权用户刘东旭的，即将进行跳转");
           // wx.navigateTo({
