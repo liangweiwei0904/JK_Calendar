@@ -3,14 +3,16 @@ Page({
   data: {
     chooseImgs: [],
     textVal: "",
-    
-    month : DATE.getMonth(),
-    year : DATE.getFullYear(),
-    day:DATE.getDate(),
-    hour:DATE.getHours(),
-    minute:DATE.getMinutes(),
-    date:"2021-04-01",
-    time:"21:00"
+    userInfo:{},
+    year : DATE.getFullYear(),   //年
+    month : DATE.getMonth()+1,  //月
+    day:DATE.getDate(),   //日
+    hour:DATE.getHours(),  //时
+    minute:DATE.getMinutes(),  //分
+    second:DATE.getSeconds(),  //秒
+    date:"2021-04-01",   //2021/04/01
+    time:"21:00:14",        //21:00:14
+    post_detail_time:""   //2021/04/25 21:25:13   格式
   },
   UpLoadImgs: [],
   handleChooseImg() {
@@ -47,8 +49,9 @@ Page({
       textVal: e.detail.value
     });
     this.setData({
-      date:this.data.year+"-"+this.data.month+"-"+this.data.day,
-      time:this.data.hour+":"+this.data.minute
+      date:this.data.year+"/"+this.data.month+"/"+this.data.day,
+      time:this.data.hour+":"+this.data.minute+":"+this.data.second,
+      post_detail_time:this.data.date+" "+this.data.time
     })
   },
 
@@ -82,9 +85,9 @@ Page({
                 date:this.data.date,
                 time:this.data.time,
                 subhour:0,
-                
-                
-            
+                name:this.data.userInfo.nickName,
+                avatarUrl:this.data.userInfo.avatarUrl,
+                post_detail_time:this.data.post_detail_time
               }
             })
               .then(res1 => {
@@ -105,5 +108,11 @@ Page({
         })
       })
     }
+  },
+  onShow(){
+    const userInfo=wx.getStorageSync("userInfo");
+    this.setData({
+      userInfo
+    })
   }
 })

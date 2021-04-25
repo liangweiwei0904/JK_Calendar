@@ -41,7 +41,7 @@
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.16.1",
+  "libVersion": "2.15.0",
   "appid": "wxdfa56e22c7cd26f9",
   "projectname": "JK_Calendar",
   "debugOptions": {

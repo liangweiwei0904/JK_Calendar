@@ -4,7 +4,7 @@
         <view class="mess_user_profile">头像</view>
         <view class="mess_user_name">用户名：{{Message[0].name}}</view>
         <view class="">浏览量：{{Message[0].visit}}</view>
-        <view >发布时间：{{Message[0].post_time}}</view>
+        <view >发布时间：{{Message[0].post_detail_time}}</view>
         <view class="mess_user_content">{{Message[0].mess_content}}</view>
     </view>
     <image src="{{Message[0].mess_img}}" />

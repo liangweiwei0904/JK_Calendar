@@ -1,37 +1,36 @@
 <!-- 搜索框 -->
-<SearchBar bindtap="search"></SearchBar>
-
-<view class="{{scrollTop>40 ? 'topnavFixed' : 'topnavAbsolute'}}">
-    <button wx:if="{{flag_post==1}}" bindtap="sortByHot" >最新发布</button>
-    <button wx:else bindtap="sortByTime" >热度</button>
+<!-- <SearchBar bindtap="search"></SearchBar> -->
+<!-- 广告位 -->
+<image class="ad" src="../../image/ad.jpg" />
+<view class="{{scrollTop>60 ? 'topnavFixed' : 'topnavAbsolute'}}">
+    <view class="btn" wx:if="{{flag_post==1}}" bindtap="sortByHot">最新发布</view>
+    <view class="btn" wx:else bindtap="sortByTime">热度</view>
 </view>
-<view class="zhanwei" >height:40</view>
-<view class="main" wx:for="{{Message}}" wx:key="{{index}}">
-    <view class="main_item" bindtap="to_message_detail" id="{{item._id}}">
-        <view class="user_message">
-            <view class="user_image">
-                <!-- <image src="{{item.userIdAnonymity==0?item.mangoUser.userAvatar:'../../images/other/hidden.jpg'}}" mode="widthFix" /> -->
-                <image src="../../icons/Hot-1.png" />
-            </view>
-            <view class="user_detail">
-                <view class="user_name">
-                    <text>
-                        <!-- {{item.userIdAnonymity==0?item.mangoUser.userNickname:"匿名用户"}} -->
-                        用户：{{item.name}}
-                    </text>
-                    <view>时间：{{item.post_detail_time}}</view>
-                    <view>热度：{{item.hotNum}}</view>
-                </view>
-            </view>
+<view class="zhanwei"></view>
+<!-- 发布新的帖子所用到的按钮 -->
+<view class="new" bindtap="PostorFresh" data-flag="{{isScrollDown}}">
+    <image mode="widthFix" src="{{isScrollDown?'../../icons/new.png':'../../icons/fresh.png'}}" />
+</view>
+<view class="main" wx:for="{{Message}}" bindtap="to_message_detail" id="{{item._id}}">
+    <view class="main_top">
+        <view class="top_avatarUrl">
+            <image mode="widthFix" src="{{item.avatarUrl}}" />
+        </view>
+        <view class="top_wrap">
+            <view class="top_name">{{item.name}}</view>
+            <view class="top_time">{{item.post_detail_time}}</view>
         </view>
     </view>
     <view class="main_middle">
-        <view class="main_middle_content">
-            <text>发表：{{item.mess_content}}</text>
-        </view>
+        <view class="middle_content">{{item.mess_content}}</view>
         <!-- 显示帖子里面的图片 -->
-        <view class="main_middle_content">
+        <view class="middle_img">
             <image src="{{item.mess_img}}"></image>
         </view>
+    </view>
+    <view class="main_bottom">
+        <view class="iconfont iconB">{{item.hotNum}}</view>
+        <view class="iconfont iconpinglun-">{{item.comments.length}}</view>
+        <view class="iconfont iconfenxiang"></view>
     </view>
 </view>

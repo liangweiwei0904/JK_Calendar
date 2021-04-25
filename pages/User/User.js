@@ -14,10 +14,14 @@ Page({
     wx.getUserProfile({
       desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       success: (res) => {
+        //用户信息存在页面中
         this.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
         });
+        //用户信息存在缓存中（便于在全局中读取数据）
+        wx.setStorageSync("userInfo", this.data.userInfo);
+        //用户信息向服务器更新
         wx.cloud.database().collection("User").where({
           openid: openid
         }).update({

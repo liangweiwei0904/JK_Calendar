@@ -10,7 +10,8 @@ exports.main = async (event, context) => {
     data:{
       mess_content:event.content,
       mess_img:event.messageSrc,
-      name:"梁维维",
+      name:event.name,
+      avatarUrl:event.avatarUrl,
      // mess_id:3,
       date:event.date,
       time:event.time,
@@ -19,6 +20,7 @@ exports.main = async (event, context) => {
       comments:[],
       visit:0,
       hotNum:0,
+      post_detail_time:event.post_detail_time
     },
     
   })
