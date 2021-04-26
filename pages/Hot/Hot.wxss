@@ -59,6 +59,7 @@ page {
   margin: 0rpx 20rpx 30rpx 20rpx;
 }
 .main .main_top {
+  padding: 10rpx;
   width: 100%;
   height: 100rpx;
   display: flex;
@@ -101,17 +102,7 @@ page {
   justify-content: center;
   align-items: center;
 }
-.main .main_bottom .iconB {
-  flex: 1;
-  width: 33%;
-  padding: 0rpx 80rpx;
-}
-.main .main_bottom .iconpinglun- {
-  flex: 1;
-  width: 33%;
-  padding: 0rpx 80rpx;
-}
-.main .main_bottom .iconfenxiang {
+.main .main_bottom .iconfont {
   flex: 1;
   width: 33%;
   padding: 0rpx 80rpx;

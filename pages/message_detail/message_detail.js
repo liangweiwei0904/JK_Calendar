@@ -105,7 +105,7 @@ Page({
         username: "匿名用户",
         content: this.data.textVal,
         com_len: this.data.com_len,
-        hotNum:this.data.hotNum
+        hotNum:this.data.hotNum,
       }
     })
   }

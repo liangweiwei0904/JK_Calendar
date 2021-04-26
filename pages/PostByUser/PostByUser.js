@@ -48,11 +48,7 @@ Page({
       //获取文本域的值
       textVal: e.detail.value
     });
-    this.setData({
-      date:this.data.year+"/"+this.data.month+"/"+this.data.day,
-      time:this.data.hour+":"+this.data.minute+":"+this.data.second,
-      post_detail_time:this.data.date+" "+this.data.time
-    })
+    
   },
 
   //提交按钮的点击事件
@@ -112,7 +108,10 @@ Page({
   onShow(){
     const userInfo=wx.getStorageSync("userInfo");
     this.setData({
-      userInfo
+      userInfo,
+      date:this.data.year+"/"+this.data.month+"/"+this.data.day,
+      time:this.data.hour+":"+this.data.minute+":"+this.data.second,
+      post_detail_time:this.data.date+" "+this.data.time
     })
   }
 })
