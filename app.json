@@ -15,7 +15,8 @@
     "pages/notice_manage/notice_manage",
     "pages/my_notice/my_notice",
     "pages/edit_my_notice/edit_my_notice",
-    "pages/message_detail/message_detail"
+    "pages/message_detail/message_detail",
+    "pages/notice_detail/notice_detail"
 
   ],
   "window": {
@@ -39,8 +40,8 @@
       {
         "pagePath": "pages/Notice/Notice",
         "text": "公告",
-        "iconPath": "icons/post-0.png",
-        "selectedIconPath": "icons/post-1.png"
+        "iconPath": "icons/notice-0.png",
+        "selectedIconPath": "icons/notice-1.png"
       },
       {
         "pagePath": "pages/Hot/Hot",

@@ -54,6 +54,6 @@
 </view>
 <view class="reply">
     <text class=" iconfont iconxie"></text>
-    <textarea placeholder="写回复" bindinput="handleCommentText"></textarea>
+    <input placeholder="写回复" bindinput="handleCommentText"></input>
     <view class="btn" bindtap="handleBtn">发表</view>
 </view>

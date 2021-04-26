@@ -159,13 +159,18 @@ page {
   align-items: center;
   display: flex;
 }
-.reply textarea {
-  height: 60rpx;
-  flex: 6;
+.reply input {
   padding: 0;
   margin: 0;
-  display: flex;
+  flex: 10;
+  height: 60rpx;
+  line-height: 60rpx;
+  justify-content: center;
+  align-items: center;
 }
 .reply .btn {
-  flex: 1;
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,16 +1,35 @@
 <view style="color:black;font-weight:800">最新发布</view>
-<view >分割线</view>
-<view class="notice_wrap" >
-    <view class="notice_item"  wx:for="{{Notice}}" wx:key="{{index}}" wx:for-item="item1"  >
-        <!-- <image src="{{item.store_name}}" /> -->
-        <view>店铺名称：{{item1.store_name}}</view>
-        <view>上新商品为：{{item1.goods_name}}</view>
-        <view>上新日期为：{{item1.sell_time}}</view>
-        <!-- <image src="{{item1.goods_img}}" /> -->
-        <view wx:for="{{item1.goods_img}}" wx:for-item="item2" wx:key="{{index}}">
-            <image src="{{item2}}" />
+<view class="notice_wrap">
+    <view class="notice_item" wx:for="{{Notice}}" wx:key="{{index}}" wx:for-item="item1">
+        <view class="creater_info">
+            <view class="avatar">
+                <image mode="widthFix" src="{{item1.avatarUrl}}" />
+            </view>
+            <view class="creater">
+                <view class="creater_name">{{item1.creater}}(达人)</view>
+                <view class="create_time">爆料时间</view>
+            </view>
         </view>
-        <view bindtap="copyGoodKey" data-key="{{item1.goodkey}}">点击复制淘口令：{{item1.goodkey}}</view>
-        <!-- <view  >{{item1.goods_img}}</view> -->
+        <view class="notice_content">
+            <!-- 显示爆料的首图（位于左侧） -->
+            <view class="first_photo">
+                <image mode="widthFix" src="{{item1.goods_img[0]}}" />
+            </view>
+            <!-- 显示爆料的基本信息（位于右侧） -->
+            <view class="base_info">
+                <!-- 商品名称 -->
+                <view class="goods_name">{{item1.goods_name}}</view>
+                <!-- 上架时间 -->
+                <view class="sell_time">{{item1.sell_time}}</view>
+                <!-- 上架店铺 -->
+                <view class="store_name">{{item1.store_name}}</view>
+                <!-- 上架数量 -->
+                <view class="sell_number">{{item1.sell_number}}</view>
+            </view>
+        </view>
+        <!-- <view wx:for="{{item1.goods_img}}" wx:for-item="item2" wx:key="{{index}}">
+            <image src="{{item2}}" />
+        </view> -->
+        <!-- <view bindtap="copyGoodKey" data-key="{{item1.goodkey}}">点击复制淘口令：{{item1.goodkey}}</view> -->
     </view>
 </view>
