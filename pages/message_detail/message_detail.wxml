@@ -1,5 +1,5 @@
 <!-- 详细帖子主体 -->
-<view class="main" wx:for="{{Message}}" bindtap="to_message_detail" id="{{item._id}}">
+<view class="main" wx:for="{{Message}}">
     <!-- 帖子头部 -->
     <view class="main_top">
         <view class="top_left">

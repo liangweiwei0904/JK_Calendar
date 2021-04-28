@@ -5,54 +5,54 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    notice_id: "",
+    notice: [],
+    // indicatorDots: true, //是否显示面板指示点
+    // autoplay: true,  //是否自动切换
+    // interval: 3000, //自动切换时间间隔
+    // circular: true,   //是否采用衔接滑动
+    // duration: 500, //滑动动画时长
+    // Height: "",    //这是swiper要动态设置的高度属性
   },
+  // //设置图片轮显高度
+  //  <image src="{{item}}" class="slide-image"  bindload='imgHeight' />
+  // imgHeight (e) {
+  //   var winWid = wx.getSystemInfoSync().windowWidth; //获取当前屏幕的宽度
+  //   var imgh = e.detail.height; //图片高度
+  //   var imgw = e.detail.width; //图片宽度
+  //   var h = 25;
+  //   //等比设置swiper的高度。 即 屏幕宽度 / swiper高度 = 图片宽度 / 图片高度  ==》swiper高度 = 屏幕宽度 * 图片高度 / 图片宽度
+  //   var swiperHeight = (winWid * imgh / imgw) + "px";
+  //   this.setData({
+  //     Height: swiperHeight //设置高度
+  //   }),
+  //   console.log("hhh");
+  // },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options);
     let that = this;
     //console.log("公告的notice_id："+options.notice_id);
     this.setData({
-      mess_id: options.mess_id
+      notice_id: options.notice_id
     })
     //console.log("this.data.mess_id:"+this.data.mess_id);
     //从服务器中Message中请求此条数据
-    wx.cloud.database().collection('Message')
+    wx.cloud.database().collection('Goods')
       .where({
-        _id: this.data.mess_id
+        _id: this.data.notice_id
       })
       .get()
       .then(res => {
         console.log(res);
         this.setData({
-          Message: res.data,
-          //com_len:res.data.comments.length
-          // com_len:this.data.Message[0].comments.length
+          notice: res.data,
         })
-        //console.log("com_len" + this.data.Message[0].comments.length);
-        this.setData({
-          com_len: this.data.Message[0].comments.length,
-          visit: this.data.Message[0].visit + 1,
-          hotNum: this.data.Message[0].hotNum + 1
-        })
-        console.log("this.data.visit" + this.data.visit);
-        //浏览量+1(云函数调用)
-        wx.cloud.callFunction({
-          name: "addVisit",
-          data: {
-            mess_id: this.data.mess_id,
-            visit: this.data.visit,
-            hotNum:this.data.hotNum
-          }
-        })
+
       })
-
-
-
-
-
   },
 
   /**
@@ -102,5 +102,18 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+    //复制到剪切板
+    copyGoodKey(e){
+      wx.setClipboardData({
+        data: e.currentTarget.dataset.key,
+        success (res) {
+          wx.getClipboardData({
+            success (res) {
+              console.log(res.data) // data
+            }
+          })
+        }
+      })
+    },
 })

@@ -16,7 +16,8 @@
     "pages/my_notice/my_notice",
     "pages/edit_my_notice/edit_my_notice",
     "pages/message_detail/message_detail",
-    "pages/notice_detail/notice_detail"
+    "pages/notice_detail/notice_detail",
+    "pages/noticeOfStore/noticeOfStore"
 
   ],
   "window": {
