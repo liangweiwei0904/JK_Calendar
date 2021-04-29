@@ -115,6 +115,48 @@ Page({
         });
       }
     })
+  },
+  //发布公告
+  postNotice(){
+    wx.navigateTo({
+      url: '/pages/PostBySeller/PostBySeller'
+    });
+  },
+  //编辑公告
+  editNotice(){
+    wx.navigateTo({
+      url: '/pages/my_notice/my_notice'
+    });
+  },
+  //我发布的（帖子）
+  toMyPost(){
+    wx.navigateTo({
+      url: '/pages/my_post/my_post'
+    });
+  },
+  //回复我的
+  toMyReply(){
+    wx.navigateTo({
+      url: '/pages/applyToMe/applyToMe'
+    });
+  },
+  //积分查询
+  toPointsSearch(){
+    wx.navigateTo({
+      url: '/pages/points_search/points_search'
+    });
+  },
+  //使用帮助
+  toHelp(){
+    wx.navigateTo({
+      url: '/pages/help/help'
+    });
+  },
+  //关于
+  toAbout(){
+    wx.navigateTo({
+      url: '/pages/aboutMe/aboutMe'
+    });
   }
 
 

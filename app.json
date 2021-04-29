@@ -7,17 +7,17 @@
     "pages/PostBySeller/PostBySeller",
     "pages/PostByUser/PostByUser",
     "pages/Notice/Notice",
-    "pages/goods_following/goods_following",
-    "pages/stores_following/stores_following",
     "pages/aboutMe/aboutMe",
-    "pages/changeRole/changeRole",
     "pages/admin/admin",
-    "pages/notice_manage/notice_manage",
     "pages/my_notice/my_notice",
     "pages/edit_my_notice/edit_my_notice",
     "pages/message_detail/message_detail",
     "pages/notice_detail/notice_detail",
-    "pages/noticeOfStore/noticeOfStore"
+    "pages/noticeOfStore/noticeOfStore",
+    "pages/my_post/my_post",
+    "pages/applyToMe/applyToMe",
+    "pages/points_search/points_search",
+    "pages/help/help"
 
   ],
   "window": {

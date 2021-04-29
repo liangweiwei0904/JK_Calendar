@@ -1,116 +1,269 @@
 page {
-  background-color: #edece8;
+  background: #f5f5f5;
+  padding: 0;
+  margin: 0;
 }
-.user_info_wrap {
-  height: 45vh;
-  overflow: hidden;
-  background-color: var(--themeColor);
-  position: relative;
+.userinfo .userinfo_top0 {
+  width: 100%;
+  display: flex;
 }
-.user_info_wrap .user_img_wrap {
-  position: relative;
+.userinfo .userinfo_top0 .image_wrap {
+  flex: 1;
 }
-.user_info_wrap .user_img_wrap .user_bg {
-  height: 50vh;
-  filter: blur(10rpx);
-}
-.user_info_wrap .user_img_wrap .user_info {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 20%;
-  text-align: center;
-}
-.user_info_wrap .user_img_wrap .user_info .user_icon {
-  width: 150rpx;
-  height: 150rpx;
+.userinfo .userinfo_top0 .image_wrap image {
+  width: 65%;
+  margin: 20rpx;
+  border: 5rpx solid white;
   border-radius: 50%;
 }
-.user_info_wrap .user_img_wrap .user_info .user_name {
-  color: white;
-  margin-top: 40rpx;
+.userinfo .userinfo_top0 .login_btn {
+  flex: 3;
+  width: 100rpx;
+  margin: 40rpx 0;
 }
-.user_info_wrap .user_btn {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 40%;
-  border: 1rpx solid greenyellow;
-  color: greenyellow;
-  font-size: 38rpx;
-  padding: 30rpx;
-  border-radius: 10rpx;
+.userinfo .userinfo_top0 .login_btn button {
+  padding: 0;
+  margin: 0;
+  width: 150rpx;
+  font-weight: 400;
+  font-size: 36rpx;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: transparent;
 }
-.user_content {
-  position: relative;
+.userinfo .userinfo_top0 .login_btn text {
+  line-height: 56rpx;
+  font-size: 30rpx;
+  color: #b7b7b7;
 }
-.user_content .user_main {
-  color: #666;
-  padding-bottom: 100rpx;
-  position: absolute;
-  width: 90%;
-  left: 50%;
-  transform: translateX(-50%);
-  top: -40rpx;
-}
-.user_content .user_main .history_wrap {
-  background-color: #fff;
+.userinfo .userinfo_top1 {
+  width: 100%;
   display: flex;
 }
-.user_content .user_main .history_wrap navigator {
+.userinfo .userinfo_top1 .image_wrap {
   flex: 1;
-  text-align: center;
-  padding: 10rpx 0;
 }
-.user_content .user_main .history_wrap navigator .his_num {
-  color: var(--themeColor);
+.userinfo .userinfo_top1 .image_wrap image {
+  width: 65%;
+  margin: 20rpx;
+  border: 5rpx solid white;
+  border-radius: 50%;
 }
-.user_content .user_main .orders_wrap {
-  background-color: #fff;
-  margin-top: 30rpx;
+.userinfo .userinfo_top1 .username_wrap {
+  flex: 3;
+  width: 100rpx;
+  margin: 40rpx 0;
 }
-.user_content .user_main .orders_wrap .orders_title {
-  padding: 20rpx;
-  border-bottom: 1px solid #ccc;
-}
-.user_content .user_main .orders_wrap .orders_content {
+.userinfo .userinfo_top1 .username_wrap .userinfo-nickname {
+  padding: 0;
+  margin: 0;
+  width: 150rpx;
+  font-weight: 400;
+  font-size: 36rpx;
   display: flex;
 }
-.user_content .user_main .orders_wrap .orders_content navigator {
+.userinfo .userinfo_top1 .username_wrap .identity {
+  line-height: 56rpx;
+  font-size: 30rpx;
+  color: #b7b7b7;
+}
+.service_wrap {
+  color: #5d5c5d;
+  letter-spacing: 3rpx;
+}
+.service_wrap .myService {
+  background: #fefefe;
+  border-radius: 15rpx;
+  margin: 0rpx 30rpx 30rpx 30rpx;
+  padding: 30rpx 35rpx;
+}
+.service_wrap .myService .title {
+  line-height: 36rpx;
+  font-size: 36rpx;
+  font-weight: 600;
+  padding-bottom: 10rpx;
+}
+.service_wrap .myService .wrap {
+  display: flex;
+  padding: 0;
+  margin: 10rpx;
+}
+.service_wrap .myService .wrap .myPost {
   flex: 1;
-  padding: 15rpx;
-  text-align: center;
 }
-.user_content .user_main .orders_wrap .orders_content navigator .iconfont {
-  color: var(--themeColor);
-  font-size: 40rpx;
-}
-.user_content .user_main .address_wrap {
-  margin-top: 30rpx;
-  background-color: #fff;
-  padding: 20rpx;
-}
-.user_content .user_main .app_info_wrap {
-  margin-top: 30rpx;
-  background-color: #fff;
-}
-.user_content .user_main .app_info_wrap .app_info_item {
-  padding: 20rpx;
-  border-bottom: 1px solid #ccc;
-}
-.user_content .user_main .app_info_wrap .app_info_contact {
+.service_wrap .myService .wrap .myPost .iconxie {
+  justify-content: center;
+  align-items: center;
   display: flex;
-  justify-content: space-between;
+  font-size: 50rpx;
 }
-.user_content .user_main .recommend_wrap {
-  margin-top: 30rpx;
-  background-color: #fff;
-  padding: 20rpx;
+.service_wrap .myService .wrap .myPost .text {
+  font-size: 28rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.adminFunction {
-  font-size: 32rpx;
-  color: cornflowerblue;
+.service_wrap .myService .wrap .reply {
+  flex: 1;
 }
-.notAdmin {
+.service_wrap .myService .wrap .reply .iconpinglun_2 {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-size: 50rpx;
+}
+.service_wrap .myService .wrap .reply .text {
+  font-size: 28rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.service_wrap .myService .wrap .point_search {
+  flex: 1;
+}
+.service_wrap .myService .wrap .point_search .iconpoints {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-size: 50rpx;
+}
+.service_wrap .myService .wrap .point_search .text {
+  font-size: 28rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.service_wrap .otherService {
+  background: #fefefe;
+  border-radius: 15rpx;
+  margin: 0rpx 30rpx 30rpx 30rpx;
+  padding: 30rpx 35rpx;
+}
+.service_wrap .otherService .title {
+  line-height: 36rpx;
+  font-size: 36rpx;
+  font-weight: 600;
+  padding-bottom: 10rpx;
+}
+.service_wrap .otherService .wrap {
+  display: flex;
+  padding: 0;
+  margin: 10rpx;
+}
+.service_wrap .otherService .wrap .share {
+  flex: 1;
+}
+.service_wrap .otherService .wrap .share .iconfenxiang2 {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-size: 50rpx;
+}
+.service_wrap .otherService .wrap .share button {
+  font-weight: 400;
+  width: 100%;
+  height: 55rpx;
+  background: transparent;
+}
+.service_wrap .otherService .wrap .share .text {
+  font-size: 28rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.service_wrap .otherService .wrap .about {
+  flex: 1;
+}
+.service_wrap .otherService .wrap .about .iconabout {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-size: 50rpx;
+}
+.service_wrap .otherService .wrap .about .text {
+  font-size: 28rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.service_wrap .otherService .wrap .help {
+  flex: 1;
+}
+.service_wrap .otherService .wrap .help .iconhelp {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-size: 50rpx;
+}
+.service_wrap .otherService .wrap .help .text {
+  font-size: 28rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.service_wrap .adminFunction {
+  background: #fefefe;
+  border-radius: 15rpx;
+  margin: 0rpx 30rpx 30rpx 30rpx;
+  padding: 30rpx 35rpx;
+}
+.service_wrap .adminFunction .title {
+  line-height: 36rpx;
+  font-size: 36rpx;
+  font-weight: 600;
+  padding-bottom: 10rpx;
+}
+.service_wrap .adminFunction .wrap {
+  display: flex;
+  padding: 0;
+  margin: 10rpx;
+}
+.service_wrap .adminFunction .wrap .postNotice {
+  flex: 1;
+}
+.service_wrap .adminFunction .wrap .postNotice .iconaddNotice {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-size: 50rpx;
+}
+.service_wrap .adminFunction .wrap .postNotice .text {
+  font-size: 28rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.service_wrap .adminFunction .wrap .editNotice {
+  flex: 1;
+}
+.service_wrap .adminFunction .wrap .editNotice .iconmanage {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-size: 50rpx;
+}
+.service_wrap .adminFunction .wrap .editNotice .text {
+  font-size: 28rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.service_wrap .adminFunction .wrap .deleteNotice {
+  flex: 1;
+}
+.service_wrap .adminFunction .wrap .deleteNotice .iconshanchu1 {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-size: 50rpx;
+}
+.service_wrap .adminFunction .wrap .deleteNotice .text {
+  font-size: 28rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.service_wrap .notAdmin {
   display: none;
 }

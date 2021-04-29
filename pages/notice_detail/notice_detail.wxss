@@ -112,5 +112,5 @@ page {
   align-items: center;
   display: flex;
   border-radius: 10rpx;
-  background: linear-gradient(90deg, #d5ecf1, #2399b8);
+  background: linear-gradient(90deg, #7cd2e6, #2399b8);
 }

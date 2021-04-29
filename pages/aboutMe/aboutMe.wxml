@@ -1,2 +1,17 @@
-小程序的创作者：梁维维
-联系电话：18146707600
+<view class="img">
+    <image src="../../image/JK_Calendar.png" mode="widthFix" />
+</view>
+<view class="name">
+    <view class="namecss">JK_Calendar</view>
+</view>
+<view class="version">
+    <view class="vercss">当前版本1.0.0</view>
+</view>
+<view class="black"></view>
+<view class="bottom">
+    <view class="treaty">
+        <view class="xieyi">JK_Calendar服务协议|</view>
+        <view class="yinsi">JK_Calendar隐私协议</view>
+    </view>
+    <view class="copyright">Copyright © 2021 维维种花 All Rights Reserved.</view>
+</view>

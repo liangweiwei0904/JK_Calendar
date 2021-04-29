@@ -1,41 +1,114 @@
 <!-- 官方文档新接口：获取用户头像和名称 -->
-<view class="container">
-    <view class="userinfo">
-        <block wx:if="{{!hasUserInfo}}">
-            <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile">登录授权</button>
-            <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo">登录授权</button>
-        </block>
-        <block wx:else>
-            <image class="img_small" style="width:30rpx;height:30rpx" bindtap="bindViewTap"  src="{{userInfo.avatarUrl}}" ></image>
+<view class="userinfo">
+    <view wx:if="{{!hasUserInfo}}" class="userinfo_top0">
+        <view class="image_wrap">
+            <image src="../../image/defaultAvatar.png" mode="widthFix" />
+        </view>
+        <view class="login_btn">
+            <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile">立即登录</button>
+            <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo">立即登录</button>
+            <text>登录解锁全部应用内功能</text>
+        </view>
+    </view>
+    <view wx:else class="userinfo_top1">
+        <view class="image_wrap">
+            <image class="img_small" mode="widthFix" bindtap="bindViewTap" src="{{userInfo.avatarUrl}}"></image>
+        </view>
+        <view class="username_wrap">
             <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-        </block>
+            <text class="identity">普通用户</text>
+        </view>
     </view>
 </view>
-
-<view class="user_content">
-    <!-- 收藏数据相关 -->
-    <view>我的收藏</view>
-    <view>我的动态</view>
-    <view>回复我的</view>
-    <!-- 应用信息相关 -->
+<view class="service_wrap">
+    <!-- 我的服务 -->
+    <view class="myService">
+        <view class="title">我的服务</view>
+        <view class="wrap">
+            <view class="myPost" bindtap="toMyPost">
+                <view class="iconfont iconxie"></view>
+                <view class="text">
+                    <text>我发布的</text>
+                </view>
+            </view>
+            <view class="reply" bindtap="toMyReply">
+                <view class="iconfont iconpinglun_2"></view>
+                <view class="text">
+                    <text>回复我的</text>
+                </view>
+            </view>
+            <view class="point_search" bindtap="toPointsSearch">
+                <view class="iconfont iconpoints"></view>
+                <view class="text">
+                    <text>积分查询</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 其他服务 -->
+    <view class="otherService">
+        <view class="title">其他服务</view>
+        <view class="wrap">
+            <view class="share">
+                <button class="iconfont iconfenxiang2" open-type="share"></button>
+                <view class="text">
+                    <text>分享应用</text>
+                </view>
+            </view>
+            <!-- <view class="contact">
+                <view class="iconfont iconlianxi "></view>
+                <view class="text">
+                    <text>开发者</text>
+                </view>
+            </view> -->
+            <view class="about">
+                <view class="iconfont iconabout" bindtap="toAbout"></view>
+                <view class="text">
+                    <text>关于</text>
+                </view>
+            </view>
+            <view class="help">
+                <view class="iconfont iconhelp" bindtap="toHelp"></view>
+                <view class="text">
+                    <text>使用帮助</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 达人服务 -->
+    <view class="{{isAdmin?'adminFunction':'notAdmin'}}">
+        <view class="admin_wrap">
+            <view class="title">达人服务</view>
+            <view class="wrap">
+                <view class="postNotice" bindtap="postNotice">
+                    <view class="iconfont iconaddNotice"></view>
+                    <view class="text">
+                        <text>发布公告</text>
+                    </view>
+                </view>
+                <view class="editNotice" bindtap="editNotice">
+                    <view class="iconfont iconmanage"></view>
+                    <view class="text">
+                        <text>编辑公告</text>
+                    </view>
+                </view>
+                <view class="deleteNotice">
+                    <view class="iconfont iconshanchu1"></view>
+                    <view class="text">
+                        <text>删除公告</text>
+                    </view>
+                </view>
+            </view>
+            <!-- <navigator url="/pages/notice_manage/notice_manage">公告管理</navigator> -->
+        </view>
+    </view>
+</view>
+<!-- <view class="user_content">
     <view class="app_info_wrap">
         <view class="app_info_item app_info_contact">
             <button open-type="contact">联系管理员</button>
         </view>
         <navigator url="/pages/aboutMe/aboutMe">关于我们</navigator>
     </view>
-    <!-- 推荐 -->
     <button open-type="share" class="recommend_wrap">推荐应用</button>
-</view>
-<!-- <button bindtap="getOpenid" >getOpenid</button> -->
-<view class="{{isAdmin?'adminFunction':'notAdmin'}}">
-    <view class="admin_wrap">
-        <view class="admin_head">特权用户功能专区</view>
-        <view class="admin_content">
-            <navigator url="/pages/notice_manage/notice_manage">公告管理</navigator>
-            
-            <view>关注者</view>
-
-        </view>
-    </view>
-</view>
+</view> -->

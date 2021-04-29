@@ -1,7 +1,0 @@
-navigator
-<navigator url="/pages/PostBySeller/PostBySeller" >以特权用户身份登录</navigator> 
-<navigator url="/pages/PostByUser/PostByUser">以普通用户身份登录</navigator>
-
-view
-<view bindtap="loginWithAdmin">以特权用户身份登录</view>
-<view bindtap="loginWithUser">以普通用户身份登录</view>
