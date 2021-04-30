@@ -10,7 +10,7 @@ Page({
     hour:DATE.getHours(),  //时
     minute:DATE.getMinutes(),  //分
     second:DATE.getSeconds(),  //秒
-    date:"2021-04-01",   //2021/04/01
+    date:"2021/04/01",   //2021/04/01
     time:"21:00:14",        //21:00:14
     post_detail_time:""   //2021/04/25 21:25:13   格式
   },

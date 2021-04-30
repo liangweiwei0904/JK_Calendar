@@ -7,12 +7,14 @@ Page({
   data: {
     Notice: [],
     notice_id: "",
-    myNotice: []
+    myNotice: [],
+    userInfo:[]
 
   },
   onLoad() {
+    const openid=wx.getStorageSync("openid");
     wx.cloud.database().collection("Goods").where({
-      creater: "梁维维"
+      _openid: openid
     }).get()
       .then(res => {
         console.log("成功", res);

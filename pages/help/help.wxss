@@ -1,1 +1,9 @@
-/* pages/help/help.wxss */
+.body .section .title {
+  font-size: 36rpx;
+  color: #239ab9;
+  font-weight: 700;
+  margin: 20rpx;
+}
+.body .section .rich-text {
+  padding: 20rpx;
+}

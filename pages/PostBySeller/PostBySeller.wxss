@@ -1,9 +1,21 @@
-.image_content .fb_tool {
+page {
+  background: #fff;
+}
+textarea {
+  padding: 20rpx;
+}
+.image {
   display: flex;
   flex-wrap: wrap;
   padding-bottom: 30rpx;
+  margin-left: 0rpx;
 }
-.image_content .fb_tool button {
+.image .btn0 {
+  width: 90rpx;
+  height: 90rpx;
+}
+.image .btn0 button {
+  color: #5d5c5d;
   margin: 0;
   width: 90rpx;
   height: 90rpx;
@@ -13,10 +25,51 @@
   justify-content: center;
   align-items: center;
   margin-left: 20rpx;
-  color: #ccc;
   margin-top: 20rpx;
 }
-.image_content .fb_tool .up_img_item {
+.image .up_img_item {
+  display: flex;
   margin-left: 20rpx;
   margin-top: 20rpx;
+}
+.goods_info_wrap {
+  margin-left: 20rpx;
+}
+.goods_info_wrap view {
+  display: flex;
+  height: 80rpx;
+  border-bottom: 2px solid #eeeeee;
+  justify-content: center;
+  align-items: center;
+}
+.goods_info_wrap view text {
+  flex: 1;
+  color: #5d5c5d;
+  font-size: 36rpx;
+  margin-right: 20rpx;
+}
+.goods_info_wrap view input {
+  flex: 3;
+}
+.goods_info_wrap .section {
+  display: flex;
+}
+.goods_info_wrap .section text {
+  flex: 1;
+}
+.goods_info_wrap .section picker {
+  flex: 3;
+  padding-left: 0;
+  display: flex;
+  color: #5d5c5d;
+}
+.btn {
+  width: 100%;
+  height: 100rpx;
+  margin: 20rpx;
+}
+.btn button {
+  border-radius: 15rpx;
+  background-color: #dcf1f7;
+  box-shadow: 5rpx 5rpx 15rpx #6dc5dc;
 }

@@ -1,25 +1,91 @@
-.image_content{
-    .fb_tool {
-        display: flex;
-        flex-wrap: wrap;
-        padding-bottom: 30rpx;
-      button{
-          margin: 0;
-          width: 90rpx;
-          height: 90rpx;
-          font-size:60rpx;
-          padding: 0;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin-left: 20rpx;
-          color: #ccc;
-          margin-top: 20rpx;
-      }
-      .up_img_item{
-          margin-left: 20rpx;
-          margin-top: 20rpx;
-      }
+page{
+    background: #fff;
+}
+textarea{
+    padding: 20rpx;
+}
+.image{
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 30rpx;
+    margin-left: 0rpx;
+    .btn0{
+        width: 90rpx;
+        height: 90rpx;
+        button{
+            color: #5d5c5d;
+                margin: 0;
+                width: 90rpx;
+                height: 90rpx;
+                font-size:60rpx;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-left: 20rpx;
+                margin-top: 20rpx;
+        }
     }
+    .up_img_item{
+        display: flex;
+        margin-left: 20rpx;
+        margin-top: 20rpx;
+    }
+}
+.goods_info_wrap{
+    margin-left: 20rpx;
     
+    view{
+        display: flex;
+        height: 80rpx;
+        border-bottom: 2px solid #eeeeee;
+        justify-content: center;
+        align-items: center;
+
+        text{
+            flex:1;
+            color:#5d5c5d;
+            font-size: 36rpx;
+            margin-right: 20rpx;
+            
+        }
+        input{
+            flex:3;
+        }
+        
+        // input{
+        //     padding-left: 20rpx;
+        //     flex:3;
+        //     margin-right: 20rpx;
+        //     border-radius: 15rpx;
+        //     height: 60rpx;
+        //     box-shadow: 5rpx 5rpx 20rpx #6dc5dc;
+        // }
+    }
+    .section{
+        display: flex;
+        text{
+            flex:1;
+        }   
+        picker{
+            flex:3;
+            padding-left: 0;
+            display: flex;
+            color:#5d5c5d;
+            .picker{
+
+            }
+        }
+    }
+}
+.btn{
+    width: 100%;
+    height: 100rpx;
+    margin: 20rpx;
+    button{
+        border-radius: 15rpx;
+        background-color: #dcf1f7;
+        box-shadow: 5rpx 5rpx 15rpx #6dc5dc;
+
+    }
 }

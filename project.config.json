@@ -107,6 +107,18 @@
         {
           "name": "pages/my_notice/my_notice",
           "pathName": "pages/my_notice/my_notice",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/help/help",
+          "pathName": "pages/help/help",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/PostBySeller/PostBySeller",
+          "pathName": "pages/PostBySeller/PostBySeller",
           "scene": null
         }
       ]

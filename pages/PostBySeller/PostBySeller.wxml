@@ -1,41 +1,43 @@
-<textarea style="width:100%;margin-top:20rpx;" maxlength="1000" bindinput='handleTextInput' placeholder="请输入商品详情"></textarea>
-<view class="image_content">
-    <view class="fb_tool">
+<textarea maxlength="300" bindinput='handleInput' data-index="4" placeholder="请输入你要爆料的新品的详细信息"></textarea>
+<view class="image">
+    <view class="btn0">
         <button bindtap="handleChooseImg">+</button>
-        <!-- 当数组试一些简单数组的时候，它所绑定的key要加* -->
-        <view class="up_img_item" wx:for="{{chooseImgs}}" wx:key="*this" bindtap="handleRemoveImg" data-index="{{index}}">
-            <Upimg src="{{item}}"></Upimg>
-        </view>
+    </view>
+    <!-- 当数组是一些简单数组的时候，它所绑定的key要加* -->
+    <view class="up_img_item" wx:for="{{chooseImgs}}" wx:key="*this" bindtap="handleRemoveImg" data-index="{{index}}">
+        <Upimg src="{{item}}"></Upimg>
     </view>
 </view>
-<view class="bottom_item">
-    <view class="message_user">
-        <view class="phone_title">店铺名称：</view>
-        <input class="phone"  bindinput='handleStoreName' placeholder="请输入店铺名称" maxlength="10"></input>
+<view class="goods_info_wrap">
+    <view class="goods_name">
+        <text>商品名称</text>
+        <input class="input" bindinput='handleInput' data-index="0" maxlength="20" placeholder="请输入商品名称"></input>
+    </view>
+    <view class="store_name">
+        <text>店铺名称</text>
+        <input class="input" bindinput='handleInput' data-index="1" maxlength="20" placeholder="请输入店铺名称"></input>
+    </view>
+    <view class="number">
+        <text>上架件数</text>
+        <input class="input" bindinput='handleInput' data-index="2" maxlength="6" placeholder="请输入数字"></input>
+    </view>
+    <view class="tb_key">
+        <text>淘口令</text>
+        <input class="input" bindinput='handleInput' data-index="3" maxlength="100" placeholder="请输入该商品的淘口令(精简)"></input>
+    </view>
+    <view class="section">
+        <text >日期</text>
+        <picker mode="date" value="{{date}}" start="2021-01-01" end="2021-12-31" bindchange="bindDateChange">
+            <view class="picker"> {{date}}</view>
+        </picker>
+    </view>
+    <view class="section">
+        <text >时间</text>
+        <picker mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
+            <view class="picker"> {{time}}</view>
+        </picker>
     </view>
 </view>
-<view class="bottom_item">
-    <view class="message_user">
-        <view class="phone_title">商品名称：</view>
-        <input class="phone" placeholder="请输入商品名称" bindinput='handleGoodsName' maxlength="10"></input>
-    </view>
-</view>
-<view class="bottom_item">
-    <view class="message_user">
-        <view class="section">
-            <view class="section__title">日期选择器</view>
-            <picker mode="date" value="{{date}}" start="2021-01-01" end="2021-12-31" bindchange="bindDateChange">
-                <view class="picker">当前选择: {{date}}</view>
-            </picker>
-        </view>
-
-
-
-    </view>
-</view>
-<view class="form_btn_wrap">
-    <button bindtap="handleFormSubmit">
-        <icon type="success_no_circle" color="white" size="16"></icon>
-        发布
-    </button>
+<view class="btn">
+    <button bindtap="submit">发布</button>
 </view>

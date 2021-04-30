@@ -1,22 +1,47 @@
-
+let DATE = new Date();
+var app = new getApp();
 Page({
 
   data: {
     chooseImgs: [],
-    textVal: "",
-    storeName: "",
-    goodsName: "",
-    sellTime: '2021-04-21',
-    year: "",
-    month: "",
-    day: "",
-    date: '2021-04-09',
+    textVal: "",  //商品描述
+    storeName: "",   //店铺名称
+    goodsName: "",   //商品名称
+    year: "",    //上架日期:年
+    month: "",   //上架日期:月
+    day: "",    //上架日期:日
+    date: "",   //上架日期:xxxx-xx-xx
+    time: "",   //上架时间:xx:xx
+    post_detail_time: "",   //上架具体时间:xxxx-xx-xx xx:xx
+    goodkey: "",   //淘口令
     goods_img: [],
     arr: [],
-    flag: ""
-    //temp: ["0", "cloud://lwwldx-5g8powrn59ec579e.6c77-lwwldx-5g8powrn59ec579e-1305123697/MessageImg/1616311330493.png"]
+    flag: "",   //通过商品名称和店铺判断是否已被爆料
+    currentTime: ""//当前时间,也就姑且认为是爆料时间吧(因为我用到的时间数据真的是太多了,晕了)
+
   },
   UpLoadImgs: [],
+  //页面加载时获取当前日期与时间
+  onLoad() {
+    let mon = DATE.getMonth() + 1;
+    let min = DATE.getMinutes();
+    if (mon < 10) { mon = "0" + mon; }
+    if (min < 10) { min = "0" + min }
+    //初次获取时间,当picker值没发生改变时传递给数据库的值不能是空的
+    this.setData({
+      date: DATE.getFullYear() + "-" + mon + "-" + DATE.getDate(),
+      time: DATE.getHours() + ":" + min,
+      year: DATE.getFullYear(),
+      month: mon,
+      day: DATE.getDate(),
+    });
+    this.setData({
+      currentTime: this.data.date + " " + this.data.time,
+      post_detail_time: this.data.date + " " + this.data.time
+    })
+
+  },
+
   handleChooseImg() {
     wx.chooseImage({
       count: 9,
@@ -44,28 +69,39 @@ Page({
       chooseImgs
     })
   },
-  //文本域的输入事件
-  handleTextInput(e) {
-    this.setData({
-      //获取文本域的值
-      textVal: e.detail.value
-    })
+  //多个文本域(文本框)的输入事件
+  handleInput(e) {
+    switch (+e.target.dataset.index) {
+      case 0:    //获取商品名称
+        this.setData({
+          goodsName: e.detail.value
+        })
+        break;
+      case 1:    //获取店铺名称
+        this.setData({
+          storeName: e.detail.value
+        })
+        break;
+      case 2:   //上架件数
+        this.setData({
+          sellNumber: e.detail.value
+        })
+        break;
+      case 3:   //淘口令
+        this.setData({
+          goodkey: e.detail.value
+        })
+        break;
+      case 4:      //获取文本域的值
+        this.setData({
+          textVal: e.detail.value
+        })
+        break;
+    }
+
   },
-  handleStoreName(e) {
-    this.setData({
-      storeName: e.detail.value
-    })
-  },
-  handleGoodsName(e) {
-    this.setData({
-      goodsName: e.detail.value
-    })
-  },
 
-
-
-
-
+  //日期选择器
   bindDateChange: function (e) {
     console.log(e);
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -73,14 +109,27 @@ Page({
       date: e.detail.value,
       sellTime: e.detail.value,
       month: e.detail.value.substring(5, 7),
-      day: e.detail.value.substring(8, 10)
+      day: e.detail.value.substring(8, 10),
+
     });
+    this.setData({ post_detail_time: this.data.date + " " + this.data.time })
     console.log("分割之后的字符串：", this.data.month, "月", this.data.day, "日");
+  },
+  //时间选择器
+  bindTimeChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      time: e.detail.value,
+
+    })
+    this.setData({ post_detail_time: this.data.date + " " + this.data.time })
+
   },
 
 
+
   //提交按钮的点击事件
-  handleFormSubmit(e) {
+  submit(e) {
     let that = this;
     var counter = 0;
     console.log("this.data.chooseImgs.length" + this.data.chooseImgs.length);
@@ -131,56 +180,45 @@ Page({
                       goods_img: this.data.arr,
                       store_name: this.data.storeName,
                       goods_name: this.data.goodsName,
-                      sell_time: this.data.sellTime,
+                      sell_time: this.data.date,
                       sell_year: this.data.year,
                       sell_month: this.data.month,
                       sell_day: this.data.day,
-                      creater: "梁维维"
+                      sell_number: this.data.sellNumber,
+                      detail_time: this.data.time,
+                      post_detail_time: this.data.post_detail_time,
+                      creater: app.userInfo.nickName,
+                      avatarUrl: app.userInfo.avatarUrl,
+                      currentTime: this.data.currentTime
                     }
                   })
                     .then(res1 => {
-                      console.log("test");
-                      console.log(JSON.stringify(this.data.arr));
-                      // console.log(...this.data.arr);
-                      // console.log("调用云函数成功", res1);
-
-                      //商家可以传递数据给首页了
-                      //可是他们两个不是同一个页面怎么办
-                      //发公告之后存储到数据库
-                      // 首页从数据库显示？日期如何确定？
-                      //让首页进行判断
-
-                      // wx.switchTab({
-                      //   url: '/pages/Hot/Hot',
-                      //   success: (result) => {
-                      //     console.log(result, "跳转回热榜页成功");
-                      //   },
-                      //   fail: (result) => { console.log(result, "跳转回热榜页失败"); },
-                      //   complete: () => { }
-                      // });
+                      // console.log(JSON.stringify(this.data.arr));//测试图片数组是否上传成功
+                      wx.showToast({
+                        title: '发布成功',
+                        icon: 'success',
+                        image: '',
+                        duration: 1500,
+                        mask: false,
+                        success: (result)=>{
+                          wx.navigateBack({
+                            delta: 1
+                          });
+                          
+                        },
+                        fail: ()=>{},
+                        complete: ()=>{}
+                      });
                     })
                     .catch(res1 => {
                       console.log("调用云函数失败", res1);
                     })
-
-
                 }
               });
-
-
             }
           },
         })
-
       })
-
-      // console.log(this.data.temp);
-
     }
-    else {
-
-    }
-
-
   }
 })

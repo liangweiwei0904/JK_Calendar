@@ -1,1 +1,26 @@
-联系我们
+<view class="body">
+    <view class="section">
+        <view class="title">入坑指南</view>
+        <view class="rich-text">
+            <rich-text nodes="{{html1}}"></rich-text>
+        </view>
+    </view>
+    <view class="section">
+        <view class="title">常见问题</view>
+        <view class="rich-text">
+            <rich-text nodes="{{html2}}"></rich-text>
+        </view>
+    </view>
+    <view class="section">
+        <view class="title">联系我们</view>
+        <view class="rich-text">
+            <rich-text nodes="{{html3}}"></rich-text>
+        </view>
+    </view>
+    <!-- <view class="page-section">
+    <view class="page-section-title">传入节点列表</view>
+    <view class="rich-text-wrp">
+      <rich-text nodes="{{nodes}}" bindtap="tap"></rich-text>
+    </view>
+  </view> -->
+</view>

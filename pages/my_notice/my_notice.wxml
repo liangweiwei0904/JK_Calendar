@@ -6,9 +6,11 @@
         <view>店铺名称：{{item.store_name}}</view>
         <view>上新商品为：{{item.goods_name}}</view>
         <view>上新日期为：{{item.sell_time}}</view>
-        <block wx:for="{{item.goods_img}}" wx:for-item="item2">
+        <!-- 图片只显示首图 -->
+        <image src="{{item.goods_img[0]}}" />
+        <!-- <block wx:for="{{item.goods_img}}" wx:for-item="item2">
             <image src="{{item2}}" />
-        </block>
+        </block> -->
         
     </view>
 </view>
