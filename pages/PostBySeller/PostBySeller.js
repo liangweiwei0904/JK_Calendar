@@ -25,15 +25,19 @@ Page({
   onLoad() {
     let mon = DATE.getMonth() + 1;
     let min = DATE.getMinutes();
+    let day = DATE.getDate();
+    let hour = DATE.getHours();
     if (mon < 10) { mon = "0" + mon; }
     if (min < 10) { min = "0" + min }
+    if (day < 10) { day = "0" + day }
+    if (hour < 10) { hour = "0" + hour }
     //初次获取时间,当picker值没发生改变时传递给数据库的值不能是空的
     this.setData({
-      date: DATE.getFullYear() + "-" + mon + "-" + DATE.getDate(),
-      time: DATE.getHours() + ":" + min,
+      date: DATE.getFullYear() + "-" + mon + "-" +day,
+      time: hour + ":" + min,
       year: DATE.getFullYear(),
       month: mon,
-      day: DATE.getDate(),
+      day: day,
     });
     this.setData({
       currentTime: this.data.date + " " + this.data.time,
@@ -200,14 +204,14 @@ Page({
                         image: '',
                         duration: 1500,
                         mask: false,
-                        success: (result)=>{
+                        success: (result) => {
                           wx.navigateBack({
                             delta: 1
                           });
-                          
+
                         },
-                        fail: ()=>{},
-                        complete: ()=>{}
+                        fail: () => { },
+                        complete: () => { }
                       });
                     })
                     .catch(res1 => {

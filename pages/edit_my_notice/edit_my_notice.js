@@ -1,131 +1,118 @@
-// pages/edit_my_notice/edit_my_notice.js
+let DATE = new Date();
+var app = new getApp();
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     list: [],
-    textVal:"",
-    storeName:"",
-    goodsName:"",
-    sellTime: '2021-04-21',
-    year: "",
-    month: "",
-    day: "",
-    date: '2021-04-09',
-    goodkey:""
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+  onLoad(options) {
     this.setData({
       list: JSON.parse(options.list)
     })
-    // console.log(this.data.list);
+    // let mon = DATE.getMonth() + 1;
+    // let min = DATE.getMinutes();
+    // let day = DATE.getDate();
+    // let hour = DATE.getHours();
+    // if (mon < 10) { mon = "0" + mon; }
+    // if (min < 10) { min = "0" + min }
+    // if (day < 10) { day = "0" + day }
+    // if (hour < 10) { hour = "0" + hour }
+    // //初次获取时间,当picker值没发生改变时传递给数据库的值不能是空的
+    // this.setData({
+    //   date: this.data.list.sell_time,
+    //   time: this.data.list.detail_time,
+    //   year: DATE.getFullYear(),
+    //   month: mon,
+    //   day: day,
+    // });
+    // this.setData({
+    //   post_detail_time: this.data.date + " " + this.data.time
+    // })
 
   },
-   //文本域的输入事件
-   handleTextInput(e) {
-    this.setData({
-      //获取文本域的值
-      textVal: e.detail.value
-    })
+
+  //多个文本域(文本框)的输入事件
+  handleInput(e) {
+    switch (+e.target.dataset.index) {
+      case 0:    //获取商品名称
+        this.setData({
+          'list.goods_name': e.detail.value
+        })
+        break;
+      case 1:    //获取店铺名称
+        this.setData({
+          'list.store_name': e.detail.value
+        })
+        break;
+      case 2:   //上架件数
+        this.setData({
+          "list.sell_number": e.detail.value
+        })
+        break;
+      case 3:   //淘口令
+        this.setData({
+          "list.goodkey": e.detail.value
+        })
+        break;
+      case 4:      //获取内容
+        this.setData({
+          "list.goods_content": e.detail.value
+        })
+        break;
+    }
+
   },
-  handleStoreName(e) {
-    this.setData({
-      storeName: e.detail.value
-    })
-  },
-  handleGoodsName(e) {
-    this.setData({
-      goodsName: e.detail.value
-    })
-  },
-  //处理淘口令
-  handleGoodKey(e){
-    this.setData({
-      goodkey: e.detail.value
-    })
-  },
+
+  //日期选择器
   bindDateChange: function (e) {
-    console.log(e);
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      date: e.detail.value,
-      sellTime: e.detail.value,
-      month: e.detail.value.substring(5, 7),
-      day: e.detail.value.substring(8, 10)
+      "list.sell_time": e.detail.value,
+      "list.sell_month": e.detail.value.substring(5, 7),
+      "list.sell_day": e.detail.value.substring(8, 10),
+
     });
-    console.log("分割之后的字符串：", this.data.month, "月", this.data.day, "日");
+    this.setData({ "list.post_detail_time": this.data.list.sell_time+ " " + this.data.list.detail_time })
   },
-  
+  //时间选择器
+  bindTimeChange: function (e) {
+    this.setData({ "list.detail_time": e.detail.value });
+    this.setData({ "list.post_detail_time": this.data.list.sell_time+ " " + this.data.list.detail_time })
+  },
+
+
+
   //提交按钮的点击事件
-  handleFormSubmit(e) {
+  submit() {
+    //更新操作
     wx.cloud.database().collection("Goods").doc(this.data.list._id).update({
       data: {
-        goods_content: this.data.textVal,
-       // goods_img: this.data.arr,
-        store_name: this.data.storeName,
-        goods_name: this.data.goodsName,
-        sell_time: this.data.sellTime,
-        sell_year: this.data.year,
-        sell_month: this.data.month,
-        sell_day: this.data.day,
-        creater: "梁维维",
-        goodkey:this.data.goodkey
+        goods_content: this.data.list.goods_content,
+        store_name: this.data.list.store_name,
+        goods_name: this.data.list.goods_name,
+        sell_time: this.data.list.sell_time,
+        sell_year: this.data.list.sell_year,
+        sell_month: this.data.list.sell_month,
+        sell_day: this.data.list.sell_day,
+        sell_number: this.data.list.sell_number,
+        detail_time: this.data.list.detail_time,
+        post_detail_time: this.data.list.post_detail_time,
+        goodkey:this.data.list.goodkey
       }
     })
-      .then(res1 => {
-        console.log("test");
-        console.log(JSON.stringify(this.data.arr));
-      })
-      .catch(res1 => {
-        console.log("调用云函数失败", res1);
-      })
-
-    // if (this.data.chooseImgs.length != 0) {
-    //   this.data.chooseImgs.forEach((v, i) => {
-    //     wx.cloud.uploadFile({
-    //       cloudPath: 'MessageImg/' + new Date().getTime() + '.png',
-    //       filePath: v,
-    //       success: res => {
-    //         //将云存储中的图片路径先赋值给本地数组，再和其他数据一起传给数据库
-    //         that.setData({
-    //           ['arr[' + i + ']']: res.fileID
-    //         })
-    //         console.log("i的值" + i);
-    //         counter++;
-    //         console.log("counter" + counter);
-    //         if (counter == this.data.chooseImgs.length) {
-    //           console.log("异步执行完了");
-    //           //上传至数据库
-    //           wx.cloud.database().collection("Goods").add({
-    //             data: {
-    //               goods_content: this.data.textVal,
-    //               goods_img: this.data.arr,
-    //               store_name: this.data.storeName,
-    //               goods_name: this.data.goodsName,
-    //               sell_time: this.data.sellTime,
-    //               sell_year: this.data.year,
-    //               sell_month: this.data.month,
-    //               sell_day: this.data.day,
-    //               creater: "梁维维"
-    //             }
-    //           })
-    //             .then(res1 => {
-    //               console.log("test");
-    //               console.log(JSON.stringify(this.data.arr));
-    //             })
-    //             .catch(res1 => {
-    //               console.log("调用云函数失败", res1);
-    //             })
-    //         }
-    //       },
-    //     })
-    //   })
-    // }
+    .then(res=>{
+      wx.showToast({
+        title: '更新成功',
+        icon: 'success',
+        image: '',
+        duration: 1500,
+        mask: false,
+        success: (result)=>{
+          wx.navigateBack({
+            delta: 1
+          });
+        },
+        fail: ()=>{},
+        complete: ()=>{}
+      });
+    })
   }
 })

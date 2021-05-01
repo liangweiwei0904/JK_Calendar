@@ -114,6 +114,48 @@ Page({
 
 
   //以下是跳转页面的小功能,后期可以优化成一个函数即可
+  handleBtn(e) {
+    if (!app.userInfo) {
+      wx.showToast({
+        title: '请先登录！',
+        icon: 'none',
+        image: '',
+        duration: 1500,
+        mask: false,
+        success: (result) => {
+
+        },
+        fail: () => { },
+        complete: () => { }
+      });
+    }
+    else {
+      console.log("12345");
+      switch (+e.currentTarget.dataset.index) {
+        case 0:    //跳转至“我发布的页面”
+        wx.navigateTo({
+          url: '/pages/my_post/my_post?openid='+app.openid
+        });
+          break;
+        case 1:    //跳转至“回复我的”页面
+        wx.navigateTo({
+          url: '/pages/replyToMe/replyToMe'
+        });
+          break;
+        case 2:   //跳转至“积分查询”页面
+        wx.navigateTo({
+          url: '/pages/points_search/points_search'
+        });
+          break;
+       
+      }
+    }
+
+
+
+
+
+  },
   //发布公告
   postNotice() {
     wx.navigateTo({
@@ -124,24 +166,6 @@ Page({
   editNotice() {
     wx.navigateTo({
       url: '/pages/my_notice/my_notice'
-    });
-  },
-  //我发布的（帖子）
-  toMyPost() {
-    wx.navigateTo({
-      url: '/pages/my_post/my_post'
-    });
-  },
-  //回复我的
-  toMyReply() {
-    wx.navigateTo({
-      url: '/pages/applyToMe/applyToMe'
-    });
-  },
-  //积分查询
-  toPointsSearch() {
-    wx.navigateTo({
-      url: '/pages/points_search/points_search'
     });
   },
   //使用帮助

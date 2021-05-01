@@ -1,37 +1,39 @@
-<textarea style="width:100%;margin-top:20rpx;" maxlength="1000" bindinput='handleTextInput' >{{list.goods_content}}</textarea>
-<view class="image_content">
-图片暂不支持修改
-    <view class="fb_tool" wx:for="{{list.goods_img}}">
-        <image src="{{item}}" />
+<textarea maxlength="300" bindinput='handleInput' data-index="4" value="{{list.goods_content}}"></textarea>
+<view class="image_wrap">
+    <view class="image" wx:for="{{list.goods_img}}">
+        <image src="{{item}}" mode="widthFix" />
     </view>
 </view>
-<view class="bottom_item">
-    <view class="message_user">
-        <view class="phone_title">店铺名称：</view>
-        <input class="phone"  bindinput='handleStoreName' maxlength="10" placeholder="{{list.store_name}}"></input>
+<view class="goods_info_wrap">
+    <view class="goods_name">
+        <text>商品名称</text>
+        <input class="input" bindinput='handleInput' data-index="0" value="{{list.goods_name}}"></input>
+    </view>
+    <view class="store_name">
+        <text>店铺名称</text>
+        <input class="input" bindinput='handleInput' data-index="1" maxlength="20" value="{{list.store_name}}"></input>
+    </view>
+    <view class="number">
+        <text>上架件数</text>
+        <input class="input" bindinput='handleInput' data-index="2" maxlength="6" value="{{list.sell_number}}"></input>
+    </view>
+    <view class="tb_key">
+        <text>淘口令</text>
+        <input class="input" bindinput='handleInput' data-index="3" maxlength="100" value="{{list.goodkey}}"></input>
+    </view>
+    <view class="section">
+        <text>日期</text>
+        <picker mode="date" value="{{list.sell_time}}" start="2021-01-01" end="2021-12-31" bindchange="bindDateChange">
+            <view class="picker">{{list.sell_time}}</view>
+        </picker>
+    </view>
+    <view class="section">
+        <text>时间</text>
+        <picker mode="time" value="{{list.detail_time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
+            <view class="picker">{{list.detail_time}}</view>
+        </picker>
     </view>
 </view>
-<view class="bottom_item">
-    <view class="message_user">
-        <view class="phone_title">商品名称：</view>
-        <input class="phone"  bindinput='handleGoodsName' maxlength="10"placeholder="{{list.goods_name}}"></input>
-        <view>淘口令</view>
-        <input  bindinput='handleGoodKey' maxlength="20">{{list.goodkey}}</input>
-    </view>
-</view>
-<view class="bottom_item">
-    <view class="message_user">
-        <view class="section">
-            <view class="section__title">日期选择器</view>
-            <picker mode="date" value="{{list.sell_time}}" start="2021-01-01" end="2021-12-31" bindchange="bindDateChange">
-                <view class="picker">当前选择: {{list.sell_time}}</view>
-            </picker>
-        </view>
-    </view>
-</view>
-<view class="form_btn_wrap">
-    <button bindtap="handleFormSubmit">
-        <icon type="success_no_circle" color="white" size="16"></icon>
-        发布
-    </button>
+<view class="btn">
+    <button bindtap="submit">发布</button>
 </view>

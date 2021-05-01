@@ -25,19 +25,19 @@
     <view class="myService">
         <view class="title">我的服务</view>
         <view class="wrap">
-            <view class="myPost" bindtap="toMyPost">
+            <view class="myPost" bindtap="handleBtn" data-index="0">
                 <view class="iconfont iconxie"></view>
                 <view class="text">
                     <text>我发布的</text>
                 </view>
             </view>
-            <view class="reply" bindtap="toMyReply">
+            <view class="reply" bindtap="handleBtn" data-index="1">
                 <view class="iconfont iconpinglun_2"></view>
                 <view class="text">
                     <text>回复我的</text>
                 </view>
             </view>
-            <view class="point_search" bindtap="toPointsSearch">
+            <view class="point_search" bindtap="handleBtn" data-index="2">
                 <view class="iconfont iconpoints"></view>
                 <view class="text">
                     <text>积分查询</text>
@@ -89,13 +89,7 @@
                 <view class="editNotice" bindtap="editNotice">
                     <view class="iconfont iconmanage"></view>
                     <view class="text">
-                        <text>编辑公告</text>
-                    </view>
-                </view>
-                <view class="deleteNotice">
-                    <view class="iconfont iconshanchu1"></view>
-                    <view class="text">
-                        <text>删除公告</text>
+                        <text>公告管理</text>
                     </view>
                 </view>
             </view>

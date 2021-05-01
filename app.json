@@ -15,7 +15,7 @@
     "pages/notice_detail/notice_detail",
     "pages/noticeOfStore/noticeOfStore",
     "pages/my_post/my_post",
-    "pages/applyToMe/applyToMe",
+    "pages/replyToMe/replyToMe",
     "pages/points_search/points_search",
     "pages/help/help"
 
