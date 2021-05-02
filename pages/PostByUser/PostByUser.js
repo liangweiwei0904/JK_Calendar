@@ -1,35 +1,35 @@
 let DATE = new Date();
+var app=getApp();
 Page({
   data: {
     chooseImgs: [],
-    textVal: "",
-    userInfo:{},
-    year : DATE.getFullYear(),   //年
-    month : DATE.getMonth()+1,  //月
-    day:DATE.getDate(),   //日
-    hour:DATE.getHours(),  //时
-    minute:DATE.getMinutes(),  //分
-    second:DATE.getSeconds(),  //秒
-    date:"2021/04/01",   //2021/04/01
-    time:"21:00:14",        //21:00:14
-    post_detail_time:""   //2021/04/25 21:25:13   格式
+    UpLoadImgs: [],
+    mess_content: "",
+    year: DATE.getFullYear(),   //年
+    month: DATE.getMonth() + 1,  //月
+    day: DATE.getDate(),   //日
+    hour: DATE.getHours(),  //时
+    minute: DATE.getMinutes(),  //分
+    second: DATE.getSeconds(),  //秒
+    date: "2021/04/01",   //2021/04/01  发布帖子的日期
+    time: "21:00:14",        //21:00:14  发布帖子的时间
+    post_detail_time: "",   //2021/04/25 21:25:13   发布帖子的具体时间
+    localImgs: []    //选择的图片数组临时存在本地，再上传至数据库
   },
-  UpLoadImgs: [],
+
   handleChooseImg() {
     wx.chooseImage({
       count: 9,
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
       success: (result) => {
-        console.log(result);
         this.setData({
           chooseImgs: [...this.data.chooseImgs, ...result.tempFilePaths]
         })
-        console.log(this.data.chooseImgs);
       },
     });
   },
-  //点击自定义图片组件
+  //点击X删除图片
   handleRemoveImg(e) {
     //获取被点击的图片索引
     const { index } = e.currentTarget.dataset;
@@ -42,76 +42,76 @@ Page({
       chooseImgs
     })
   },
-  //文本域的输入事件
+  //帖子的文字部分
   handleTextInput(e) {
     this.setData({
-      //获取文本域的值
-      textVal: e.detail.value
+      mess_content: e.detail.value
     });
-    
+
   },
 
   //提交按钮的点击事件
   handleFormSubmit(e) {
-    
+    /*小记：使用云函数创建的记录没有openid属性，在小程序端访问数据库创建的记录有openid属性*/
     let that = this;
-    //判断用户是否上传了图片
+    let count = 0;
+    //判断用户是否选择了图片，如果上传了就将选择的图片上传值云存储，并将这些图保存到一个数组里
     if (this.data.chooseImgs.length != 0) {
+      console.log("this.data.chooseImgs.length",this.data.chooseImgs.length);
       this.data.chooseImgs.forEach((v, i) => {
-        // 将图片上传至云存储空间
         wx.cloud.uploadFile({
           // 指定上传到的云路径
           cloudPath: 'MessageImg/' + new Date().getTime() + '.png',//小程序官方问题，路径写死了之后上传新图片不会更换
           // 指定要上传的文件的小程序临时文件路径
           filePath: v,
-          // 成功回调
           success: res => {
-            console.log('上传成功', res);
-            // that.setData({
-            //   UpLoadImgs: res.fileID
-            // }),
-            //UpLoadImgs=res.fileID;
-            console.log("UpLoadImgs", res.fileID);
-            //将云存储中的图片路径传给数据库
-            wx.cloud.callFunction({
-              name: "sendMessage",
-              data: {
-                content: this.data.textVal,
-                messageSrc: res.fileID,
-                date:this.data.date,
-                time:this.data.time,
-                subhour:0,
-                name:this.data.userInfo.nickName,
-                avatarUrl:this.data.userInfo.avatarUrl,
-                post_detail_time:this.data.post_detail_time
-              }
-            })
-              .then(res1 => {
-                console.log("调用云函数成功", res1);
-                wx.navigateTo({
-                  url: '/pages/Hot/Hot',
-                  success: (result) => {
-                    console.log(result, "跳转回热榜页成功");
-                  },
-                  fail: (result) => { console.log(result, "跳转回热榜页失败"); },
-                  complete: () => { }
-                });
+            //将云存储中的图片路径先赋值给本地数组，再和其他数据一起传给数据库
+            that.setData({
+              ['localImgs[' + i + ']']: res.fileID
+            });
+            count++;
+            console.log("count",count);
+            if (count == that.data.chooseImgs.length) {
+              console.log("相等了，开始执行啊！");
+              wx.cloud.database().collection("Message").add({
+                data: {
+                  test:1,
+                  mess_content: that.data.mess_content,
+                  mess_img: that.data.localImgs,
+                  comments:[],
+                  date: that.data.date,
+                  time: that.data.time,
+                  subhour: 0,
+                  name: app.userInfo.nickName,
+                  avatarUrl: app.userInfo.avatarUrl,
+                  post_detail_time: that.data.post_detail_time,
+                  hotNum:0,
+                  visit:0
+                }
               })
-              .catch(res1 => {
-                console.log("调用云函数失败", res1);
+              .then(res=>{
+                console.log("帖子上传成功");
               })
+              .catch(res=>{
+                console.log("帖子上传失败",res);
+              })
+              console.log("为什么不增加，你是没妈吗？");
+            }
+            else{
+              console.log("不相等",count);
+            }
           },
         })
       })
     }
+    
   },
-  onShow(){
-    const userInfo=wx.getStorageSync("userInfo");
+  onShow() {
+    const userInfo = wx.getStorageSync("userInfo");
     this.setData({
-      userInfo,
-      date:this.data.year+"/"+this.data.month+"/"+this.data.day,
-      time:this.data.hour+":"+this.data.minute+":"+this.data.second,
-      post_detail_time:this.data.date+" "+this.data.time
+      date: this.data.year + "/" + this.data.month + "/" + this.data.day,
+      time: this.data.hour + ":" + this.data.minute + ":" + this.data.second,
+      post_detail_time: this.data.date + " " + this.data.time
     })
   }
 })

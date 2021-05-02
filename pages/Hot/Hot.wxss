@@ -90,8 +90,18 @@ page {
   font-size: 36rpx;
   color: #373737;
 }
-.main .main_middle .middle_img image {
+.main .main_middle .img_wrap {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.main .main_middle .middle_img {
   margin: 10rpx;
+  width: 200rpx;
+  height: 200rpx;
+}
+.main .main_middle .middle_img image {
+  box-shadow: 1rpx 1rpx 2rpx #dceef3;
   width: 200rpx;
   height: 200rpx;
 }

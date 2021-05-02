@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    Notice: [],   //该用户爆料的所有帖子
+    Notice: [],   //该用户爆料的所有公告
     notice_id: "",  //他点击“编辑”或“删除”后将_id赋值给notice_id，便于后续操作
     myNotice: [],  //要进行编辑或删除的某一条帖子
     userInfo: []
@@ -31,11 +31,11 @@ Page({
   toNoticeDetail(e){
     console.log(e);
     wx.navigateTo({
-      url: 'pages/notice_detail/notice_detai?notice_id='+e.currentTarget.dataset._id,
+      url: '/pages/notice_detail/notice_detail?notice_id='+e.currentTarget.dataset.id,
       success: (result)=>{
-        
+        console.log("跳转成功");
       },
-      fail: ()=>{},
+      fail: (res)=>{console.log("跳转失败",res);},
       complete: ()=>{}
     });
   },

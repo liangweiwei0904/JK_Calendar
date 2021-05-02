@@ -1,6 +1,6 @@
 .up_img_wrap {
-  width: 90rpx;
-  height: 90rpx;
+  width: 110rpx;
+  height: 110rpx;
   position: relative;
 }
 .up_img_wrap image {

@@ -1,4 +1,14 @@
-<textarea style="width:100%;margin-top:20rpx;" maxlength="1000" bindinput='handleTextInput' placeholder="请输入内容描述（最多1000字）"></textarea>
+<view class="top">
+    <view class="cancel">取 消</view>
+    <view class="zhanwei"></view>
+    <view class="postBtn">
+        <button bindtap="handleFormSubmit">发 布</button>
+    </view>
+</view>
+<view class="textarea">
+<textarea bindinput='handleTextInput' placeholder="与大家一起分享美图吧"></textarea>
+
+</view>
 <view class="image_content">
     <view class="fb_tool">
         <button bindtap="handleChooseImg">+</button>
@@ -8,12 +18,4 @@
         </view>
     </view>
 </view>
-
-
-
-<view class="form_btn_wrap">
-    <button bindtap="handleFormSubmit" >
-        <icon type="success_no_circle" color="white" size="16"></icon>
-        发布
-    </button>
-</view>
+<view class="btn"></view>

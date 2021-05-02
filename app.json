@@ -11,6 +11,7 @@
     "pages/admin/admin",
     "pages/my_notice/my_notice",
     "pages/edit_my_notice/edit_my_notice",
+    "pages/edit_my_message/edit_my_message",
     "pages/message_detail/message_detail",
     "pages/notice_detail/notice_detail",
     "pages/noticeOfStore/noticeOfStore",

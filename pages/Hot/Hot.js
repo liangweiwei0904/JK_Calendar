@@ -1,4 +1,4 @@
-// pages/User/User.js
+var app=getApp();
 Page({
 
   /**
@@ -123,14 +123,31 @@ Page({
     console.log("新建/刷新",e);
     if(e.currentTarget.dataset.flag==1){
       //新建
-      wx.navigateTo({
-        url: '/pages/PostByUser/PostByUser',
-        success: (result)=>{
-          
-        },
-        fail: ()=>{},
-        complete: ()=>{}
-      });
+      if(!app.userInfo){
+        wx.showToast({
+          title: '请先登录再发帖',
+          icon: 'none',
+          image: '',
+          duration: 1500,
+          mask: false,
+          success: (result)=>{
+            
+          },
+          fail: ()=>{},
+          complete: ()=>{}
+        });
+      }
+      else{
+        wx.navigateTo({
+          url: '/pages/PostByUser/PostByUser',
+          success: (result)=>{
+            
+          },
+          fail: ()=>{},
+          complete: ()=>{}
+        });
+      }
+      
     }
     else{
       //刷新

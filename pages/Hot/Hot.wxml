@@ -27,8 +27,10 @@
     <view class="main_middle">
         <view class="middle_content">{{item.mess_content}}</view>
         <!-- 显示帖子里面的图片 -->
-        <view class="middle_img">
-            <image src="{{item.mess_img}}"></image>
+        <view class="img_wrap">
+            <view class="middle_img" wx:for="{{item.mess_img}}" wx:for-item="item2">
+                <image src="{{item2}}"></image>
+            </view>
         </view>
     </view>
     <!-- 帖子尾部 -->

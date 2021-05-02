@@ -60,6 +60,11 @@ page {
   font-size: 36rpx;
   color: #373737;
 }
+.main .main_middle .img_wrap {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
 .main .main_middle .middle_img image {
   margin: 10rpx;
   width: 200rpx;
