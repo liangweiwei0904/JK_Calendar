@@ -39,7 +39,6 @@ Page({
   
   //点击帖子,跳转到帖子详情页
   to_message_detail(e){
-    console.log(e.currentTarget.id);
     let mess_id=e.currentTarget.id;
     wx.navigateTo({
       url: '/pages/message_detail/message_detail?mess_id='+mess_id,

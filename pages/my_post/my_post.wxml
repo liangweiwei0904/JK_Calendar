@@ -9,7 +9,7 @@
             <view class="top_name">{{item.name}}</view>
             <view class="top_time">{{item.post_detail_time}}</view>
         </view>
-        <view class="iconfont iconedit" bindtap="editMessage" data-id="{{item._id}}" data-index="{{index}}"></view>
+        <!-- <view class="iconfont iconedit" bindtap="editMessage" data-id="{{item._id}}" data-index="{{index}}"></view> -->
         <view class="iconfont icondelete" bindtap="delMessage" data-id="{{item._id}}"></view>
     </view>
     <!-- 帖子中部 -->

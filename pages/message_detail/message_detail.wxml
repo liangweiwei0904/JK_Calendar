@@ -41,17 +41,17 @@
     <!-- 评论头部 -->
     <view class="main_top">
         <view class="top_left">
-            <image mode="widthFix" src="{{item.avatarUrl}}" />
+            <image mode="widthFix" src="{{item.com_avatar}}" />
         </view>
         <view class="top_middle">
-            <view class="top_name">{{item.username}}</view>
-            <view class="top_time">{{item.commentTime}}</view>
+            <view class="top_name">{{item.com_name}}</view>
+            <view class="top_time">{{item.com_time}}</view>
         </view>
     </view>
     <!-- 评论内容 -->
     <view class="mess_content">
         <view class="kong"></view>
-        <view class="content">{{item.content}}</view>
+        <view class="content">{{item.com_content}}</view>
     </view>
 </view>
 <view class="reply">

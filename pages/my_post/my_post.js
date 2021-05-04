@@ -20,7 +20,6 @@ Page({
         this.setData({
             message: res.data
         })
-        console.log(this.data.Notice);
       })
       .catch(res => {
         console.log("失败", res);

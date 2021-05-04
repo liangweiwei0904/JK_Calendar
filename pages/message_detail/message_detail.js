@@ -1,4 +1,4 @@
-// pages/message_detail/message_detail.js
+var app=getApp();
 Page({
 
   /**
@@ -42,7 +42,6 @@ Page({
           visit: this.data.Message[0].visit + 1,
           hotNum: this.data.Message[0].hotNum + 1
         })
-        console.log("this.data.visit" + this.data.visit);
         //浏览量+1(云函数调用)
         wx.cloud.callFunction({
           name: "addVisit",
@@ -102,10 +101,13 @@ Page({
       name: "sendComment",
       data: {
         mess_id: this.data.mess_id,
-        username: "匿名用户",
-        content: this.data.textVal,
+        com_name: app.userInfo.nickName,
+        com_avatar:app.userInfo.avatarUrl,
+        com_content: this.data.textVal,
         com_len: this.data.com_len,
         hotNum:this.data.hotNum,
+        com_time:"2021/05/04 10:00:00",
+        mess_openid:this.data.Message[0]._openid
       }
     })
   }
