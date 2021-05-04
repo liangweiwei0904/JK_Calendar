@@ -1,31 +1,49 @@
 /* pages/signIn2/signIn2.wxss */
-.tips{
-    color:blue
+.top{
+    width: 100%;
+    padding: 20rpx;
+    font-size: 36rpx;
+    color:#6c6c6c;
+    .tips{
+        
+    }
+    .points{
+        color:#239ab9;
+        font-weight: 600;
+    }
 }
-.sign {
-    width: 190rpx;
-    height: 190rpx;
-    position: absolute;
-    left: 50%;
-    top: 40rpx;
-    transform: translateX(-50%);
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 50%;
-    text-align: center;
-    .ti {
-        color: #fff;
-        font-size: 36rpx;
-        display: inline-block;
-        line-height: 190rpx;
+.circle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 300rpx;
+    .sign {
+        width: 200rpx;
+        height: 200rpx;
+        left: 0;
+        top: 40rpx;
+        // transform: translateX(-50%);
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 50%;
+        text-align: center;
+        .ti {
+            color: #fff;
+            font-size: 36rpx;
+            display: inline-block;
+            line-height: 190rpx;
+          }
       }
-  }
-  .not_sign {
-    background-color: #ff0040;
-  }
-  .is_sign {
-    background-color: #999;
-  }
+      .not_sign {
+        background-color: #239ab9;
+      }
+      .is_sign {
+        background-color: #999;
+      }
+}
+
+
 
 
 
@@ -80,7 +98,7 @@
     right: 0;
   }
   .line .yes.hover {
-    background-color: #4680db;
+    background-color: #239ab9;
   }
   .day {
     width: auto;

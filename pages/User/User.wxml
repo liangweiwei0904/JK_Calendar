@@ -16,7 +16,7 @@
         </view>
         <view class="username_wrap">
             <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-            <text class="identity">普通用户</text>
+            <text class="identity">{{isAdmin?'特权用户':'普通用户'}}</text>
         </view>
     </view>
 </view>
@@ -46,7 +46,7 @@
         </view>
     </view>
     <!-- 其他服务 -->
-    <view class="otherService">
+    <view class="other_service">
         <view class="title">其他服务</view>
         <view class="wrap">
             <view class="share">
@@ -55,54 +55,38 @@
                     <text>分享应用</text>
                 </view>
             </view>
-            <!-- <view class="contact">
-                <view class="iconfont iconlianxi "></view>
-                <view class="text">
-                    <text>开发者</text>
-                </view>
-            </view> -->
             <view class="about">
-                <view class="iconfont iconabout" bindtap="toAbout"></view>
+                <view class="iconfont iconabout" bindtap="handleBtn" data-index="3"></view>
                 <view class="text">
                     <text>关于</text>
                 </view>
             </view>
             <view class="help">
-                <view class="iconfont iconhelp" bindtap="toHelp"></view>
+                <view class="iconfont iconhelp" bindtap="handleBtn" data-index="4"></view>
                 <view class="text">
                     <text>使用帮助</text>
                 </view>
             </view>
         </view>
     </view>
-    <!-- 达人服务 -->
+    <!-- 达人服务：只有特权用户才会有此功能 -->
     <view class="{{isAdmin?'adminFunction':'notAdmin'}}">
         <view class="admin_wrap">
             <view class="title">达人服务</view>
             <view class="wrap">
-                <view class="postNotice" bindtap="postNotice">
+                <view class="postNotice" bindtap="handleBtn" data-index="5">
                     <view class="iconfont iconaddNotice"></view>
                     <view class="text">
                         <text>发布公告</text>
                     </view>
                 </view>
-                <view class="editNotice" bindtap="editNotice">
+                <view class="editNotice" bindtap="handleBtn" data-index="6">
                     <view class="iconfont iconmanage"></view>
                     <view class="text">
                         <text>公告管理</text>
                     </view>
                 </view>
             </view>
-            <!-- <navigator url="/pages/notice_manage/notice_manage">公告管理</navigator> -->
         </view>
     </view>
 </view>
-<!-- <view class="user_content">
-    <view class="app_info_wrap">
-        <view class="app_info_item app_info_contact">
-            <button open-type="contact">联系管理员</button>
-        </view>
-        <navigator url="/pages/aboutMe/aboutMe">关于我们</navigator>
-    </view>
-    <button open-type="share" class="recommend_wrap">推荐应用</button>
-</view> -->

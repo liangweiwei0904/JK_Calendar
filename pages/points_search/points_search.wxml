@@ -1,11 +1,17 @@
-<view class="tips">当前积分{{points}}</view>
-<!-- 未签到 -->
-<view wx:if='{{!isSigned}}' class='sign not_sign' bindtap='bindSignFn'>
-    <label class='ti'>签到</label>
+<view class="top">
+    <view>365分申请特权用户</view>
+    <text class="tips" decode="{{true}}">当前积分&nbsp;&nbsp;</text>
+    <text class="points">{{points}}</text>
 </view>
-<!-- 已签到 -->
-<view wx:else class='sign is_sign'>
-    <label class='ti'>已签到</label>
+<view class="circle">
+    <!-- 未签到 -->
+    <view wx:if='{{!isSigned}}' class='sign not_sign' bindtap='bindSignFn'>
+        <label class='ti'>签到</label>
+    </view>
+    <!-- 已签到 -->
+    <view wx:else class='sign is_sign'>
+        <label class='ti'>已签到</label>
+    </view>
 </view>
 <view class='line'>
     <block wx:for="{{weekSign}}">

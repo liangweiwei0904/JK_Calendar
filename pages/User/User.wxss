@@ -134,69 +134,69 @@ page {
   justify-content: center;
   align-items: center;
 }
-.service_wrap .otherService {
+.service_wrap .other_service {
   background: #fefefe;
   border-radius: 15rpx;
   margin: 0rpx 30rpx 30rpx 30rpx;
   padding: 30rpx 35rpx;
 }
-.service_wrap .otherService .title {
+.service_wrap .other_service .title {
   line-height: 36rpx;
   font-size: 36rpx;
   font-weight: 600;
   padding-bottom: 10rpx;
 }
-.service_wrap .otherService .wrap {
+.service_wrap .other_service .wrap {
   display: flex;
   padding: 0;
   margin: 10rpx;
 }
-.service_wrap .otherService .wrap .share {
+.service_wrap .other_service .wrap .share {
   flex: 1;
 }
-.service_wrap .otherService .wrap .share .iconfenxiang2 {
+.service_wrap .other_service .wrap .share .iconfenxiang2 {
   justify-content: center;
   align-items: center;
   display: flex;
   font-size: 50rpx;
 }
-.service_wrap .otherService .wrap .share button {
+.service_wrap .other_service .wrap .share button {
   font-weight: 400;
   width: 100%;
   height: 55rpx;
   background: transparent;
 }
-.service_wrap .otherService .wrap .share .text {
+.service_wrap .other_service .wrap .share .text {
   font-size: 28rpx;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.service_wrap .otherService .wrap .about {
+.service_wrap .other_service .wrap .about {
   flex: 1;
 }
-.service_wrap .otherService .wrap .about .iconabout {
+.service_wrap .other_service .wrap .about .iconabout {
   justify-content: center;
   align-items: center;
   display: flex;
   font-size: 50rpx;
 }
-.service_wrap .otherService .wrap .about .text {
+.service_wrap .other_service .wrap .about .text {
   font-size: 28rpx;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.service_wrap .otherService .wrap .help {
+.service_wrap .other_service .wrap .help {
   flex: 1;
 }
-.service_wrap .otherService .wrap .help .iconhelp {
+.service_wrap .other_service .wrap .help .iconhelp {
   justify-content: center;
   align-items: center;
   display: flex;
   font-size: 50rpx;
 }
-.service_wrap .otherService .wrap .help .text {
+.service_wrap .other_service .wrap .help .text {
   font-size: 28rpx;
   display: flex;
   justify-content: center;

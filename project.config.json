@@ -82,7 +82,7 @@
         },
         {
           "name": "用户发帖",
-          "pathName": "pages/PostByUser/PostByUser",
+          "pathName": "pages/postByUser/postByUser",
           "query": "",
           "scene": null
         },
@@ -94,7 +94,7 @@
         },
         {
           "name": "商家发布公告",
-          "pathName": "pages/PostBySeller/PostBySeller",
+          "pathName": "pages/postByAdmin/postByAdmin",
           "query": "",
           "scene": null
         },
@@ -117,8 +117,8 @@
           "scene": null
         },
         {
-          "name": "pages/PostBySeller/PostBySeller",
-          "pathName": "pages/PostBySeller/PostBySeller",
+          "name": "pages/postByAdmin/postByAdmin",
+          "pathName": "pages/postByAdmin/postByAdmin",
           "query": "",
           "scene": null
         },

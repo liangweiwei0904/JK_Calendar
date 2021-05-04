@@ -138,7 +138,7 @@ Page({
       }
       else{
         wx.navigateTo({
-          url: '/pages/PostByUser/PostByUser',
+          url: '/pages/postByUser/postByUser',
           success: (result)=>{
             
           },

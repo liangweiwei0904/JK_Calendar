@@ -6,7 +6,6 @@ Page({
     hasUserInfo: false,
     canIUseGetUserProfile: false,
     isAdmin: 0
-
   },
   //点击登录按钮
   getUserProfile(e) {
@@ -133,51 +132,41 @@ Page({
       console.log("12345");
       switch (+e.currentTarget.dataset.index) {
         case 0:    //跳转至“我发布的页面”
-        wx.navigateTo({
-          url: '/pages/my_post/my_post?openid='+app.openid
-        });
+          wx.navigateTo({
+            url: '/pages/my_post/my_post?openid=' + app.openid
+          });
           break;
         case 1:    //跳转至“回复我的”页面
-        wx.navigateTo({
-          url: '/pages/replyToMe/replyToMe'
-        });
+          wx.navigateTo({
+            url: '/pages/replyToMe/replyToMe'
+          });
           break;
         case 2:   //跳转至“积分查询”页面
-        wx.navigateTo({
-          url: '/pages/points_search/points_search'
-        });
+          wx.navigateTo({
+            url: '/pages/points_search/points_search'
+          });
           break;
-       
+        case 3:   //跳转至“关于”页面
+          wx.navigateTo({
+            url: '/pages/aboutMe/aboutMe'
+          });
+          break;
+        case 4:   //跳转至“使用帮助”页面
+          wx.navigateTo({
+            url: '/pages/help/help'
+          });
+          break;
+        case 5:   //跳转至“发布公告”页面
+          wx.navigateTo({
+            url: '/pages/postByAdmin/postByAdmin'
+          });
+          break;
+        case 6:   //跳转至“公告管理”页面
+          wx.navigateTo({
+            url: '/pages/my_notice/my_notice'
+          });
+          break;
       }
     }
-
-
-
-
-
   },
-  //发布公告
-  postNotice() {
-    wx.navigateTo({
-      url: '/pages/PostBySeller/PostBySeller'
-    });
-  },
-  //编辑公告
-  editNotice() {
-    wx.navigateTo({
-      url: '/pages/my_notice/my_notice'
-    });
-  },
-  //使用帮助
-  toHelp() {
-    wx.navigateTo({
-      url: '/pages/help/help'
-    });
-  },
-  //关于
-  toAbout() {
-    wx.navigateTo({
-      url: '/pages/aboutMe/aboutMe'
-    });
-  }
 })
