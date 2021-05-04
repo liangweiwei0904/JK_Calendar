@@ -19,7 +19,7 @@ Page({
     .then(res=>{
       console.log("请求回复的res",res);
       this.setData({
-        replyInfo:res.data
+        replyInfo:res.data.reverse()
       })
     })
   },

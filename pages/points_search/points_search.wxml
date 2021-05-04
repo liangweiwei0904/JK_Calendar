@@ -1,2 +1,19 @@
-<!--pages/points_search/points_search.wxml-->
-<text>pages/points_search/points_search.wxml</text>
+<view class="tips">当前积分{{points}}</view>
+<!-- 未签到 -->
+<view wx:if='{{!isSigned}}' class='sign not_sign' bindtap='bindSignFn'>
+    <label class='ti'>签到</label>
+</view>
+<!-- 已签到 -->
+<view wx:else class='sign is_sign'>
+    <label class='ti'>已签到</label>
+</view>
+<view class='line'>
+    <block wx:for="{{weekSign}}">
+        <label class="yes {{item.isSigned?'hover':''}}"></label>
+    </block>
+</view>
+<view class='day'>
+    <block wx:for="{{weekSign}}" wx:for-item="item1">
+        <label class="yes">{{item1.day}}</label>
+    </block>
+</view>

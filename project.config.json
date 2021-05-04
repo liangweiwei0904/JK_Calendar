@@ -125,6 +125,12 @@
         {
           "name": "pages/my_notice/my_notice",
           "pathName": "pages/my_notice/my_notice",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/points_search/points_search",
+          "pathName": "pages/points_search/points_search",
           "scene": null
         }
       ]

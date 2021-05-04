@@ -1,4 +1,5 @@
-var app=getApp();
+var app = getApp();
+let DATE = new Date();
 Page({
 
   /**
@@ -10,7 +11,9 @@ Page({
     textVal: "",
     com_len: 0,
     visit: 0,
-    hotNum:0
+    hotNum: 0,
+    com_time: "",
+    comments:[]  //评论数组，倒序排列
   },
 
   /**
@@ -30,14 +33,15 @@ Page({
       })
       .get()
       .then(res => {
-        console.log(res);
         this.setData({
           Message: res.data,
           //com_len:res.data.comments.length
           // com_len:this.data.Message[0].comments.length
         })
+        
         //console.log("com_len" + this.data.Message[0].comments.length);
         this.setData({
+          comments:this.data.Message[0].comments.reverse(),
           com_len: this.data.Message[0].comments.length,
           visit: this.data.Message[0].visit + 1,
           hotNum: this.data.Message[0].hotNum + 1
@@ -48,29 +52,10 @@ Page({
           data: {
             mess_id: this.data.mess_id,
             visit: this.data.visit,
-            hotNum:this.data.hotNum
+            hotNum: this.data.hotNum
           }
         })
       })
-
-
-
-
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
   },
   //获取输入框的文字
   handleCommentText(e) {
@@ -79,7 +64,6 @@ Page({
     })
     console.log(this.data.textVal);
   },
-  //发表评论按钮
   /*
   小程序端与云函数之间操作数据遇到的问题：
   小程序端创建的数据会自动生成一条_openid字段的值
@@ -88,28 +72,42 @@ Page({
   因此我是无法在小程序端更新数据的
   因为写权限会与_openid字段进行比较
   */
-  /*
-   发布评论不会覆盖前一个人的评论，在调用云函数更新时应用到update
- 
- 
-  */
+  //发表评论按钮发布评论不会覆盖前一个人的评论，在调用云函数更新时应用到update
   handleBtn() {
+    //获取评论时间
     this.setData({
-      hotNum: this.data.Message[0].hotNum + 10
+      hotNum: this.data.Message[0].hotNum + 10,
+      com_time:this.getDetailTime(),
     })
     wx.cloud.callFunction({
       name: "sendComment",
       data: {
         mess_id: this.data.mess_id,
         com_name: app.userInfo.nickName,
-        com_avatar:app.userInfo.avatarUrl,
+        com_avatar: app.userInfo.avatarUrl,
         com_content: this.data.textVal,
         com_len: this.data.com_len,
-        hotNum:this.data.hotNum,
-        com_time:"2021/05/04 10:00:00",
-        mess_openid:this.data.Message[0]._openid
+        hotNum: this.data.hotNum,
+        com_time: this.data.com_time,
+        mess_openid: this.data.Message[0]._openid
       }
     })
+  },
+  getDetailTime() {
+    let year = DATE.getFullYear();
+    let month = DATE.getMonth()+1;
+    let day=DATE.getDate();
+    let hour=DATE.getHours();
+    let minute=DATE.getMinutes();
+    let second=DATE.getSeconds();
+    if(month<10){month="0"+month}
+    if(day<10){day="0"+day}
+    if(hour<10){hour="0"+hour}
+    if(minute<10){minute="0"+minute}
+    if(second<10){second="0"+second}
+    let detailTime=  year + "/" + month + "/" + day + " " + hour + ":" + minute + ":" + second
+    console.log("detailTime",detailTime);
+    return detailTime;
   }
 
 })

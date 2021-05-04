@@ -1,1 +1,116 @@
-/* pages/points_search/points_search.wxss */
+/* pages/signIn2/signIn2.wxss */
+.tips {
+  color: blue;
+}
+.sign {
+  width: 190rpx;
+  height: 190rpx;
+  position: absolute;
+  left: 50%;
+  top: 40rpx;
+  transform: translateX(-50%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  text-align: center;
+}
+.sign .ti {
+  color: #fff;
+  font-size: 36rpx;
+  display: inline-block;
+  line-height: 190rpx;
+}
+.not_sign {
+  background-color: #ff0040;
+}
+.is_sign {
+  background-color: #999;
+}
+.line {
+  height: 26rpx;
+  width: auto;
+  margin: 0 40rpx;
+  position: relative;
+  margin-bottom: 15rpx;
+}
+.line .yes {
+  width: 26rpx;
+  height: 26rpx;
+  border-radius: 100%;
+  background-color: #eaeaea;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+.line::after {
+  content: "";
+  width: 100%;
+  height: 8rpx;
+  background-color: #f9f9f9;
+  position: absolute;
+  left: 0;
+  top: 9rpx;
+}
+.line .yes:first-of-type {
+  left: 0;
+}
+.line .yes:nth-of-type(2) {
+  left: 14.5%;
+}
+.line .yes:nth-of-type(3) {
+  left: 30%;
+}
+.line .yes:nth-of-type(4) {
+  left: 47%;
+}
+.line .yes:nth-of-type(5) {
+  left: 64%;
+}
+.line .yes:nth-of-type(6) {
+  left: 80%;
+}
+.line .yes:last-of-type {
+  left: auto;
+  right: 0;
+}
+.line .yes.hover {
+  background-color: #4680db;
+}
+.day {
+  width: auto;
+  height: 30rpx;
+  margin: 0 40rpx;
+  position: relative;
+}
+.day .yes {
+  height: 30rpx;
+  font-size: 24rpx;
+  color: #999;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+.day .yes:first-of-type {
+  left: 0;
+}
+.day .yes:nth-of-type(2) {
+  left: 14.5%;
+}
+.day .yes:nth-of-type(3) {
+  left: 30%;
+}
+.day .yes:nth-of-type(4) {
+  left: 47%;
+}
+.day .yes:nth-of-type(5) {
+  left: 64%;
+}
+.day .yes:nth-of-type(6) {
+  left: 80%;
+}
+.day .yes:last-of-type {
+  left: auto;
+  right: 2rpx;
+}

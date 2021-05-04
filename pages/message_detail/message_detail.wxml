@@ -37,7 +37,7 @@
     </view>
 </view>
 <!-- 评论区 -->
-<view class="comments" wx:for="{{Message[0].comments}}" wx:key="{{index}}">
+<view class="comments" wx:for="{{comments}}" wx:key="{{index}}">
     <!-- 评论头部 -->
     <view class="main_top">
         <view class="top_left">
