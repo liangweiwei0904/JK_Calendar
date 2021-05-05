@@ -1,12 +1,8 @@
 var app=getApp();
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     Message: [],
-    flag_post:1,  //该页面内数据默认按热度排序：1，按时间排序：2
+    flagOfHot:1,  //该页面内数据默认按热度排序：1，按时间排序：2
     scrollTop:0,   //监听页面滚动
     scrolltemp:0,  
     isScrollDown:1  //0代表向上，1代表向下
@@ -20,6 +16,9 @@ Page({
    */
   onLoad: function () {
     this.sortByHot();
+    this.setData({
+      flagOfHot:1
+    })
     
   },
 
@@ -41,7 +40,7 @@ Page({
   to_message_detail(e){
     let mess_id=e.currentTarget.id;
     wx.navigateTo({
-      url: '/pages/message_detail/message_detail?mess_id='+mess_id,
+      url: '/pages/postDetail/postDetail?mess_id='+mess_id,
       success: (result)=>{
         
       },
@@ -53,7 +52,7 @@ Page({
   sortByHot(){
     this.goTop();
     this.setData({
-      flag_post:0,
+      flagOfHot:1,
       scrollTop:0
     })
     wx.cloud.callFunction({
@@ -67,13 +66,17 @@ Page({
       this.setData({
         Message:res.result.data
       })
+      wx.showToast({
+        title: '刷新成功',
+        duration: 1500,
+      });
     })
   },
   //按时间排序，默认选项
   sortByTime(){
     this.goTop();
     this.setData({
-      flag_post:1,
+      flagOfHot:0,
     })
     wx.cloud.callFunction({
       name: "getMessage",
@@ -86,6 +89,10 @@ Page({
       this.setData({
         Message:res.result.data
       })
+      wx.showToast({
+        title: '刷新成功',
+        duration: 1500,
+      });
     })
 
   },
@@ -117,9 +124,8 @@ Page({
       duration: 300
     })
   },
-  //点击跳转到用户发布界面
-  PostorFresh(e){
-    console.log("新建/刷新",e);
+  //点击跳转到用户发布界面或者刷新页面
+  postorFresh(e){
     if(e.currentTarget.dataset.flag==1){
       //新建
       if(!app.userInfo){
@@ -150,17 +156,13 @@ Page({
     }
     else{
       //刷新
-      console.log("我刷新啦");
       //重新从数据库中读取数据
       //根据热榜/时间请求数据
       this.goTop();
-      if(this.flag_post==1){
+      if(e.currentTarget.dataset.hot==1)
         this.sortByHot();
-      }
-      else{
+      else
         this.sortByTime();
-      }
     }
-    
   }
 })

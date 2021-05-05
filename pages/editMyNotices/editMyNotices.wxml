@@ -1,0 +1,39 @@
+<textarea maxlength="300" bindinput='handleInput' data-index="4" value="{{list.goods_content}}"></textarea>
+<view class="image_wrap">
+    <view class="image" wx:for="{{list.goods_img}}">
+        <image src="{{item}}" mode="" />
+    </view>
+</view>
+<view class="goods_info_wrap">
+    <view class="goods_name">
+        <text>商品名称</text>
+        <input class="input" bindinput='handleInput' data-index="0" value="{{list.goods_name}}"></input>
+    </view>
+    <view class="store_name">
+        <text>店铺名称</text>
+        <input class="input" bindinput='handleInput' data-index="1" maxlength="20" value="{{list.store_name}}"></input>
+    </view>
+    <view class="number">
+        <text>上架件数</text>
+        <input class="input" bindinput='handleInput' data-index="2" maxlength="6" value="{{list.sell_number}}"></input>
+    </view>
+    <view class="tb_key">
+        <text>淘口令</text>
+        <input class="input" bindinput='handleInput' data-index="3" maxlength="100" value="{{list.goodkey}}"></input>
+    </view>
+    <view class="section">
+        <text>日期</text>
+        <picker mode="date" value="{{list.sell_date}}" start="2021-01-01" end="2021-12-31" bindchange="bindDateChange">
+            <view class="picker">{{list.sell_date}}</view>
+        </picker>
+    </view>
+    <view class="section">
+        <text>时间</text>
+        <picker mode="time" value="{{list.sell_time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
+            <view class="picker">{{list.sell_time}}</view>
+        </picker>
+    </view>
+</view>
+<view class="btn">
+    <button bindtap="submit">发布</button>
+</view>

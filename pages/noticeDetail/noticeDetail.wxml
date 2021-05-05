@@ -1,0 +1,55 @@
+<!-- 公告详情页 -->
+<!-- 首部：轮播图 -->
+<view class="image_swiper">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" circular="{{circular}}" duration="3000" style='height:{{Height}}'>
+        <block wx:for="{{notice[0].goodImgs}}">
+            <swiper-item>
+                <image src="{{item}}" class="slide-image" />
+            </swiper-item>
+        </block>
+    </swiper>
+</view>
+<!-- 中部：标题与时间 -->
+<!-- 商品名称 -->
+<view class="baseInfoWrap">
+    <view class="base_info">
+        <view class="goods_name">【{{notice[0].goodName}}】</view>
+        <!-- 上架时间 -->
+        <view class="sell_time">上架时间　{{notice[0].sellDetailTime}} </view>
+        <!-- 上架数量 -->
+        <view class="sell_number">
+            <text decode>上架件数&nbsp;&nbsp;&nbsp;&nbsp;</text>
+            {{notice[0].sellNumber}}
+        </view>
+        <!-- 上架店铺 -->
+        <view class="store_name">
+            <text decode>商家名称&nbsp;&nbsp;&nbsp;&nbsp;</text>
+            {{notice[0].storeName}}
+        </view>
+        <!-- 爆料作者 -->
+        <view class="creater">
+            <text decode>爆料作者&nbsp;&nbsp;&nbsp;&nbsp;</text>
+            {{notice[0].creater}}
+        </view>
+        <!-- 价格 -->
+        <view class="price">
+            <text decode>商品金额&nbsp;&nbsp;&nbsp;&nbsp;</text>
+            {{notice[0].sellPrice}}
+        </view>
+    </view>
+</view>
+<!-- 底部：详细信息 -->
+<view class="goods_detail_wrap">
+    <view class="goods_detail">
+        <text decode>详情介绍&nbsp;&nbsp;&nbsp;&nbsp;</text>
+        {{notice[0].goodDescribe}}
+    </view>
+</view>
+<!-- 底部固定：粘贴淘口令 -->
+<!-- 1.留言 2.想买 3.分享 4.淘口令 -->
+<view class="fixedTools">
+    <view class="btn">
+        <button class="iconfont iconbangzhufankui" open-type="contact"><text decode>&nbsp;有问题</text></button>
+    </view>
+    <view class="pasteKey" bindtap="copyGoodKey" data-key="{{notice[0].goodKey}}">复制口令</view>
+</view>

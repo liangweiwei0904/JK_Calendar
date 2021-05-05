@@ -21,7 +21,7 @@
                     {{row * 7 - monthStart + col >-1 && row * 7 - monthStart + col < day ? row * 7 + col - monthStart + 1 : ''}}
                     <block wx:for="{{tempdata}}" >
                         <!-- 这条wx:for无法提前结束循环，当有多款新品同一天销售会出现多个**** -->
-                        <block wx:if="{{item.sell_day==(row * 7 + col - monthStart + 1)}}">*</block>
+                        <block wx:if="{{item.sellDay==(row * 7 + col - monthStart + 1)}}">*</block>
                     </block>
                 </view>
             </view>
@@ -31,11 +31,11 @@
 <!-- 页面底部提示 -->
 <!-- tips：提示是否有要上架的裙子，默认没有 -->
 <view class="calendar_bottom">
-    <view class="calendar_tips" wx:if="{{tempdata[0].goods_name}}">
+    <view class="calendar_tips" wx:if="{{tempdata[0].goodName}}">
         <view class="goods_item" wx:for="{{tempdata}}">
-            <view class="store_name">{{item.store_name}}</view>
-            <view class="goods_name">新品：{{item.goods_name}}
-                <view class="detail_time">具体时间：{{item.sell_month}}月{{item.sell_day}}日 {{item.detail_time}}</view>
+            <view class="store_name">{{item.storeName}}</view>
+            <view class="goods_name">新品：{{item.goodName}}
+                <view class="detail_time">具体时间：{{item.sellDetailTime}}</view>
             </view>
             
         </view>

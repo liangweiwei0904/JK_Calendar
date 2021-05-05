@@ -127,7 +127,7 @@ Page({
         }
         else strmonth = month + 1;
         wx.cloud.database().collection("Goods").where({
-            sell_month: strmonth,
+            sellMonth: strmonth,
         })
             .get()
             .then(res => {

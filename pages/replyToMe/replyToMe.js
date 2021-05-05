@@ -27,7 +27,7 @@ Page({
   toMessageDetail(e){
     let mess_id=e.currentTarget.dataset.messid;
     wx.navigateTo({
-      url: '/pages/message_detail/message_detail?mess_id='+mess_id,
+      url: '/pages/postDetail/postDetail?mess_id='+mess_id,
       success: (result)=>{
         
       },

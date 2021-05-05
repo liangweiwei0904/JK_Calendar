@@ -3,12 +3,12 @@
 <!-- 广告位 -->
 <image class="ad" src="../../image/ad.jpg" />
 <view class="{{scrollTop>60 ? 'topnavFixed' : 'topnavAbsolute'}}">
-    <view class="btn" wx:if="{{flag_post==1}}" bindtap="sortByHot">最新发布</view>
-    <view class="btn" wx:else bindtap="sortByTime">热度</view>
+    <view class="btn" wx:if="{{flagOfHot==1}}" bindtap="sortByTime">按热度（点击切换按时间）</view>
+    <view class="btn" wx:else bindtap="sortByHot">按时间（点击切换按热度）</view>
 </view>
 <view class="zhanwei"></view>
 <!-- 发布新的帖子所用到的按钮 -->
-<view class="new" bindtap="PostorFresh" data-flag="{{isScrollDown}}">
+<view class="new" bindtap="postorFresh" data-flag="{{isScrollDown}}" data-hot="{{flagOfHot}}">
     <image mode="widthFix" src="{{isScrollDown?'../../icons/new.png':'../../icons/fresh.png'}}" />
 </view>
 <!-- 帖子主体 -->

@@ -5,14 +5,6 @@ Page({
     chooseImgs: [],
     UpLoadImgs: [],
     mess_content: "",
-    year: DATE.getFullYear(),   //年
-    month: DATE.getMonth() + 1,  //月
-    day: DATE.getDate(),   //日
-    hour: DATE.getHours(),  //时
-    minute: DATE.getMinutes(),  //分
-    second: DATE.getSeconds(),  //秒
-    date: "2021/04/01",   //2021/04/01  发布帖子的日期
-    time: "21:00:14",        //21:00:14  发布帖子的时间
     post_detail_time: "",   //2021/04/25 21:25:13   发布帖子的具体时间
     localImgs: []    //选择的图片数组临时存在本地，再上传至数据库
   },
@@ -84,18 +76,26 @@ Page({
                   subhour: 0,
                   name: app.userInfo.nickName,
                   avatarUrl: app.userInfo.avatarUrl,
-                  post_detail_time: that.data.post_detail_time,
+                  // post_detail_time: that.data.post_detail_time,
+                  post_detail_time:app.getDetailTime(),
                   hotNum:0,
                   visit:0
                 }
               })
               .then(res=>{
                 console.log("帖子上传成功");
+                wx.switchTab({
+                  url: '/pages/hot/hot',
+                  success: (result)=>{
+                    
+                  },
+                  fail: ()=>{},
+                  complete: ()=>{}
+                });
               })
               .catch(res=>{
                 console.log("帖子上传失败",res);
               })
-              console.log("为什么不增加，你是没妈吗？");
             }
             else{
               console.log("不相等",count);
@@ -104,14 +104,5 @@ Page({
         })
       })
     }
-    
   },
-  onShow() {
-    const userInfo = wx.getStorageSync("userInfo");
-    this.setData({
-      date: this.data.year + "/" + this.data.month + "/" + this.data.day,
-      time: this.data.hour + ":" + this.data.minute + ":" + this.data.second,
-      post_detail_time: this.data.date + " " + this.data.time
-    })
-  }
 })

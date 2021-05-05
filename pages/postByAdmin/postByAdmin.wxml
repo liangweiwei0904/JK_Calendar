@@ -19,7 +19,11 @@
     </view>
     <view class="number">
         <text>上架件数</text>
-        <input class="input" bindinput='handleInput' data-index="2" maxlength="6" placeholder="请输入数字"></input>
+        <input class="input" bindinput='handleInput' data-index="2" maxlength="6" placeholder="请输入数量（数字）"></input>
+    </view>
+    <view class="price">
+        <text>价格</text>
+        <input class="input" bindinput='handleInput' data-index="5" maxlength="6" placeholder="请输入价格（数字）"></input>
     </view>
     <view class="tb_key">
         <text>淘口令</text>
@@ -27,14 +31,14 @@
     </view>
     <view class="section">
         <text >日期</text>
-        <picker mode="date" value="{{date}}" start="2021-01-01" end="2021-12-31" bindchange="bindDateChange">
-            <view class="picker"> {{date}}</view>
+        <picker mode="date" value="{{sellDate}}}" start="2021-01-01" end="2021-12-31" bindchange="bindDateChange">
+            <view class="picker"> {{sellDate}}</view>
         </picker>
     </view>
     <view class="section">
         <text >时间</text>
-        <picker mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
-            <view class="picker"> {{time}}</view>
+        <picker mode="time" value="{{sellTime}}" start="00:00" end="23:59" bindchange="bindTimeChange">
+            <view class="picker"> {{sellTime}}</view>
         </picker>
     </view>
 </view>

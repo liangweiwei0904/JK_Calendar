@@ -1,26 +1,22 @@
-// pages/Notice/Notice.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    Notice:[],
-    
-
+    allNotices:[],
   },
   onShow(){
-    wx.cloud.database().collection("Goods").get()
+    //云函数请求一次最多100条
+    let notice=[];
+    wx.cloud.callFunction({
+      name:"getAllNotices"
+    })
     .then(res=>{
-      console.log("成功",res);
       this.setData({
-        Notice:res.data
+        allNotices:res.result.data.reverse()
       })
-      console.log(this.data.Notice);
-    })
-    .catch(res=>{
-      console.log("失败",res);
-    })
+    })    
   },
 
   //点击店铺名称，看这家店的其他新品上新时间，并按照上新时间顺序排序
@@ -42,7 +38,7 @@ Page({
   toNoticeDetail(e){
     console.log("id",e.currentTarget.dataset.id);
     wx.navigateTo({
-      url: '/pages/notice_detail/notice_detail?notice_id='+e.currentTarget.dataset.id,
+      url: '/pages/noticeDetail/noticeDetail?noticeId='+e.currentTarget.dataset.id,
       success: (result)=>{
         
       },

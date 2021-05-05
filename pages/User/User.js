@@ -1,5 +1,4 @@
 var app = getApp();
-// let isAdmin=0;
 Page({
   data: {
     userInfo: {},
@@ -129,11 +128,10 @@ Page({
       });
     }
     else {
-      console.log("12345");
       switch (+e.currentTarget.dataset.index) {
         case 0:    //跳转至“我发布的页面”
           wx.navigateTo({
-            url: '/pages/my_post/my_post?openid=' + app.openid
+            url: '/pages/myPosts/myPosts?openid=' + app.openid
           });
           break;
         case 1:    //跳转至“回复我的”页面
@@ -143,7 +141,7 @@ Page({
           break;
         case 2:   //跳转至“积分查询”页面
           wx.navigateTo({
-            url: '/pages/points_search/points_search'
+            url: '/pages/pointsSearch/pointsSearch'
           });
           break;
         case 3:   //跳转至“关于”页面
@@ -163,7 +161,7 @@ Page({
           break;
         case 6:   //跳转至“公告管理”页面
           wx.navigateTo({
-            url: '/pages/my_notice/my_notice'
+            url: '/pages/myNotices/myNotices'
           });
           break;
       }

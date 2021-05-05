@@ -1,12 +1,11 @@
-// pages/Notice/Notice.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    Notice:[],
-    store_name:""
+    itsNotices:[],
+    storeName:""
     
 
   },
@@ -14,19 +13,19 @@ Page({
   onLoad(options){
     console.log(options);
     this.setData({
-      store_name:options.store,
+      storeName:options.store,
     })
   },
   onShow(){
     wx.cloud.database().collection("Goods").where({
-      store_name:this.data.store_name,
+      storeName:this.data.storeName,
     }).get()
     .then(res=>{
       console.log("成功",res);
       this.setData({
-        Notice:res.data
+        itsNotices:res.data.reverse()
       })
-      console.log(this.data.Notice);
+      console.log(this.data.itsNotices);
     })
     .catch(res=>{
       console.log("失败",res);

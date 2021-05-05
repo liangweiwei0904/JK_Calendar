@@ -30,7 +30,6 @@
       "disablePlugins": [],
       "outputPath": ""
     },
-    "enableEngineNative": false,
     "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
@@ -63,14 +62,14 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/Hot/Hot",
-          "pathName": "pages/Hot/Hot",
+          "name": "pages/hot/hot",
+          "pathName": "pages/hot/hot",
           "query": "",
           "scene": null
         },
         {
           "name": "个人中心",
-          "pathName": "pages/User/User",
+          "pathName": "pages/user/user",
           "query": "",
           "scene": null
         },
@@ -88,7 +87,7 @@
         },
         {
           "name": "公告页",
-          "pathName": "pages/Notice/Notice",
+          "pathName": "pages/notice/notice",
           "query": "",
           "scene": null
         },
@@ -99,14 +98,14 @@
           "scene": null
         },
         {
-          "name": "pages/Notice/Notice",
-          "pathName": "pages/Notice/Notice",
+          "name": "pages/notice/notice",
+          "pathName": "pages/notice/notice",
           "query": "",
           "scene": null
         },
         {
-          "name": "pages/my_notice/my_notice",
-          "pathName": "pages/my_notice/my_notice",
+          "name": "pages/myNotices/myNotices",
+          "pathName": "pages/myNotices/myNotices",
           "query": "",
           "scene": null
         },
@@ -123,14 +122,20 @@
           "scene": null
         },
         {
-          "name": "pages/my_notice/my_notice",
-          "pathName": "pages/my_notice/my_notice",
+          "name": "pages/myNotices/myNotices",
+          "pathName": "pages/myNotices/myNotices",
           "query": "",
           "scene": null
         },
         {
           "name": "pages/points_search/points_search",
           "pathName": "pages/points_search/points_search",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/postByAdmin/postByAdmin",
+          "pathName": "pages/postByAdmin/postByAdmin",
           "scene": null
         }
       ]

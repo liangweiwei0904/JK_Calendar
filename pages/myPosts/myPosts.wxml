@@ -1,0 +1,38 @@
+<!-- 帖子主体 -->
+<view class="main" wx:for="{{message}}" >
+    <!-- 帖子头部 -->
+    <view class="main_top">
+        <view class="top_avatarUrl">
+            <image mode="widthFix" src="{{item.avatarUrl}}" />
+        </view>
+        <view class="top_wrap">
+            <view class="top_name">{{item.name}}</view>
+            <view class="top_time">{{item.post_detail_time}}</view>
+        </view>
+        <!-- <view class="iconfont iconedit" bindtap="editMessage" data-id="{{item._id}}" data-index="{{index}}"></view> -->
+        <view class="iconfont icondelete" bindtap="delMessage" data-id="{{item._id}}"></view>
+    </view>
+    <!-- 帖子中部 -->
+    <view class="main_middle">
+        <view class="middle_content" bindtap="toMessageDetail" data-id="{{item._id}}">{{item.mess_content}}</view>
+        <!-- 显示帖子里面的图片 -->
+        <view class="img_wrap">
+            <view class="middle_img" wx:for="{{item.mess_img}}" wx:for-item="item2">
+                <image src="{{item2}}"></image>
+            </view>
+        </view>
+    </view>
+    <!-- 帖子尾部 -->
+    <view class="main_bottom"  bindtap="toMessageDetail" data-id="{{item._id}}">
+        <view class="iconfont iconB">{{item.hotNum}}</view>
+        <view class="iconfont iconpinglun-">{{item.comments.length}}</view>
+        <view class="iconfont iconfenxiang"></view>
+    </view>
+</view>
+<!-- test
+<view class="test">
+    <view class="one">
+        <text>1</text>
+    </view>
+    <view class="two">2</view>
+</view> -->

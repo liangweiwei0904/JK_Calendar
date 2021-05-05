@@ -1,22 +1,20 @@
 {
   "pages": [
-    "pages/Home/Home",
-    "pages/Hot/Hot",
-    "pages/User/User",
-    "pages/search/search",
+    "pages/home/home",
+    "pages/hot/hot",
+    "pages/user/user",
     "pages/postByAdmin/postByAdmin",
     "pages/postByUser/postByUser",
-    "pages/Notice/Notice",
+    "pages/notice/notice",
     "pages/aboutMe/aboutMe",
-    "pages/admin/admin",
-    "pages/my_notice/my_notice",
-    "pages/edit_my_notice/edit_my_notice",
-    "pages/message_detail/message_detail",
-    "pages/notice_detail/notice_detail",
+    "pages/myNotices/myNotices",
+    "pages/editMyNotices/editMyNotices",
+    "pages/postDetail/postDetail",
+    "pages/noticeDetail/noticeDetail",
     "pages/noticeOfStore/noticeOfStore",
-    "pages/my_post/my_post",
+    "pages/myPosts/myPosts",
     "pages/replyToMe/replyToMe",
-    "pages/points_search/points_search",
+    "pages/pointsSearch/pointsSearch",
     "pages/help/help"
 
   ],
@@ -24,39 +22,38 @@
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#239ab9",
     "navigationBarTitleText": "上新日历",
-    "navigationBarTextStyle": "white",
-    "enablePullDownRefresh": true
+    "navigationBarTextStyle": "white"
     
   },
   "tabBar": {
     "color":"#515151",
-    "selectedColor":"#13227a",
+    "selectedColor":"#239ab9",
     "list": [
       {
-        "pagePath": "pages/Home/Home",
+        "pagePath": "pages/home/home",
         "text": "首页",
-        "iconPath": "icons/Home-0.png",
-        "selectedIconPath": "icons/Home-1.png"
+        "iconPath": "icons/home-0.png",
+        "selectedIconPath": "icons/home-1.png"
       },
       {
-        "pagePath": "pages/Notice/Notice",
+        "pagePath": "pages/notice/notice",
         "text": "公告",
         "iconPath": "icons/notice-0.png",
         "selectedIconPath": "icons/notice-1.png"
       },
       {
-        "pagePath": "pages/Hot/Hot",
+        "pagePath": "pages/hot/hot",
         "text": "讨论",
-        "iconPath": "icons/Hot-0.png",
-        "selectedIconPath": "icons/Hot-1.png"
+        "iconPath": "icons/hot-0.png",
+        "selectedIconPath": "icons/hot-1.png"
       },
       
       
       {
-        "pagePath": "pages/User/User",
+        "pagePath": "pages/user/user",
         "text": "用户",
-        "iconPath": "icons/User-0.png",
-        "selectedIconPath": "icons/User-1.png"
+        "iconPath": "icons/user-0.png",
+        "selectedIconPath": "icons/user-1.png"
       }
     ]
   },

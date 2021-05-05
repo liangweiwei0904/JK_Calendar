@@ -77,7 +77,7 @@ page {
   justify-content: center;
 }
 .calendar_bottom .calendar_tips {
-  width: 85%;
+  width: 94%;
   margin: 40rpx;
   padding: 10rpx;
   background: rgba(255, 255, 255, 0.5);
@@ -87,10 +87,14 @@ page {
 }
 .calendar_bottom .calendar_tips .goods_item {
   display: flex;
+  border-bottom: 2px solid #d3d3d3;
 }
 .calendar_bottom .calendar_tips .goods_item .store_name {
-  flex: 4;
+  flex: 3;
   padding: 10rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .calendar_bottom .calendar_tips .goods_item .goods_name {
   font-size: 35rpx;
