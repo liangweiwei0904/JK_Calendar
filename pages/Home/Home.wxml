@@ -19,7 +19,7 @@
             <view class="calendar_cols" wx:for="1234567" wx:for-index="col" wx:key="index">
                 <view class="calendar_item {{today===((row * 7 - monthStart + col >-1 && row * 7 - monthStart + col < day) ? row * 7 + col - monthStart + 1 : '')?'today':''}}" bindtap="clickItem" data-day="{{row * 7 - monthStart + col >-1 && row * 7 - monthStart + col < day ? row * 7 + col - monthStart + 1 : ''}}">
                     {{row * 7 - monthStart + col >-1 && row * 7 - monthStart + col < day ? row * 7 + col - monthStart + 1 : ''}}
-                    <block wx:for="{{tempdata}}" >
+                    <block wx:for="{{monthGoods}}" >
                         <!-- 这条wx:for无法提前结束循环，当有多款新品同一天销售会出现多个**** -->
                         <block wx:if="{{item.sellDay==(row * 7 + col - monthStart + 1)}}">*</block>
                     </block>
@@ -31,11 +31,11 @@
 <!-- 页面底部提示 -->
 <!-- tips：提示是否有要上架的裙子，默认没有 -->
 <view class="calendar_bottom">
-    <view class="calendar_tips" wx:if="{{tempdata[0].goodName}}">
-        <view class="goods_item" wx:for="{{tempdata}}">
-            <view class="store_name">{{item.storeName}}</view>
-            <view class="goods_name">新品：{{item.goodName}}
-                <view class="detail_time">具体时间：{{item.sellDetailTime}}</view>
+    <view class="calendar_tips" wx:if="{{monthGoods[0].goodName}}">
+        <view class="goods_item" wx:for="{{monthGoods}}">
+            <view class="store_name">{{item.goodName}}</view>
+            <view class="goods_name">{{item.storeName}}
+                <view class="detail_time">{{item.sellDetailTime}}</view>
             </view>
             
         </view>

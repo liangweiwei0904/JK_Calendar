@@ -1,24 +1,24 @@
 <!-- 详细帖子主体 -->
-<view class="main" wx:for="{{Message}}">
+<view class="main" wx:for="{{thePost}}">
     <!-- 帖子头部 -->
     <view class="main_top">
         <view class="top_left">
-            <image mode="widthFix" src="{{Message[0].avatarUrl}}" />
+            <image mode="widthFix" src="{{thePost[0].avatarUrl}}" />
         </view>
         <view class="top_middle">
-            <view class="top_name">{{Message[0].name}}</view>
-            <view class="top_time">{{Message[0].post_detail_time}}</view>
+            <view class="top_name">{{thePost[0].name}}</view>
+            <view class="top_time">{{thePost[0].post_detail_time}}</view>
         </view>
         <view class="top_right">
-            <view class="top_visitNum">{{Message[0].visit}}阅读</view>
+            <view class="top_visitNum">{{thePost[0].visit}}阅读</view>
         </view>
     </view>
     <!-- 帖子中部 -->
     <view class="main_middle">
-        <view class="middle_content">{{Message[0].mess_content}}</view>
+        <view class="middle_content">{{thePost[0].mess_content}}</view>
         <!-- 显示帖子里面的图片 -->
         <view class="img_wrap">
-            <view class="middle_img" wx:for="{{Message[0].mess_img}}" wx:for-item="item2">
+            <view class="middle_img" wx:for="{{thePost[0].mess_img}}" wx:for-item="item2">
                 <image src="{{item2}}"></image>
             </view>
         </view>
@@ -29,10 +29,12 @@
             <view class="left_comments">评论{{item.comments.length}}</view>
         </view>
         <view class="bottom_middle">
-            <view class="left_share">转发{{item.comments.length}}</view>
+            <view class="left_hotNum">热度{{item.hotNum}}</view>
         </view>
         <view class="bottom_right">
-            <view class="left_hotNum">热度{{item.hotNum}}</view>
+            <view class="left_share">
+                <button open-type="share">转发{{item.comments.length}}</button>
+            </view>
         </view>
     </view>
 </view>

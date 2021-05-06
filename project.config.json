@@ -136,6 +136,12 @@
         {
           "name": "pages/postByAdmin/postByAdmin",
           "pathName": "pages/postByAdmin/postByAdmin",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/postDetail/postDetail",
+          "pathName": "pages/postDetail/postDetail",
           "scene": null
         }
       ]

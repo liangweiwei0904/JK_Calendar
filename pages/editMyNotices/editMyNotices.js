@@ -2,11 +2,11 @@ let DATE = new Date();
 var app = new getApp();
 Page({
   data: {
-    list: [],
+    theNotice: [],
   },
   onLoad(options) {
     this.setData({
-      list: JSON.parse(options.list)
+      theNotice: JSON.parse(options.theNoticeList)
     })
     // let mon = DATE.getMonth() + 1;
     // let min = DATE.getMinutes();
@@ -35,27 +35,27 @@ Page({
     switch (+e.target.dataset.index) {
       case 0:    //获取商品名称
         this.setData({
-          'list.goods_name': e.detail.value
+          'theNotice.goodName': e.detail.value
         })
         break;
       case 1:    //获取店铺名称
         this.setData({
-          'list.store_name': e.detail.value
+          'theNotice.storeName': e.detail.value
         })
         break;
       case 2:   //上架件数
         this.setData({
-          "list.sell_number": e.detail.value
+          "theNotice.sellNumber": e.detail.value
         })
         break;
       case 3:   //淘口令
         this.setData({
-          "list.goodkey": e.detail.value
+          "theNotice.goodKey": e.detail.value
         })
         break;
       case 4:      //获取内容
         this.setData({
-          "list.goods_content": e.detail.value
+          "theNotice.goodDescribe": e.detail.value
         })
         break;
     }
@@ -65,17 +65,17 @@ Page({
   //日期选择器
   bindDateChange: function (e) {
     this.setData({
-      "list.sell_time": e.detail.value,
-      "list.sell_month": e.detail.value.substring(5, 7),
-      "list.sell_day": e.detail.value.substring(8, 10),
+      "theNotice.sellDate": e.detail.value,
+      "theNotice.sellMonth": e.detail.value.substring(5, 7),
+      "theNotice.sellDay": e.detail.value.substring(8, 10),
 
     });
-    this.setData({ "list.post_detail_time": this.data.list.sell_time+ " " + this.data.list.detail_time })
+    this.setData({ "theNotice.sellDetailTime": this.data.theNotice.sellDate+ " " + this.data.theNotice.sellTime })
   },
   //时间选择器
   bindTimeChange: function (e) {
-    this.setData({ "list.detail_time": e.detail.value });
-    this.setData({ "list.post_detail_time": this.data.list.sell_time+ " " + this.data.list.detail_time })
+    this.setData({ "theNotice.sellTime": e.detail.value });
+    this.setData({ "theNotice.sellDetailTime": this.data.theNotice.sellDate+ " " + this.data.theNotice.sellTime })
   },
 
 
@@ -83,19 +83,18 @@ Page({
   //提交按钮的点击事件
   submit() {
     //更新操作
-    wx.cloud.database().collection("Goods").doc(this.data.list._id).update({
+    wx.cloud.database().collection("Goods").doc(this.data.theNotice._id).update({
       data: {
-        goods_content: this.data.list.goods_content,
-        store_name: this.data.list.store_name,
-        goods_name: this.data.list.goods_name,
-        sell_date: this.data.list.sell_date,
-        sell_year: this.data.list.sell_year,
-        sell_month: this.data.list.sell_month,
-        sell_day: this.data.list.sell_day,
-        sell_number: this.data.list.sell_number,
-        sell_time: this.data.list.sell_time,
-        post_detail_time: this.data.list.post_detail_time,
-        goodkey:this.data.list.goodkey
+        goodDescribe: this.data.theNotice.goodDescribe,
+        storeName: this.data.theNotice.storeName,
+        goodName: this.data.theNotice.goodName,
+        sellDate: this.data.theNotice.sellDate,
+        sellMonth: this.data.theNotice.sellMonth,
+        sellDay: this.data.theNotice.sellDay,
+        sellNumber: this.data.theNotice.sellNumber,
+        sellTime: this.data.theNotice.sellTime,
+        sellDetailTime: this.data.theNotice.sellDetailTime,
+        goodKey:this.data.theNotice.goodKey
       }
     })
     .then(res=>{

@@ -230,9 +230,9 @@ Page({
                   duration: 1500,
                   mask: false,
                   success: (result) => {
-                    wx.navigateBack({
-                      delta: 1
-                    });
+                    // wx.navigateBack({
+                    //   delta: 1
+                    // });
                   },
                 });
               })
@@ -250,7 +250,16 @@ Page({
   //提交按钮的点击事件
   submit(e) {
     this.uploadImgs();
+    wx.showLoading({
+      title: "发布中",
+      mask: true,
+      success: (result)=>{
+        
+      },
+      fail: ()=>{},
+      complete: ()=>{}
+    });
     let that = this;
-    setTimeout(function () { that.addNotice() }, 1000);
+    setTimeout(function () { that.addNotice() }, 2000);
   }
 })

@@ -87,18 +87,29 @@ page {
   justify-content: center;
   align-items: center;
 }
-.main .main_bottom .bottom_middle {
-  width: 50%;
-}
-.main .main_bottom .bottom_middle .left_share {
-  padding: 0rpx 20rpx;
-  display: flex;
-  align-items: flex-start;
-}
 .main .main_bottom .bottom_right {
   width: 25%;
 }
-.main .main_bottom .bottom_right .left_hotNum {
+.main .main_bottom .bottom_right .left_share {
+  padding: 0rpx ;
+  display: flex;
+  align-items: flex-start;
+  margin: 0;
+}
+.main .main_bottom .bottom_right .left_share button {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  font-weight: 400;
+  font-size: 32rpx;
+  color: #a3a3a3;
+}
+.main .main_bottom .bottom_middle {
+  width: 50%;
+}
+.main .main_bottom .bottom_middle .left_hotNum {
   padding: 0rpx 20rpx;
   display: flex;
   justify-content: center;

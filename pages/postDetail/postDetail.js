@@ -7,13 +7,14 @@ Page({
    */
   data: {
     mess_id: "",
-    Message: [],
+    thePost: [],
     textVal: "",
     com_len: 0,
     visit: 0,
     hotNum: 0,
     com_time: "",
-    comments: []  //评论数组，倒序排列
+    comments: [],  //评论数组，倒序排列
+    num:0
   },
 
   /**
@@ -32,18 +33,16 @@ Page({
       })
       .get()
       .then(res => {
+        console.log(res);
         this.setData({
-          Message: res.data,
-          //com_len:res.data.comments.length
-          // com_len:this.data.Message[0].comments.length
+          thePost: res.data,
+          ['thePost[0].hotNum']:Math.ceil(res.data[0].hotNum)
         })
-
-        //console.log("com_len" + this.data.Message[0].comments.length);
         this.setData({
-          comments: this.data.Message[0].comments.reverse(),
-          com_len: this.data.Message[0].comments.length,
-          visit: this.data.Message[0].visit + 1,
-          hotNum: this.data.Message[0].hotNum + 1
+          comments: this.data.thePost[0].comments.reverse(),
+          com_len: this.data.thePost[0].comments.length,
+          visit: this.data.thePost[0].visit + 1,
+          hotNum: Math.ceil(this.data.thePost[0].hotNum + 1)
         })
         //浏览量+1(云函数调用)
         wx.cloud.callFunction({
@@ -51,7 +50,7 @@ Page({
           data: {
             mess_id: this.data.mess_id,
             visit: this.data.visit,
-            hotNum: this.data.hotNum
+            hotNum: Math.ceil(this.data.hotNum)
           }
         })
       })
@@ -74,9 +73,9 @@ Page({
   //发表评论按钮发布评论不会覆盖前一个人的评论，在调用云函数更新时应用到update
   handleBtn() {
     //获取评论时间
-
+    let that = this;
     this.setData({
-      hotNum: this.data.Message[0].hotNum + 10,
+      hotNum: parseInt(this.data.thePost[0].hotNum + 10),
       com_time: app.getDetailTime()
     })
     wx.cloud.callFunction({
@@ -87,9 +86,9 @@ Page({
         com_avatar: app.userInfo.avatarUrl,
         com_content: this.data.textVal,
         com_len: this.data.com_len,
-        hotNum: this.data.hotNum,
+        hotNum: Math.ceil(this.data.hotNum),
         com_time: this.data.com_time,
-        mess_openid: this.data.Message[0]._openid
+        mess_openid: this.data.thePost[0]._openid
       }
     })
       .then(res => {
@@ -100,29 +99,24 @@ Page({
           duration: 1500,
           mask: false,
           success: (result) => {
-            // const pages = getCurrentPages()
-            // const perpage = pages[pages.length - 1] //当前页面
-            // const keyList = Object.keys(perpage.options) //当前页面携带的路由参数
-            // if (keyList.length > 0) {
-            //   let keys = '?'
-            //   keyList.forEach((item, index) => {
-            //     index === 0 ?
-            //       keys = keys + item + '=' + perpage.options[item] : keys = keys + '&' + item + '=' + perpage.options[item]
-            //   })
-            //   wx.reLaunch({
-            //     url: '/' + perpage.route + keys
-            //   })
-            // } else {
-            //   wx.reLaunch({
-            //     url: '/' + perpage.route //当前页面路由地址
-            //   })
-            // }
-
+            that.onPullDownRefresh();
           },
           fail: () => { },
           complete: () => { }
         });
       })
+  },
+  //带参数的页面刷新
+  onPullDownRefresh: function () {
+    // wx.showLoading({
+    //   title: '加载中...',
+    // })
+    let p = getCurrentPages().pop().options
+    this.onLoad(p)
+    setTimeout(function () {
+      wx.hideLoading()
+      wx.stopPullDownRefresh()
+    }, 2000)
   },
 
 })
