@@ -19,7 +19,7 @@
             <view class="calendar_cols" wx:for="1234567" wx:for-index="col" wx:key="index">
                 <view class="calendar_item {{today===((row * 7 - monthStart + col >-1 && row * 7 - monthStart + col < day) ? row * 7 + col - monthStart + 1 : '')?'today':''}}" bindtap="clickItem" data-day="{{row * 7 - monthStart + col >-1 && row * 7 - monthStart + col < day ? row * 7 + col - monthStart + 1 : ''}}">
                     {{row * 7 - monthStart + col >-1 && row * 7 - monthStart + col < day ? row * 7 + col - monthStart + 1 : ''}}
-                    <block wx:for="{{monthGoods}}" >
+                    <block wx:for="{{monthGoods}}">
                         <!-- 这条wx:for无法提前结束循环，当有多款新品同一天销售会出现多个**** -->
                         <block wx:if="{{item.sellDay==(row * 7 + col - monthStart + 1)}}">*</block>
                     </block>
@@ -30,14 +30,28 @@
 </view>
 <!-- 页面底部提示 -->
 <!-- tips：提示是否有要上架的裙子，默认没有 -->
-<view class="calendar_bottom">
+<view class="calendar_bottom" wx:if="{{!clicked}}">
     <view class="calendar_tips" wx:if="{{monthGoods[0].goodName}}">
         <view class="goods_item" wx:for="{{monthGoods}}">
             <view class="store_name">{{item.goodName}}</view>
-            <view class="goods_name">{{item.storeName}}
+            <view class="goods_name">
+                {{item.storeName}}
                 <view class="detail_time">{{item.sellDetailTime}}</view>
             </view>
-            
+        </view>
+    </view>
+    <view wx:else>
+        <image mode="widthFix" class="tips_image" src="{{tipsImageSrc}}" />
+    </view>
+</view>
+<view class="calendar_bottom" wx:else>
+    <view class="calendar_tips" wx:if="{{todayGoods[0].goodName}}">
+        <view class="goods_item" wx:for="{{todayGoods}}" wx:for-item="item2">
+            <view class="store_name">{{item2.goodName}}</view>
+            <view class="goods_name">
+                {{item2.storeName}}
+                <view class="detail_time">{{item2.sellDetailTime}}</view>
+            </view>
         </view>
     </view>
     <view wx:else>

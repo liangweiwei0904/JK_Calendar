@@ -15,7 +15,7 @@ Page({
       noticeId: options.noticeId
     })
     //console.log("this.data.mess_id:"+this.data.mess_id);
-    //从服务器中Message中请求此条数据
+    //从服务器中posts集合中请求此条数据
     wx.cloud.database().collection('Goods')
       .where({
         _id: this.data.noticeId

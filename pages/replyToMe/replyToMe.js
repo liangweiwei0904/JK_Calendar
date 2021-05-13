@@ -13,7 +13,7 @@ Page({
    */
   onLoad: function (options) {
     wx.cloud.database().collection("reply").where({
-      mess_openid:app.openid
+      postOpenid:app.openid
     })
     .get()
     .then(res=>{
@@ -24,10 +24,11 @@ Page({
     })
   },
   //查看帖子详情
-  toMessageDetail(e){
-    let mess_id=e.currentTarget.dataset.messid;
+  toPostDetail(e){
+    console.log(e);
+    let postId=e.currentTarget.dataset.postid;
     wx.navigateTo({
-      url: '/pages/postDetail/postDetail?mess_id='+mess_id,
+      url: '/pages/postDetail/postDetail?postId='+postId,
       success: (result)=>{
         
       },

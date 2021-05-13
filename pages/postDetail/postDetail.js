@@ -6,15 +6,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    mess_id: "",
-    thePost: [],
-    textVal: "",
-    com_len: 0,
-    visit: 0,
-    hotNum: 0,
-    com_time: "",
+    postId: "",    //评论的id
+    thePost: [],   //此条帖子
+    textVal: "",    //评论内容
+    comLen: 0,    //评论长度
+    visit: 0,    //浏览量
+    hotNum: 0,    //热度值
+    comTime: "",   //评论时间
     comments: [],  //评论数组，倒序排列
-    num:0
   },
 
   /**
@@ -23,36 +22,38 @@ Page({
   onLoad: function (options) {
     let that = this;
     this.setData({
-      mess_id: options.mess_id
+      postId: options.postId
     })
-    //console.log("this.data.mess_id:"+this.data.mess_id);
-    //从服务器中Message中请求此条数据
-    wx.cloud.database().collection('Message')
-      .where({
-        _id: this.data.mess_id
-      })
+    console.log("this.data.postId",this.data.postId);
+    console.log("options.postId",options.postId);
+    //从服务器中posts中请求此条数据
+    wx.cloud.database().collection('posts').where({
+      _id: this.data.postId
+    })
       .get()
       .then(res => {
-        console.log(res);
         this.setData({
           thePost: res.data,
-          ['thePost[0].hotNum']:Math.ceil(res.data[0].hotNum)
+         
         })
         this.setData({
+          ['thePost[0].hotNum']: Math.ceil(res.data[0].hotNum),
           comments: this.data.thePost[0].comments.reverse(),
-          com_len: this.data.thePost[0].comments.length,
-          visit: this.data.thePost[0].visit + 1,
+          comLen: this.data.thePost[0].comments.length,
+          visit: this.data.thePost[0].visit + 1,   //每点击一次，浏览量+1，热度值也+1
           hotNum: Math.ceil(this.data.thePost[0].hotNum + 1)
         })
         //浏览量+1(云函数调用)
         wx.cloud.callFunction({
           name: "addVisit",
           data: {
-            mess_id: this.data.mess_id,
+            postId: this.data.postId,
             visit: this.data.visit,
             hotNum: Math.ceil(this.data.hotNum)
           }
         })
+      })
+      .catch(res => {
       })
   },
   //获取输入框的文字
@@ -76,19 +77,19 @@ Page({
     let that = this;
     this.setData({
       hotNum: parseInt(this.data.thePost[0].hotNum + 10),
-      com_time: app.getDetailTime()
+      comTime: app.getDetailTime()
     })
     wx.cloud.callFunction({
       name: "sendComment",
       data: {
-        mess_id: this.data.mess_id,
-        com_name: app.userInfo.nickName,
-        com_avatar: app.userInfo.avatarUrl,
-        com_content: this.data.textVal,
-        com_len: this.data.com_len,
+        postId: this.data.postId,
+        postOpenid: this.data.thePost[0]._openid,
+        comName: app.userInfo.nickName,
+        comAvatar: app.userInfo.avatarUrl,
+        comContent: this.data.textVal,
+        comLen: this.data.comLen,
         hotNum: Math.ceil(this.data.hotNum),
-        com_time: this.data.com_time,
-        mess_openid: this.data.thePost[0]._openid
+        comTime: this.data.comTime
       }
     })
       .then(res => {

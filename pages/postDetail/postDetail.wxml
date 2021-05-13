@@ -6,8 +6,8 @@
             <image mode="widthFix" src="{{thePost[0].avatarUrl}}" />
         </view>
         <view class="top_middle">
-            <view class="top_name">{{thePost[0].name}}</view>
-            <view class="top_time">{{thePost[0].post_detail_time}}</view>
+            <view class="top_name">{{thePost[0].postName}}</view>
+            <view class="top_time">{{thePost[0].postDetailTime}}</view>
         </view>
         <view class="top_right">
             <view class="top_visitNum">{{thePost[0].visit}}阅读</view>
@@ -15,10 +15,10 @@
     </view>
     <!-- 帖子中部 -->
     <view class="main_middle">
-        <view class="middle_content">{{thePost[0].mess_content}}</view>
+        <view class="middle_content">{{thePost[0].postContent}}</view>
         <!-- 显示帖子里面的图片 -->
         <view class="img_wrap">
-            <view class="middle_img" wx:for="{{thePost[0].mess_img}}" wx:for-item="item2">
+            <view class="middle_img" wx:for="{{thePost[0].postImgs}}" wx:for-item="item2">
                 <image src="{{item2}}"></image>
             </view>
         </view>
@@ -43,17 +43,17 @@
     <!-- 评论头部 -->
     <view class="main_top">
         <view class="top_left">
-            <image mode="widthFix" src="{{item.com_avatar}}" />
+            <image mode="widthFix" src="{{item.comAvatar}}" />
         </view>
         <view class="top_middle">
-            <view class="top_name">{{item.com_name}}</view>
-            <view class="top_time">{{item.com_time}}</view>
+            <view class="top_name">{{item.comName}}</view>
+            <view class="top_time">{{item.comTime}}</view>
         </view>
     </view>
     <!-- 评论内容 -->
     <view class="mess_content">
         <view class="kong"></view>
-        <view class="content">{{item.com_content}}</view>
+        <view class="content">{{item.comContent}}</view>
     </view>
 </view>
 <view class="reply">

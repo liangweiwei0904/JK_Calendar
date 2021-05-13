@@ -28,13 +28,16 @@ Page({
         //从数据库请求的数据应该是什么类型的，string型（2021年03月17日）如何判断3月17日有新品
         isSellDay: false, //是否有新品？默认为false
         monthGoods: [],//数据库中某月的所有商品信息返回给monthGoods
-        NewGoods: [],//用户点击某一天之后，才会从monthGoods中取得这一天的裙子信息
-        today: today
+        todayGoods: [],//用户点击某一天之后，才会从monthGoods中取得这一天的裙子信息
+        today: today,
+        clicked:false     //默认用户没有点击某天，展示的即是当月所有裙子，
+        //当用户点击之后，clicked值设为true，开始在首页展示当日的裙子
     },
     //选择器"<"和">"的点击事件
     switchMonth(e) {
         this.setData({
-            NewGoods: []
+            todayGoods: [],
+            clicked:false
         })
         switch (+e.target.dataset.type) {
             case 0:    //"<"左切
@@ -92,30 +95,41 @@ Page({
     //点击这一天的时候，在下边的显示模块提示当天即将上架的裙子
     clickItem(e) {
         this.setData({
-            NewGoods: []
+            todayGoods: [],
+            clicked:true
         })
         var day = e.target.dataset.day;
         console.log(year + '年' + (month + 1) + '月' + day + "日");
+        console.log("todayGoods",this.data.todayGoods);
         //如果用户点击16，获取到数字16之后呢
-        //从monthGoods里面找到sell_day为16的数据并将其赋值给NewGoods
-        //渲染的时候，直接显示NewGoods数组里的内容
-        //问题：当点击某一个售卖日之后，NewGoods里面会附上值，再次点击非售卖日，这个值应该清空
+        //从monthGoods里面找到sellDay为16的数据并将其赋值给todayGoods
+        //渲染的时候，直接显示todayGoods数组里的内容
+        //问题：当点击某一个售卖日之后，todayGoods里面会附上值，再次点击非售卖日，这个值应该清空
+        console.log("day",day);
         this.showGood(day);
+        console.log("todayGoods",this.data.todayGoods);
 
     },
     //判断是否有新品
     showGood(day) {
+        console.log("day",day);
+        var len=0;
         for (var i = 0; i < this.data.monthGoods.length; i++) {
-            if (day == this.data.monthGoods[i].sell_day) {
-                this.data.NewGoods.push(this.data.monthGoods[i]) ,
-                this.setData({
-                    
-                    isSellDay: true
-                });
-                
-            }
             
+            if (day == this.data.monthGoods[i].sellDay) {
+                //数组赋值的坑直接使用push不能及时显示在前端页面
+               // this.data.todayGoods.push(this.data.monthGoods[i]) ,
+               this.setData({
+                   ['todayGoods['+len+']']:this.data.monthGoods[i]
+               })
+               len++;
+                this.setData({
+                    isSellDay: true
+                });  
+            }   
         }
+        console.log("monthGoods",this.data.monthGoods);
+        console.log("todayGoods",this.data.todayGoods);
     },
 
     onShow() {
@@ -135,15 +149,12 @@ Page({
                 this.setData({
                     monthGoods: res.data
                 });
-                this.showGood(today);
+                //this.showGood(today);
 
             })
             .catch(res => {
                 console.log("获取失败", res);
             })
-
-        // console.log("today", today);
-
     },
     //回到今天
     handleToday(e) {

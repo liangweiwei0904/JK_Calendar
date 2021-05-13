@@ -38,12 +38,13 @@ exports.main = async (event, context) => {
     }
   ] 
   cloud.database().collection("User").where({
-    exist:1
+    "_id" : { $exists : true }
   })
   .update({
     data: {
       weekSign: weekNull
-    }
+    },
+   
   })
   .then(res=>{
     console.log("更新成功",res);

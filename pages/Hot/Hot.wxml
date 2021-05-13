@@ -12,23 +12,23 @@
     <image mode="widthFix" src="{{isScrollDown?'../../icons/new.png':'../../icons/fresh.png'}}" />
 </view>
 <!-- 帖子主体 -->
-<view class="main" wx:for="{{Message}}" bindtap="to_message_detail" id="{{item._id}}">
+<view class="main" wx:for="{{post}}" bindtap="toPostDetail" id="{{item._id}}">
     <!-- 帖子头部 -->
     <view class="main_top">
         <view class="top_avatarUrl">
             <image mode="widthFix" src="{{item.avatarUrl}}" />
         </view>
         <view class="top_wrap">
-            <view class="top_name">{{item.name}}</view>
-            <view class="top_time">{{item.post_detail_time}}</view>
+            <view class="top_name">{{item.postName}}</view>
+            <view class="top_time">{{item.postDetailTime}}</view>
         </view>
     </view>
     <!-- 帖子中部 -->
     <view class="main_middle">
-        <view class="middle_content">{{item.mess_content}}</view>
+        <view class="middle_content">{{item.postContent}}</view>
         <!-- 显示帖子里面的图片 -->
         <view class="img_wrap">
-            <view class="middle_img" wx:for="{{item.mess_img}}" wx:for-item="item2">
+            <view class="middle_img" wx:for="{{item.postImgs}}" wx:for-item="item2">
                 <image src="{{item2}}"></image>
             </view>
         </view>

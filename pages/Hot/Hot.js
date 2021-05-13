@@ -1,7 +1,7 @@
 var app=getApp();
 Page({
   data: {
-    Message: [],
+    post: [],
     flagOfHot:1,  //该页面内数据默认按热度排序：1，按时间排序：2
     scrollTop:0,   //监听页面滚动
     scrolltemp:0,  
@@ -37,10 +37,10 @@ Page({
   },
   
   //点击帖子,跳转到帖子详情页
-  to_message_detail(e){
-    let mess_id=e.currentTarget.id;
+  toPostDetail(e){
+    let postId=e.currentTarget.id;
     wx.navigateTo({
-      url: '/pages/postDetail/postDetail?mess_id='+mess_id,
+      url: '/pages/postDetail/postDetail?postId='+postId,
       success: (result)=>{
         
       },
@@ -56,7 +56,7 @@ Page({
       scrollTop:0
     })
     wx.cloud.callFunction({
-      name: "getMessage",
+      name: "getPosts",
       data:{
         flag:1
       }
@@ -64,7 +64,7 @@ Page({
     .then(res=>{
       console.log(res);
       this.setData({
-        Message:res.result.data
+        post:res.result.data
       })
       wx.showToast({
         title: '刷新成功',
@@ -79,7 +79,7 @@ Page({
       flagOfHot:0,
     })
     wx.cloud.callFunction({
-      name: "getMessage",
+      name: "getPosts",
       data:{
         flag:0
       }
@@ -87,7 +87,7 @@ Page({
     .then(res=>{
       console.log(res);
       this.setData({
-        Message:res.result.data
+        post:res.result.data
       })
       wx.showToast({
         title: '刷新成功',

@@ -33,8 +33,9 @@ Page({
         });
         //将用户信息存储在全局变量中
         app.userInfo = this.data.userInfo;
-        wx.cloud.database().collection("admin").where({
-          openid: app.openid
+        wx.cloud.database().collection("User").where({
+          _openid: app.openid,
+          isAdmin:1
         }).get().then(res => {
           console.log("有这个特权用户吗?", res.data.length);
           if (res.data.length > 0) {
@@ -48,7 +49,7 @@ Page({
         //登录完成后向服务器新增用户信息
         //先查询,没有这个用户就增加. 有就不增加
         wx.cloud.database().collection("User").where({
-          openid: app.openid
+          _openid: app.openid
         }).get().then(res => {
           console.log("有这个普通用户吗?", res.data.length);
           if (res.data.length == 0) {
@@ -56,7 +57,39 @@ Page({
             wx.cloud.database().collection("User").add({
               data: {
                 openid: app.openid,
-                userInfo: app.userInfo
+                userInfo: app.userInfo,
+                points:0,
+                weekSign:[
+                  {
+                    day:"一",
+                    isSigned:false
+                  },
+                  {
+                    day:"二",
+                    isSigned:false
+                  },
+                  {
+                    day:"三",
+                    isSigned:false
+                  },
+                  {
+                    day:"四",
+                    isSigned:false
+                  },
+                  {
+                    day:"五",
+                    isSigned:false
+                  },
+                  {
+                    day:"六",
+                    isSigned:false
+                  },
+                  {
+                    day:"日",
+                    isSigned:false
+                  }
+
+                ]
               }
             }).then(res => { console.log("增加成功"); })
               .catch(res => { console.log("增加失败"); })

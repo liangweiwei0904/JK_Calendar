@@ -7,7 +7,7 @@ cloud.init({
 
 // 云函数入口函数
 exports.main = async (event, context) => {
- cloud.database().collection("Message").doc(event.mess_id).update({
+ cloud.database().collection("posts").doc(event.postId).update({
    data:{
      visit:event.visit,
      hotNum:event.hotNum

@@ -1,4 +1,5 @@
 let DATE = new Date();
+var app=getApp();
 Page({
   data: {
     getDay: "", //周几
@@ -26,7 +27,7 @@ Page({
       weekSign: weekSign,
     });
     wx.cloud.database().collection("User").where({
-      openid: "odyot48Wq49z_s4zObtpQ7rpoft8"
+      _openid: app.openid
     })
       .update({
         data: {
@@ -44,7 +45,7 @@ Page({
  
     //从服务器请求已签到数据和积分
     wx.cloud.database().collection("User").where({
-      openid: "odyot48Wq49z_s4zObtpQ7rpoft8"
+      _openid: app.openid
     }).get()
       .then(res => {
         this.setData({
@@ -52,10 +53,11 @@ Page({
           weekSign: res.data[0].weekSign
         })
         console.log("res.data[0].weekSign[this.data.getDay-1]",res.data[0].weekSign[this.data.getDay-1]);
-        if(res.data[0].weekSign[this.data.getDay-1].isSigned){
+        if(res.data[0].weekSign[this.data.getDay-1].isSigned==true){
           this.setData({
             isSigned:true
           })
+          console.log("???????");
         }
       })
   },

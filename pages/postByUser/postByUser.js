@@ -4,8 +4,8 @@ Page({
   data: {
     chooseImgs: [],
     UpLoadImgs: [],
-    mess_content: "",
-    post_detail_time: "",   //2021/04/25 21:25:13   发布帖子的具体时间
+    postContent: "",
+    postDetailTime: "",   //2021/04/25 21:25:13   发布帖子的具体时间
     localImgs: []    //选择的图片数组临时存在本地，再上传至数据库
   },
 
@@ -37,7 +37,7 @@ Page({
   //帖子的文字部分
   handleTextInput(e) {
     this.setData({
-      mess_content: e.detail.value
+      postContent: e.detail.value
     });
 
   },
@@ -53,7 +53,7 @@ Page({
       this.data.chooseImgs.forEach((v, i) => {
         wx.cloud.uploadFile({
           // 指定上传到的云路径
-          cloudPath: 'MessageImg/' + new Date().getTime() + '.png',//小程序官方问题，路径写死了之后上传新图片不会更换
+          cloudPath: 'postImgs/' + new Date().getTime() + '.png',//小程序官方问题，路径写死了之后上传新图片不会更换
           // 指定要上传的文件的小程序临时文件路径
           filePath: v,
           success: res => {
@@ -65,19 +65,16 @@ Page({
             console.log("count",count);
             if (count == that.data.chooseImgs.length) {
               console.log("相等了，开始执行啊！");
-              wx.cloud.database().collection("Message").add({
+              wx.cloud.database().collection("posts").add({
                 data: {
-                  test:1,
-                  mess_content: that.data.mess_content,
-                  mess_img: that.data.localImgs,
+                  postContent: that.data.postContent,
+                  postImgs: that.data.localImgs,
                   comments:[],
-                  date: that.data.date,
-                  time: that.data.time,
-                  subhour: 0,
-                  name: app.userInfo.nickName,
+                  subHour: 0,
+                  postName: app.userInfo.nickName,
                   avatarUrl: app.userInfo.avatarUrl,
                   // post_detail_time: that.data.post_detail_time,
-                  post_detail_time:app.getDetailTime(),
+                  postDetailTime:app.getDetailTime(),
                   hotNum:0,
                   visit:0
                 }

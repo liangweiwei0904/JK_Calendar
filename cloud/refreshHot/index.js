@@ -9,47 +9,43 @@ exports.main = async (event, context) => {
   const db = cloud.database();
   const _ = db.command;
   //更新发布时间距离现在的差
-  db.collection('Message').where({
-    temp:1
+  db.collection('post').where({
+    "_id" : { $exists : true }
   })
   .update({
     data: {
     //json文件设置触发器，每过两小时便执行此云函数
     //将每条帖子的发布时间+2
-    subhour: _.inc(2),
-    
+    subHour: _.inc(2),
     }
   })
-  .then(res=>{
-    console.log("成功",res);
-  })
-  .catch(res=>{
-    console.log("失败",res);
-  })
+  .then(res=>{console.log("成功",res);})
+  .catch(res=>{console.log("失败",res);})
 
   //更新热度值
   var v=[];
-  db.collection('Message').where({
-    temp:1
+  db.collection('post').where({
+    "_id" : { $exists : true }
   })
   .get()
   .then(res=>{
     reslen=res.data.length;
     for(var i=0;i<reslen;i++){
-      v.push(((res.data[i].visit)*3+(res.data[i].comments.length)*7)/(res.data[i].subhour+2)*(res.data[i].subhour+2));
+      //魔方秀热度 = (总赞数*0.7+总评论数*0.3)*1000/(发布时间距离当前时间的小时差+2)^1.2
+      v.push(Math.ceil(((res.data[i].visit)*300+(res.data[i].comments.length)*700)/((res.data[i].subHour+2)*(res.data[i].subHour+2))));
       //获取到id
       var id=res.data[i]._id;
       //把这个值插回数据库
-      db.collection("Message").doc(id).update({
+      db.collection("posts").doc(id).update({
         data:{
           hotNum:v[i]
         }
       })
       .then(res1=>{
-        console.log("res1成功",res1);
+        console.log("更新热度值成功",res1);
       })
       .catch(res1=>{
-        console.log("res2失败",res1);
+        console.log("更新热度值成失败",res1);
       })
     }
     
@@ -61,7 +57,7 @@ exports.main = async (event, context) => {
 
 
 
-  // cloud.database().collection("Message").doc("28ee4e3e6056f2f80bc8c4cc67367e22").get()
+  // cloud.database().collection("posts").doc("28ee4e3e6056f2f80bc8c4cc67367e22").get()
   // .then(res=>{
     // //console.log("触发器获取时间",res);
     // postdatetime=res.data.post_detail_time;

@@ -1,16 +1,16 @@
 <view class="reply_wrap" wx:for="{{replyInfo}}">
-    <view class="reply_item" bindtap="toMessageDetail" data-messid="{{item.mess_id}}">
+    <view class="reply_item" bindtap="toPostDetail" data-postid="{{item.postId}}">
         <!-- 评论头部 -->
         <view class="left">
-            <image mode="widthFix" src="{{item.com_avatar}}" />
+            <image mode="widthFix" src="{{item.comAvatar}}" />
         </view>
         <view class="main">
             <view class="top">
-                <view class="top_name">{{item.com_name}}</view>
-                <view class="top_time">{{item.com_time}}</view>
+                <view class="top_name">{{item.comName}}</view>
+                <view class="top_time">{{item.comTime}}</view>
             </view>
             <view class="bottom">
-                <view class="content">回复了你的帖子：{{item.com_content}}</view>
+                <view class="content">回复了你的帖子：{{item.comContent}}</view>
             </view>
         </view>
     </view>
