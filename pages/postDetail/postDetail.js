@@ -14,18 +14,24 @@ Page({
     hotNum: 0,    //热度值
     comTime: "",   //评论时间
     comments: [],  //评论数组，倒序排列
+    flagOfLogin:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if(app.userInfo){
+      this.setData({
+        flagOfLogin:true
+      })
+    }
     let that = this;
     this.setData({
       postId: options.postId
     })
-    console.log("this.data.postId",this.data.postId);
-    console.log("options.postId",options.postId);
+    console.log("this.data.postId", this.data.postId);
+    console.log("options.postId", options.postId);
     //从服务器中posts中请求此条数据
     wx.cloud.database().collection('posts').where({
       _id: this.data.postId
@@ -34,7 +40,7 @@ Page({
       .then(res => {
         this.setData({
           thePost: res.data,
-         
+
         })
         this.setData({
           ['thePost[0].hotNum']: Math.ceil(res.data[0].hotNum),
@@ -74,44 +80,55 @@ Page({
   //发表评论按钮发布评论不会覆盖前一个人的评论，在调用云函数更新时应用到update
   handleBtn() {
     //获取评论时间
-    let that = this;
-    this.setData({
-      hotNum: parseInt(this.data.thePost[0].hotNum + 10),
-      comTime: app.getDetailTime()
-    })
-    wx.cloud.callFunction({
-      name: "sendComment",
-      data: {
-        postId: this.data.postId,
-        postOpenid: this.data.thePost[0]._openid,
-        comName: app.userInfo.nickName,
-        comAvatar: app.userInfo.avatarUrl,
-        comContent: this.data.textVal,
-        comLen: this.data.comLen,
-        hotNum: Math.ceil(this.data.hotNum),
-        comTime: this.data.comTime
-      }
-    })
-      .then(res => {
-        wx.showToast({
-          title: '评论成功',
-          icon: 'none',
-          image: '',
-          duration: 1500,
-          mask: false,
-          success: (result) => {
-            that.onPullDownRefresh();
-          },
-          fail: () => { },
-          complete: () => { }
-        });
+    if (!app.userInfo) {
+      wx.showToast({
+        title: '请登录后发表评论',
+        icon: 'none',
+        duration: 1500,
+        mask: false,
+      });
+    }
+    else {
+      let that = this;
+      this.setData({
+        hotNum: parseInt(this.data.thePost[0].hotNum + 10),
+        comTime: app.getDetailTime()
       })
+      wx.cloud.callFunction({
+        name: "sendComment",
+        data: {
+          postId: this.data.postId,
+          postOpenid: this.data.thePost[0]._openid,
+          comName: app.userInfo.nickName,
+          comAvatar: app.userInfo.avatarUrl,
+          comContent: this.data.textVal,
+          comLen: this.data.comLen,
+          hotNum: Math.ceil(this.data.hotNum),
+          comTime: this.data.comTime
+        }
+      })
+        .then(res => {
+          wx.showToast({
+            title: '评论成功',
+            icon: 'none',
+            image: '',
+            duration: 1500,
+            mask: false,
+            success: (result) => {
+              this.setData({
+                textVal: ""
+              })
+              that.onPullDownRefresh();
+            },
+            fail: () => { },
+            complete: () => { }
+          });
+        })
+    }
+
   },
   //带参数的页面刷新
   onPullDownRefresh: function () {
-    // wx.showLoading({
-    //   title: '加载中...',
-    // })
     let p = getCurrentPages().pop().options
     this.onLoad(p)
     setTimeout(function () {

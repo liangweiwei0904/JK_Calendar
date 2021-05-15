@@ -35,5 +35,5 @@
     </view>
 </view>
 <view class="btn">
-    <button bindtap="submit">发布</button>
+    <button bindtap="submit">更新</button>
 </view>

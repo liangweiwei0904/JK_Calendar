@@ -6,28 +6,12 @@ Page({
     scrollTop:0,   //监听页面滚动
     scrolltemp:0,  
     isScrollDown:1  //0代表向上，1代表向下
-    
   },
- 
-
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onLoad: function () {
     this.sortByHot();
     this.setData({
       flagOfHot:1
-    })
-    
-  },
-
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    }) 
   },
   //跳转到搜索页
   search: function () {
@@ -115,7 +99,6 @@ Page({
         isScrollDown:0
       })
     }
-    // console.log("滚动y轴",e);
   },
   //回到顶部功能
   goTop: function () {
@@ -135,24 +118,13 @@ Page({
           image: '',
           duration: 1500,
           mask: false,
-          success: (result)=>{
-            
-          },
-          fail: ()=>{},
-          complete: ()=>{}
         });
       }
       else{
         wx.navigateTo({
           url: '/pages/postByUser/postByUser',
-          success: (result)=>{
-            
-          },
-          fail: ()=>{},
-          complete: ()=>{}
         });
       }
-      
     }
     else{
       //刷新

@@ -1,5 +1,6 @@
 {
   "usingComponents": {
     "SearchBar": "/components/searchBox/index"
-  }
+  },
+  "navigationBarTitleText":"社区"
 }

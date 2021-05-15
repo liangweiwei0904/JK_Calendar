@@ -1,4 +1,4 @@
-<textarea maxlength="300" bindinput='handleInput' data-index="4" placeholder="请输入你要爆料的新品的详细信息"></textarea>
+<textarea maxlength="300" bindinput='handleInput' data-index="4" placeholder="爆料的详细信息，且至少上传一张图片"></textarea>
 <view class="image">
     <view class="btn0">
         <button bindtap="handleChooseImg">+</button>
@@ -19,11 +19,11 @@
     </view>
     <view class="number">
         <text>上架件数</text>
-        <input class="input" bindinput='handleInput' data-index="2" maxlength="6" placeholder="请输入数量（数字）"></input>
+        <input class="input" bindinput='handleInput' data-index="2" maxlength="6" placeholder="请输入数量"></input>
     </view>
     <view class="price">
         <text>价格</text>
-        <input class="input" bindinput='handleInput' data-index="5" maxlength="6" placeholder="请输入价格（数字）"></input>
+        <input class="input" bindinput='handleInput' data-index="5" maxlength="6" placeholder="请输入价格"></input>
     </view>
     <view class="tb_key">
         <text>淘口令</text>

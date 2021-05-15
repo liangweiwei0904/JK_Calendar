@@ -22,22 +22,13 @@ exports.main = async (event, context) => {
 
   cloud.database().collection("posts").doc(postId).update({
     data:{
-      hotNum:event.hotNum,
-      // 'comments.[com_len].content':event.content,
-      // 'comments.[com_len].username':event.username,
       ["comments." + [event.comLen] + '.comName' ]: event.comName,
       ["comments." + [event.comLen] + '.comContent' ]: event.comContent,
       ["comments."+[event.comLen]+'.comAvatar']:event.comAvatar,
       ["comments."+[event.comLen]+".comTime"]:event.comTime,
-      //'comments.1.content':event.content,
-      // ['comments.'+com_len+'.content']:event.content,
-      // ['comments.'+com_len+'.username']:event.username
-        
-      
     },
   })
   .then(res=>{
-    //console.log("log"+res);
     cloud.database().collection("reply").add({
       data:{
         postOpenid:event.postOpenid,
@@ -46,7 +37,6 @@ exports.main = async (event, context) => {
         comTime:event.comTime,
         comName:event.comName,
         comAvatar:event.comAvatar,
-
       }
     })
   })

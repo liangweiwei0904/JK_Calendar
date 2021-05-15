@@ -5,7 +5,7 @@
         <view class="arrow" data-type="0" bindtap="switchMonth">{{"<"}}</view>
         <view class="calendar_y_m">{{date}}</view>
         <view class="arrow" data-type="1" bindtap="switchMonth">{{">"}}</view>
-        <view class="back_to_today" bindtap="handleToday">今</view>
+        <!-- <view class="back_to_today" bindtap="handleToday">今</view> -->
     </view>
     <!-- 周日、一、二、三、四、五、六 -->
     <view class="calendar_head">

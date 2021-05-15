@@ -58,6 +58,6 @@
 </view>
 <view class="reply">
     <text class=" iconfont iconxie"></text>
-    <input placeholder="{{app.userInfo?'写回复':'请先登录后发表'}}" bindinput="handleCommentText"></input>
+    <input placeholder="{{flagOfLogin?'写评论':'请先登录后发表'}}" bindinput="handleCommentText" value="{{textVal}}"></input>
     <view class="btn" bindtap="handleBtn">发表</view>
 </view>

@@ -26,7 +26,7 @@ page {
   font-size: 30rpx;
 }
 .calendar_wrap .calendar_head {
-  color: #373737;
+  color: #fff;
   display: flex;
   width: 100%;
   overflow: hidden;
@@ -68,6 +68,7 @@ page {
 }
 .calendar_wrap .calendar_body .calendar_rows .calendar_cols .today {
   color: #fbb03b;
+  font-weight: 700;
 }
 .calendar_bottom {
   width: 100%;

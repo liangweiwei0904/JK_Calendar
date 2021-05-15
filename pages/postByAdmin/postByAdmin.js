@@ -15,7 +15,6 @@ Page({
     sellPrice: 0,    //金额
     goodKey: "",   //淘口令
     goodImgs: [],   //
-    arr: [],     //
     flag: "",   //通过商品名称和店铺判断是否已被爆料
   },
   //页面加载时获取当前日期与时间（方便显示在时间选择器与日期选择器上）
@@ -42,18 +41,14 @@ Page({
 
   },
 
-  //点击选择上传本地图片
+  //点击选择上传本地图片得到临时文件路径数组
   handleChooseImg() {
     wx.chooseImage({
       count: 9,
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
       success: (result) => {
-        console.log(result);
-        this.setData({
-          chooseImgs: [...this.data.chooseImgs, ...result.tempFilePaths]
-        })
-        console.log(this.data.chooseImgs);
+        this.setData({chooseImgs: [...this.data.chooseImgs, ...result.tempFilePaths]})
       },
     });
   },
@@ -74,32 +69,23 @@ Page({
   handleInput(e) {
     switch (+e.target.dataset.index) {
       case 0:    //获取商品名称
-        this.setData({
-          goodName: e.detail.value
-        })
+        this.setData({ goodName: e.detail.value })
         break;
       case 1:    //获取店铺名称
-        this.setData({
-          storeName: e.detail.value
-        })
+        this.setData({ storeName: e.detail.value })
         break;
       case 2:   //上架件数
-        this.setData({
-          sellNumber: e.detail.value
-        })
+        this.setData({ sellNumber: e.detail.value })
         break;
       case 3:   //淘口令
-        this.setData({
-          goodKey: e.detail.value
-        })
+        this.setData({ goodKey: e.detail.value })
         break;
       case 4:      //获取文本域的值
-        this.setData({
-          goodDescribe: e.detail.value
-        })
+        this.setData({ goodDescribe: e.detail.value })
         break;
       case 5:    //获取价格
-      this.setData({sellPrice:e.detail.value})
+        this.setData({ sellPrice: e.detail.value })
+        break;
     }
 
   },
@@ -120,55 +106,35 @@ Page({
   },
 
 
-  //上传图片事件
+  //临时文件路径数组上传至云存储并将返回的云存储的路径保存至本地数组
   uploadImgs() {
     if (this.data.chooseImgs.length != 0) {
       this.data.chooseImgs.forEach((v, i) => {
         wx.cloud.uploadFile({
           cloudPath: 'noticeImgs/' + new Date().getTime() + '.png',
           filePath: v,
-        }).then(res => {
-          this.setData({
-            ['goodImgs[' + i + ']']: res.fileID
-          })
+        }).then(res => {  //上传至云存储的图片路径保存至本地数组
+          this.setData({['goodImgs[' + i + ']']: res.fileID,})
         })
       })
-      /*for循环会导致只有最后一个本地图片数组中的元素上传至云存储
-      for (var i = 0; i < this.data.chooseImgs.length-1; i++) {
-        wx.cloud.uploadFile({
-          cloudPath: 'noticeImgs/' + new Date().getTime() + '.png',
-          filePath: this.data.chooseImgs[i]
-        })
-          .then(res => {
-            this.setData({
-              ['goodImgs[' + i + ']']: res.fileID
-            })
-          })
-      }*/
     }
   },
-  //向数据库增加公告数据事件
+  //向goods数据库增加公告数据事件
   addNotice() {
-    //请求解析淘口令 
-    // wx.request({ 
-    //   url: 'https://api.taokouling.com/tkl/viptkljm?apikey=gwPgxAhHwa&tkl=￥Fsf5X2aY3MM￥', 
-    //   success (res) { 
-    //     console.log(res.data) 
-    //   } 
-    // })
+    //请求解析淘口令
+    wx.request({
+      url: 'https://api.taokouling.com/tkl/viptkljm?apikey=gwPgxAhHwa&tkl='+this.data.goodKey,
+      success(res) {
+        //res.data.url比对
+      }
+    })
     //判断是否选择了图片
     if (this.data.chooseImgs.length == 0) {
       wx.showToast({
         title: '至少上传一张图片',
         icon: 'none',
-        image: '',
         duration: 1500,
         mask: false,
-        success: (result) => {
-
-        },
-        fail: () => { },
-        complete: () => { }
       });
     }
     else {
@@ -179,11 +145,6 @@ Page({
           image: '',
           duration: 1500,
           mask: false,
-          success: (result) => {
-
-          },
-          fail: () => { },
-          complete: () => { }
         });
       }
       else {
@@ -193,16 +154,10 @@ Page({
           goodName: this.data.goodName,
         }).get().then(res => {
           if (res.data.length > 0) {
-            console.log("查询相同商品的res", res);
-            this.setData({
-              flag: "似乎此商品已经被爆料了呢"
-            });
+            this.setData({flag: "似乎此商品已经被爆料了呢"});
           }
           else if (res.data.length <= 0) {
-            this.setData({
-              flag: "这是新品哦"
-            });
-            //可以上传至数据库了
+            this.setData({flag: "这是新品哦"});
             wx.cloud.database().collection("Goods").add({
               data: {
                 goodDescribe: this.data.goodDescribe,
@@ -219,7 +174,7 @@ Page({
                 avatarUrl: app.userInfo.avatarUrl,   //爆料人的头像
                 postDetailTime: app.getDetailTime(),   //爆料时间
                 goodKey: this.data.goodKey,    //淘口令
-                sellPrice:this.data.sellPrice    //价格
+                sellPrice: this.data.sellPrice    //价格
               }
             })
               .then(res1 => {
@@ -230,9 +185,9 @@ Page({
                   duration: 1500,
                   mask: false,
                   success: (result) => {
-                    // wx.navigateBack({
-                    //   delta: 1
-                    // });
+                    wx.navigateBack({
+                      delta: 1
+                    });
                   },
                 });
               })
@@ -253,13 +208,8 @@ Page({
     wx.showLoading({
       title: "发布中",
       mask: true,
-      success: (result)=>{
-        
-      },
-      fail: ()=>{},
-      complete: ()=>{}
     });
     let that = this;
-    setTimeout(function () { that.addNotice() }, 2000);
+    setTimeout(function () { that.addNotice() }, 2000);  //2秒后执行
   }
 })

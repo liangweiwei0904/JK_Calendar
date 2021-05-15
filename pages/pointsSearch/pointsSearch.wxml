@@ -1,7 +1,8 @@
 <view class="top">
-    <view>365分申请特权用户</view>
-    <text class="tips" decode="{{true}}">当前积分&nbsp;&nbsp;</text>
-    <text class="points">{{points}}</text>
+    <view>签到365天申请特权用户</view>
+    <text class="tips" decode="{{true}}">已签到&nbsp;</text>
+    <text class="points" decode="{{true}}">{{points}}</text>
+    <text class="tips" decode="{{true}}">&nbsp;天</text>
 </view>
 <view class="circle">
     <!-- 未签到 -->

@@ -6,7 +6,7 @@
             </view>
             <view class="creater">
                 <view class="creater_name">{{item.creater}}(达人)</view>
-                <view class="create_time">{{item.sellDetailTime}}</view>
+                <view class="create_time">{{item.postDetailTime}}</view>
             </view>
         </view>
         <view class="notice_content">

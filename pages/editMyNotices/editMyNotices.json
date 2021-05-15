@@ -1,5 +1,6 @@
 {
   "usingComponents": {
     "Upimg":"/components/Upimg/Upimg"
-  }
+  },
+  "navigationBarTitleText":"编辑公告"
 }

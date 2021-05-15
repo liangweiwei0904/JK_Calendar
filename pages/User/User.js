@@ -37,12 +37,8 @@ Page({
           _openid: app.openid,
           isAdmin:1
         }).get().then(res => {
-          console.log("有这个特权用户吗?", res.data.length);
-          if (res.data.length > 0) {
-            //是特权用户
-            this.setData({
-              isAdmin: 1,
-            })
+          if (res.data.length > 0) {//是特权用户
+            this.setData({isAdmin: 1,})
           }
         })
 
